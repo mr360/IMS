@@ -46,6 +46,8 @@
     <Compile Include="DbObject\Addon.cs" />
     <Compile Include="DbObject\Bay.cs" />
     <Compile Include="DbObject\DbObject.cs" />
+    <Compile Include="DbObject\Invoice\Invoice.cs" />
+    <Compile Include="DbObject\Report\Report.cs" />
     <Compile Include="DbObject\User\Customer.cs" />
     <Compile Include="DbObject\User\Staff.cs" />
     <Compile Include="DbObject\User\User.cs" />
@@ -56,6 +58,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
