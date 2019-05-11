@@ -18,7 +18,8 @@ namespace IMS.DbObject
         {
             get
             {
-                throw new NotImplementedException();
+                // BayID | Available 
+                return "Bay: " + Id + " | " + "Availablity: " + Available + "\n";
             }
         }
 
@@ -32,6 +33,14 @@ namespace IMS.DbObject
             set 
             {
                     _vehicleId = value;
+            }
+        }
+
+        public bool Available
+        {
+            get
+            {
+                return (_vehicleId == ""); 
             }
         }
 
