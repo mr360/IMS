@@ -19,7 +19,7 @@ namespace IMS.DbObject
         private DateTime _year;
         private double _price;
 
-        Vehicle(string id, Brand brand,string model, DateTime year, double price) : base(id)
+        Vehicle(string id, Brand brand,string model, DateTime year,  double price) : base(id)
         {
             _brand = brand;
             _model = model;
@@ -31,7 +31,7 @@ namespace IMS.DbObject
         {
             get
             {
-                throw new NotImplementedException();
+                return ("Brand: " + Brand + "| Model: " + Model + "| Year: " + Year + "| Price: " + Price + "\n");
             }
         }
 
