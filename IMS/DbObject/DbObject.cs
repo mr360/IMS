@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace IMS
+namespace IMS.DbObject
 {
-    public abstract class DbObject
+    public  abstract class DbObject
     {
         private string _id;
 

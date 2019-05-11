@@ -10,6 +10,7 @@ namespace IMS
     {
         static void Main(string[] args)
         {
+            DbObject.Bay x = new DbObject.Bay("ddd");
         }
     }
 }
