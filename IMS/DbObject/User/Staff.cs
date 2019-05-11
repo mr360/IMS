@@ -10,7 +10,7 @@ namespace IMS
 }
 namespace IMS.DbObject.User
 {
-    class Staff : User
+    public class Staff : User
     {
         private JobRole _role;
 

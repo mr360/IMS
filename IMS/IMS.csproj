@@ -47,6 +47,8 @@
     <Compile Include="DbObject\Bay.cs" />
     <Compile Include="DbObject\DbObject.cs" />
     <Compile Include="DbObject\Invoice\Invoice.cs" />
+    <Compile Include="DbObject\Invoice\Sale.cs" />
+    <Compile Include="DbObject\Invoice\Tax.cs" />
     <Compile Include="DbObject\Report\Report.cs" />
     <Compile Include="DbObject\User\Customer.cs" />
     <Compile Include="DbObject\User\Staff.cs" />
