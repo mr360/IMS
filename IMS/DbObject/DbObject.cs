@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace IMS.DbObject
 {
-    public class DbObject
+    public abstract class DbObject
     {
         private string _id;
 
@@ -23,7 +23,7 @@ namespace IMS.DbObject
             }
         }
 
-        public virtual string View { get; }
+        public abstract string View { get; }
          
     }
 }
