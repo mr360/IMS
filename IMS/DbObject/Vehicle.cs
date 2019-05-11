@@ -1,0 +1,75 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace IMS
+{
+    public enum Brand { Ford, Holden, Jeep, Chrysler, Volvo, Tesla, Lexus, Audi, Toyota, Chevrolet, BMW, GM };
+
+}
+
+namespace IMS.DbObject
+{
+    public class Vehicle : DbObject
+    {
+        private Brand _brand;
+        private string _model;
+        private DateTime _year;
+        private double _price;
+
+        Vehicle(string id, Brand brand,string model, DateTime year, double price) : base(id)
+        {
+            _brand = brand;
+            _model = model;
+            _year = year;
+            _price = price;
+        }
+
+        public override string View
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public Brand Brand
+        {
+            get
+            {
+                return _brand;
+            }
+        }
+
+        public string Model 
+        {
+            get
+            {
+                return _model;
+            }
+        }
+
+        public string Year 
+        {
+            get
+            {
+                return _year.DayOfYear.ToString();
+            }
+        }
+
+        public double Price
+        {
+            get
+            {
+                return _price;
+            }
+
+            set
+            {
+                _price = value;
+            }
+        }
+    }
+}
