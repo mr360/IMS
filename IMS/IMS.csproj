@@ -46,6 +46,9 @@
     <Compile Include="DbObject\Addon.cs" />
     <Compile Include="DbObject\Bay.cs" />
     <Compile Include="DbObject\DbObject.cs" />
+    <Compile Include="DbObject\User\Customer.cs" />
+    <Compile Include="DbObject\User\Staff.cs" />
+    <Compile Include="DbObject\User\User.cs" />
     <Compile Include="DbObject\Vehicle.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
