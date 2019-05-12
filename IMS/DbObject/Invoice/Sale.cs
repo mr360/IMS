@@ -112,6 +112,7 @@ namespace IMS.DbObject.Invoice
             {
                 string s1 = "********SALE INVOICE************\n";
                 s1 = base.View;
+                s1 += "----------------------------------------------------------\n";
                 s1 += "Base Vehicle : " + _buyVehicle.View + 
                       "TradeIn Vehicle" + _tradeVehicle.View + 
                       "Addons: " + ViewAllAddon;

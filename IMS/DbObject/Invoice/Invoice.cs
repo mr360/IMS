@@ -34,8 +34,8 @@ namespace IMS.DbObject.Invoice
                        "INVOICE DATE: " + Date + "\n" +
                        "SALE REP: " + SaleRep.Name + " " + SaleRep.Id + "\n" +
                        "COMPANY : HTV VEHICLE PTD\n" +
-                       "COMPANY ADDRESS : 25 Malvin Street, VIC, 3000\n" +
-                       "----------------------------------------------------------\n";
+                       "COMPANY ADDRESS : 25 Malvin Street, VIC, 3000\n";
+                       
             }
         }
 

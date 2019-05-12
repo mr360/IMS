@@ -26,9 +26,8 @@ namespace IMS.DbObject.Invoice
             {
                 string s1 = "********TAX INVOICE************\n";
                 s1 = base.View;
-
                 s1 += "CUSTOMER DETAILS: " + _customer.View + "\n";
-
+                s1 += "----------------------------------------------------------\n";
                 s1 += "Payment ID: " + _paymentId + "\n"
                     + "Payment Status: PAID\n"
                     + "Tax Total (inc GST): " + TotalCost;
