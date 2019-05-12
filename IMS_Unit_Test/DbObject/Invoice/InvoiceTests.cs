@@ -14,7 +14,7 @@ namespace IMS.DbObject.Invoice.Tests
         [TestMethod()]
         public void InvoiceTest()
         {
-           Sale x = new Sale("", new User.Staff("","",JobRole.Sale), new Vehicle("", Brand.Audi, "", DateTime.Now, 10.00));
+           Invoice x = new Sale("", new User.Staff("","",JobRole.Sale), new Vehicle("", Brand.Audi, "", DateTime.Now, 10.00));
         }
     }
 }

@@ -43,7 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Database.cs" />
+    <Compile Include="Database\Database.cs" />
     <Compile Include="DbObject\Addon.cs" />
     <Compile Include="DbObject\Bay.cs" />
     <Compile Include="DbObject\DbObject.cs" />
@@ -55,6 +55,8 @@
     <Compile Include="DbObject\User\Staff.cs" />
     <Compile Include="DbObject\User\User.cs" />
     <Compile Include="DbObject\Vehicle.cs" />
+    <Compile Include="Database\DbTable.cs" />
+    <Compile Include="Database\IDb.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

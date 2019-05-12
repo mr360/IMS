@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace IMS
+namespace IMS.Database
 {
-    class Database
+    public class DbTable
     {
     }
 }
