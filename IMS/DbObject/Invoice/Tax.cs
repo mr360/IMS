@@ -9,12 +9,35 @@ namespace IMS.DbObject.Invoice
 {
     public class Tax : Invoice
     {
-        /*public  Tax(Sale saleInvoice) : base(saleInvoice.Id,saleInvoice.SaleRep,saleInvoice.Vehicle)
-        {
+        string _paymentId;
+        Sale _saleInvoice;
 
-        } */
-        public Tax(string id, Staff saleRep, Vehicle buy) : base(id, saleRep, buy)
+        public  Tax(Sale saleInvoice, string paymentId) : base(saleInvoice.Id,saleInvoice.SaleRep)
         {
+            _paymentId = paymentId;
+            _saleInvoice = saleInvoice;
+        }
+
+        public override string View
+        {
+            get
+            {
+                string s1 = "********TAX INVOICE************\n";
+                s1 = base.View;
+                s1 += "Payment ID: " + _paymentId + "\n"
+                    + "Payment Status: PAID\n"
+                    + "Tax Total (inc GST): " + TotalCost;
+            
+                return s1;
+            }
+        }
+
+        public override double TotalCost
+        {
+            get
+            {
+                return _saleInvoice.TotalCost * 1.10;
+            }
         }
     }
 }

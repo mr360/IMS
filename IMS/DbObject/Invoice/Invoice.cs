@@ -10,17 +10,11 @@ namespace IMS.DbObject.Invoice
     public abstract class Invoice : DbObject
     {
         private DateTime _date;
-        private double _totalCost;
         private Staff _salerep;
         
-        private Vehicle _buyVehicle;
-        private Vehicle _tradeVehicle;
-        private List<Addon> _addon;
-
-        public Invoice(string id, Staff saleRep, Vehicle buy) : base(id)
+        public Invoice(string id, Staff saleRep) : base(id)
         {
             _date = DateTime.Now;
-            _buyVehicle = buy;
             _salerep = saleRep;
         }
 
@@ -29,14 +23,6 @@ namespace IMS.DbObject.Invoice
             get
             {
                return _date.ToShortDateString();
-            }
-        }
-
-        public virtual double Cost
-        {
-            get
-            {
-                return _totalCost = VehicleCost;
             }
         }
 
@@ -61,34 +47,10 @@ namespace IMS.DbObject.Invoice
             }
         }
 
-        public double VehicleCost
+        public virtual double TotalCost
         {
-            get
-            {
-                return _buyVehicle.Price;
-            }
+            get;
         }
 
-        public double TradeRebateCost
-        {
-            get
-            {
-                return (-(_tradeVehicle.Price * 0.25));
-            }
-        }
-
-        public double AddonCost
-        {
-            get
-            {
-                double c = 0.0;
-                foreach(Addon a in _addon)
-                {
-                    c += a.Price;
-                }
-
-                return c;
-            }
-        }
     }
 }
