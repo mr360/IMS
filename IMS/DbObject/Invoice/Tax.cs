@@ -36,7 +36,7 @@ namespace IMS.DbObject.Invoice
         {
             get
             {
-                return _saleInvoice.TotalCost * 1.10;
+                return _saleInvoice.TotalCost + (_saleInvoice.TotalCost * 1.10);
             }
         }
     }

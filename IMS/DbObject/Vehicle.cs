@@ -19,7 +19,7 @@ namespace IMS.DbObject
         private DateTime _year;
         private double _price;
 
-        Vehicle(string id, Brand brand,string model, DateTime year,  double price) : base(id)
+        public Vehicle(string id, Brand brand,string model, DateTime year,  double price) : base(id)
         {
             _brand = brand;
             _model = model;
