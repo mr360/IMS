@@ -11,11 +11,13 @@ namespace IMS.DbObject.Invoice
     {
         string _paymentId;
         Sale _saleInvoice;
+        Customer _customer;
 
-        public  Tax(Sale saleInvoice, string paymentId) : base(saleInvoice.Id,saleInvoice.SaleRep)
+        public  Tax(Sale saleInvoice, Customer customer, string paymentId) : base(saleInvoice.Id,saleInvoice.SaleRep)
         {
             _paymentId = paymentId;
             _saleInvoice = saleInvoice;
+            _customer = customer;
         }
 
         public override string View
@@ -24,6 +26,9 @@ namespace IMS.DbObject.Invoice
             {
                 string s1 = "********TAX INVOICE************\n";
                 s1 = base.View;
+
+                s1 += "CUSTOMER DETAILS: " + _customer.View + "\n";
+
                 s1 += "Payment ID: " + _paymentId + "\n"
                     + "Payment Status: PAID\n"
                     + "Tax Total (inc GST): " + TotalCost;
