@@ -17,49 +17,46 @@ namespace IMS.Tests
             return  new Vehicle("V00001", Brand.Audi, "MX-60", vYear, vPrice);
         }
 
-        /*
-            v1.Brand;
-            v1.Id;
-            v1.Model;
-            v1.Price;
-            v1.Year;
-            v1.View;
-         */
         [TestMethod()]
         public void VehicleTestID()
         {
             Vehicle v1 = Setup();
-            Assert.Equals(v1.Id, "V00001");
+            Assert.AreEqual("V00001", v1.Id);
         }
         
         [TestMethod()]
         public void VehicleTestBrand()
         {
             Vehicle v1 = Setup();
-            Assert.Equals(v1.Id, Brand.Audi);
+            Assert.AreEqual(Brand.Audi, v1.Brand);
         }
 
         [TestMethod()]
         public void VehicleTestModel()
         {
             Vehicle v1 = Setup();
-            Assert.Equals(v1.Id, "MX-60");
+            Assert.AreEqual( "MX-60", v1.Model);
         }
 
         [TestMethod()]
         public void VehicleTestYear()
         {
             Vehicle v1 = Setup();
-            Assert.Equals(v1.Id, 2008);
+            Assert.AreEqual("2008",v1.Year);
         }
 
         [TestMethod()]
         public void VehicleTestPrice()
         {
             Vehicle v1 = Setup();
-            Assert.Equals(v1.Price, 126000.00);
+            Assert.AreEqual(126000.00, v1.Price);
         }
 
-
+        [TestMethod()]
+        public void VehicleTestView()
+        {
+            Vehicle v1 = Setup();
+            Assert.AreEqual("", v1.View);
+        }
     }
 }
