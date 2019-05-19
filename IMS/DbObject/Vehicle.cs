@@ -16,14 +16,14 @@ namespace IMS
     {
         private Brand _brand;
         private string _model;
-        private DateTime _year;
+        private int _year;
         private double _price;
 
-        public Vehicle(string id, Brand brand,string model, DateTime year,  double price) : base(id)
+        public Vehicle(string id, Brand brand, string model, DateTime year, double price) : base(id)
         {
             _brand = brand;
             _model = model;
-            _year = year;
+            _year = year.Year;
             _price = price;
         }
 
@@ -43,7 +43,7 @@ namespace IMS
             }
         }
 
-        public string Model 
+        public string Model
         {
             get
             {
@@ -51,11 +51,11 @@ namespace IMS
             }
         }
 
-        public string Year 
+        public string Year
         {
             get
             {
-                return _year.DayOfYear.ToString();
+                return _year.ToString();
             }
         }
 
