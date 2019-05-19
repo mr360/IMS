@@ -9,10 +9,16 @@ using System.Threading.Tasks;
 namespace IMS.Invoice.Tests
 {
     [TestClass()]
-    public class InvoiceTests
+    public class SaleTests
     {
         [TestMethod()]
-        public void InvoiceTest()
+        public void SaleTest()
+        {
+            Assert.Fail();
+        }
+
+        [TestMethod()]
+        public void SaleTest1()
         {
             Assert.Fail();
         }

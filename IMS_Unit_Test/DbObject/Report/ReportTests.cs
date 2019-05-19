@@ -1,18 +1,18 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using IMS.Invoice;
+using IMS.Report;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace IMS.Invoice.Tests
+namespace IMS.Report.Tests
 {
     [TestClass()]
-    public class InvoiceTests
+    public class ReportTests
     {
         [TestMethod()]
-        public void InvoiceTest()
+        public void ReportTest()
         {
             Assert.Fail();
         }
