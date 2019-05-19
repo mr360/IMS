@@ -51,26 +51,34 @@ namespace IMS.Tests
         [TestMethod()]
         public void AddonPriceTest()
         {
+            Assert.AreEqual(155.0, a1.Price);
         }
 
         [TestMethod()]
         public void AddonDescTest()
         {
+            Assert.AreEqual("The latest bodykit with seven carbon atoms", a1.Desc);
         }
 
         [TestMethod()]
         public void AddonNameTest()
         {
+            Assert.AreEqual("BodyKit3", a1.Name);
         }
 
         [TestMethod()]
         public void AddonViewTest()
         {
+            Assert.AreEqual("Addon Name: BodyKit3| Desc: The latest bodykit with seven carbon atoms| Price: 155\n", a1.View);
         }
 
         [TestMethod()]
         public void AddonDeleteCompatibleTest()
         {
+            bool status = a1.AddCompatible("V1005");
+            status = a1.RemoveCompatible("V1005");
+            status = a1.IsCompatible("V1005");
+            Assert.AreEqual(true, status);
         }
 
     }
