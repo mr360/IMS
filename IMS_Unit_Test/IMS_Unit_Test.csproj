@@ -54,7 +54,6 @@
     <Compile Include="Database\DbTableTests.cs" />
     <Compile Include="DbObject\AddonTests.cs" />
     <Compile Include="DbObject\BayTests.cs" />
-    <Compile Include="DbObject\DbObjectTests.cs" />
     <Compile Include="DbObject\Invoice\InvoiceTests.cs" />
     <Compile Include="DbObject\Invoice\SaleTests.cs" />
     <Compile Include="DbObject\Invoice\TaxTests.cs" />
