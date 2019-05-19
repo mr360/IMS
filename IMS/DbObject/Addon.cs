@@ -55,7 +55,7 @@ namespace IMS
 
         public bool IsCompatible(string id)
         {
-            return (!_compatibleVehicle.Contains(id) && id != "");
+            return (_compatibleVehicle.Contains(id) && id != "");
         }
 
         public bool AddCompatible(string id)
