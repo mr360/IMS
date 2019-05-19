@@ -1,17 +1,17 @@
 ﻿using System;
-using IMS.DbObject;
+using IMS;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace IMS.Database
+namespace IMS
 {
     public interface IDb
     {
-        string Create(DbObject.DbObject item);
-        DbObject.DbObject Read(string id);
-        string Update(DbObject.DbObject item);
+        string Create(DbObject item);
+        DbObject Read(string id);
+        string Update(DbObject item);
         string Delete(string id);
         int Count { get; }
     }

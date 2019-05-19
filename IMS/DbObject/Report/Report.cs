@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace IMS.DbObject.Report
+namespace IMS.Report
 {
     public class Report : DbObject
     {

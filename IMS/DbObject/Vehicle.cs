@@ -10,7 +10,7 @@ namespace IMS
 
 }
 
-namespace IMS.DbObject
+namespace IMS
 {
     public class Vehicle : DbObject
     {

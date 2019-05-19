@@ -8,7 +8,7 @@ namespace IMS
 {
     public enum JobRole {Sale, Garage, Accounting, Management};
 }
-namespace IMS.DbObject.User
+namespace IMS.User
 {
     public class Staff : User
     {

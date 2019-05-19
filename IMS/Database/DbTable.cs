@@ -1,16 +1,16 @@
 ﻿using System;
-using IMS.DbObject;
+using IMS;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace IMS.DbObject
+namespace IMS
 {
     public class DbTable : DbObject, IDb
     {
         private string _name; 
-        private List<DbObject.DbObject> _table;
+        private List<DbObject> _table;
 
         public DbTable(string id, string name) : base(id)
         {
@@ -30,7 +30,7 @@ namespace IMS.DbObject
             get
             {
                 string temp = "";
-                foreach(DbObject.DbObject itm in _table)
+                foreach(DbObject itm in _table)
                 {
                     temp += itm.Id;
                 }
@@ -38,7 +38,7 @@ namespace IMS.DbObject
             }
         }
 
-        public string Create(DbObject.DbObject item)
+        public string Create(DbObject item)
         {
             if (item == null)
             {
@@ -55,7 +55,7 @@ namespace IMS.DbObject
 
         public string Delete(string id)
         {
-            foreach (DbObject.DbObject itm in _table)
+            foreach (DbObject itm in _table)
             {
                 if (itm.Id == id)
                 {
@@ -67,9 +67,9 @@ namespace IMS.DbObject
             return "No such item found.";
         }
 
-        public DbObject.DbObject Read(string id)
+        public DbObject Read(string id)
         {
-            foreach (DbObject.DbObject item in _table)
+            foreach (DbObject item in _table)
             {
                 if (item.Id == id)
                 {
@@ -80,7 +80,7 @@ namespace IMS.DbObject
             return null;
         }
 
-        public string Update(DbObject.DbObject item)
+        public string Update(DbObject item)
         {
             int index = _table.IndexOf(Read(item.Id));
 

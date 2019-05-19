@@ -1,12 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using IMS.DbObject.Invoice;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace IMS.DbObject.Invoice.Tests
+namespace IMS.Invoice.Tests
 {
     [TestClass()]
     public class InvoiceTests

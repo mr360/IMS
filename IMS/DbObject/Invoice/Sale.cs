@@ -1,4 +1,4 @@
-﻿using IMS.DbObject.User;
+﻿using IMS.User;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +10,7 @@ namespace IMS
     public enum VType { TradeIn, New};
 }
 
-namespace IMS.DbObject.Invoice
+namespace IMS.Invoice
 {
     public class Sale : Invoice
     {
