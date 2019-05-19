@@ -17,7 +17,7 @@ namespace IMS
         {
             _name = name;
             _desc = desc;
-            _price = price;
+            _price = Math.Abs(price);
             _compatibleVehicle = new List<string>();
         }
 
