@@ -13,7 +13,8 @@ namespace IMS.Tests
     {
         Vehicle Setup()
         {
-            DateTime vYear = new DateTime(2008); double vPrice = 126000.00;
+            DateTime vYear = new DateTime(2008, 01, 01);
+            double vPrice = 126000.00;
             return  new Vehicle("V00001", Brand.Audi, "MX-60", vYear, vPrice);
         }
 
