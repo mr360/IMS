@@ -14,6 +14,7 @@ namespace IMS
         public Database(string name)
         {
             _name = name;
+            _table = new List<DbTable>();
         }
 
         public int Count

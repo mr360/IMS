@@ -15,6 +15,7 @@ namespace IMS
         public DbTable(string id, string name) : base(id)
         {
             _name = name;
+            _table = new List<DbObject>();
         }
 
         public int Count
