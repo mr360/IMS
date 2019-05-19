@@ -14,7 +14,10 @@ namespace IMS.Tests
         [TestMethod()]
         public void AddonTest()
         {
-            Assert.Fail();
+            Addon a1 = new Addon("A0001", "BodyKit3", "The latest bodykit with seven carbon atoms", 155.0);
+            //Add compatible vehicles 
+
+            
         }
     }
 }
