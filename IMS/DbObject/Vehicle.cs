@@ -24,14 +24,15 @@ namespace IMS
             _brand = brand;
             _model = model;
             _year = year.Year;
-            _price = price;
+            _price = Math.Abs(price);
+            
         }
 
         public override string View
         {
             get
             {
-                return ("Brand: " + Brand + "| Model: " + Model + "| Year: " + Year + "| Price: " + Price + "\n");
+                return ("Brand: " + Brand + " | Model: " + Model + " | Year: " + Year + " | Price: " + Price + "\n");
             }
         }
 
