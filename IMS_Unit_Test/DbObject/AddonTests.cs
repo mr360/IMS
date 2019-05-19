@@ -11,23 +11,41 @@ namespace IMS.Tests
     [TestClass()]
     public class AddonTests
     {
+        Addon a1 = new Addon("A0001", "BodyKit3", "The latest bodykit with seven carbon atoms", 155.0);
+
         [TestMethod()]
         public void AddonAddCompatibleTest()
-        {
-            Addon a1 = new Addon("A0001", "BodyKit3", "The latest bodykit with seven carbon atoms", 155.0);
-            //Add compatible vehicles 
-            a1.AddCompatible("V0001");
-            a1.AddCompatible("V0002"); 
+        { 
+            bool status = a1.AddCompatible("V0001");
+            Assert.AreEqual(true, status);
         }
 
         [TestMethod()]
-        public void AddonDeleteCompatibleTest()
+        public void AddonAddDuplicateCompatibleTest()
         {
+            bool status =  a1.AddCompatible("V0002");
+            status = a1.AddCompatible("V0002");
+
+            Assert.AreEqual(false, status);
+        }
+
+
+        [TestMethod()]
+        public void AddonCheckCompatibleTrueTest()
+        {
+            bool status = a1.AddCompatible("V0005");
+            status = a1.IsCompatible("V0005");
+
+            Assert.AreEqual(true, status);
         }
 
         [TestMethod()]
-        public void AddonCheckCompatibleTest()
+        public void AddonCheckCompatibleFalseTest()
         {
+            bool status = a1.AddCompatible("V0005");
+            status = a1.IsCompatible("V0009");
+
+            Assert.AreEqual(false, status);
         }
 
         [TestMethod()]
@@ -47,6 +65,11 @@ namespace IMS.Tests
 
         [TestMethod()]
         public void AddonViewTest()
+        {
+        }
+
+        [TestMethod()]
+        public void AddonDeleteCompatibleTest()
         {
         }
 
