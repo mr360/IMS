@@ -13,6 +13,6 @@ namespace IMS.Database
         DbObject.DbObject Read(string id);
         string Update(DbObject.DbObject item);
         string Delete(string id);
-        List<string> View { get; }
+        int Count { get; }
     }
 }
