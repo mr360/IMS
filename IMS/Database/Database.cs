@@ -15,5 +15,68 @@ namespace IMS
         {
             _name = name;
         }
+
+        public int Count
+        {
+            get
+            {
+                return _table.Count;
+            }
+        }
+
+        public string Create(DbObject item)
+        {
+            if (item == null)
+            {
+                return "Not valid table.";
+            }
+            if (_table.Contains(item))
+            {
+                return "Duplication! Table already exists.";
+            }
+
+            _table.Add(item as DbTable);
+            return "Successfully added.";
+        }
+
+        public string Delete(string id)
+        {
+            foreach (DbObject itm in _table)
+            {
+                if (itm.Id == id)
+                {
+                    _table.Remove(itm as DbTable);
+                    return "Successfully deleted.";
+                }
+            }
+
+            return "No such table found.";
+        }
+
+        public DbObject Read(string id)
+        {
+            foreach (DbObject item in _table)
+            {
+                if (item.Id == id)
+                {
+                    return item;
+                }
+            }
+
+            return null;
+        }
+
+        public string Update(DbObject item)
+        {
+            int index = _table.IndexOf(Read(item.Id) as DbTable);
+
+            if (!(index == -1))
+            {
+                _table[index] = item as DbTable;
+                return "Successfully updated.";
+            }
+
+            return "No such table found";
+        }
     }
 }
