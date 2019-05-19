@@ -55,12 +55,12 @@ namespace IMS
 
         public bool IsCompatible(string id)
         {
-            return (_compatibleVehicle.Contains(id) && id != "");
+            return (_compatibleVehicle.Contains(id));
         }
 
         public bool AddCompatible(string id)
         {
-            if (IsCompatible(id))
+            if (!IsCompatible(id))
             {
                 _compatibleVehicle.Add(id);
                 return true;
@@ -69,7 +69,7 @@ namespace IMS
         }
         public bool RemoveCompatible(string id)
         {
-            if (IsCompatible(id))
+            if (!IsCompatible(id))
             {
                 _compatibleVehicle.Remove(id);
                 return true;
