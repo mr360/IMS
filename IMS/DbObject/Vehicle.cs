@@ -18,7 +18,6 @@ namespace IMS
         private string _model;
         private int _year;
         private double _price;
-        private List<string> _compatibleVehicle;
 
         public Vehicle(string id, Brand brand, string model, DateTime year, double price) : base(id)
         {
@@ -26,7 +25,6 @@ namespace IMS
             _model = model;
             _year = year.Year;
             _price = Math.Abs(price);
-            _compatibleVehicle = new List<string>();
             
         }
 
@@ -73,30 +71,6 @@ namespace IMS
             {
                 _price = value;
             }
-        }
-
-        public bool IsCompatible(string id)
-        {
-            return (!_compatibleVehicle.Contains(id) && id != "");
-        }
-
-        public bool AddCompatible(string id)
-        {
-            if (IsCompatible(id))
-            {
-                _compatibleVehicle.Add(id);
-                return true;
-            }
-            return false;
-        }
-        public bool RemoveCompatible(string id)
-        {
-            if (IsCompatible(id))
-            {
-                _compatibleVehicle.Remove(id);
-                return true;
-            }
-            return false;
         }
     }
 }
