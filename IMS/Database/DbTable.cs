@@ -5,26 +5,34 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace IMS.Database
+namespace IMS.DbObject
 {
-    public class DbTable : IDb
+    public class DbTable : DbObject, IDb
     {
         private string _name; 
         private List<DbObject.DbObject> _table;
 
-        public DbTable(string name)
+        public DbTable(string id, string name) : base(id)
         {
             _name = name;
         }
 
-        public List<string> View
+        public int Count
         {
             get
             {
-                List<string> temp = new List<string>();
+                return _table.Count;
+            }
+        }
+
+        public override string View
+        {
+            get
+            {
+                string temp = "";
                 foreach(DbObject.DbObject itm in _table)
                 {
-                    temp.Add(itm.Id);
+                    temp += itm.Id;
                 }
                 return temp;
             }
