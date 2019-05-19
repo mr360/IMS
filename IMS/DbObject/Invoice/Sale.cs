@@ -28,14 +28,14 @@ namespace IMS.Invoice
             _tradeVehicle = trade;
         }
 
-        bool Add(Addon a)
+        public bool Add(Addon a)
         {
             if (_buyVehicle == null || _addon.Contains(a)) return false;
             _addon.Add(a);
             return true;
         }
 
-        bool Add(VType type, Vehicle vehicle)
+        public bool Add(VType type, Vehicle vehicle)
         {
             if (type != VType.New || type != VType.TradeIn || vehicle == null)
             {
