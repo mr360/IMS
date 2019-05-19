@@ -57,7 +57,7 @@ namespace IMS.Tests
         public void VehicleTestView()
         {
             Vehicle v1 = Setup();
-            Assert.AreEqual("", v1.View);
+            Assert.AreEqual("Brand: Audi | Model: MX-60 | Year: 2008 | Price: 126000", v1.View);
         }
     }
 }
