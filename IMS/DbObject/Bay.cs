@@ -11,7 +11,7 @@ namespace IMS
         private string _vehicleId; 
         public Bay(string id) : base(id)
         {
-
+            _vehicleId = null;
         }
 
         public override string View
@@ -40,7 +40,7 @@ namespace IMS
         {
             get
             {
-                return (_vehicleId == ""); 
+                return (_vehicleId == null); 
             }
         }
 
