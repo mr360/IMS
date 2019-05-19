@@ -54,13 +54,11 @@
     <Compile Include="Database\DbTableTests.cs" />
     <Compile Include="DbObject\AddonTests.cs" />
     <Compile Include="DbObject\BayTests.cs" />
-    <Compile Include="DbObject\Invoice\InvoiceTests.cs" />
     <Compile Include="DbObject\Invoice\SaleTests.cs" />
     <Compile Include="DbObject\Invoice\TaxTests.cs" />
     <Compile Include="DbObject\Report\ReportTests.cs" />
     <Compile Include="DbObject\User\CustomerTests.cs" />
     <Compile Include="DbObject\User\StaffTests.cs" />
-    <Compile Include="DbObject\User\UserTests.cs" />
     <Compile Include="DbObject\VehicleTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
