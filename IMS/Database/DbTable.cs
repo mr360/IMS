@@ -52,11 +52,11 @@ namespace IMS
             }
             if(_table.Contains(item))
             {
-                return "Duplication! Item already exists.";
+                return "Duplication! Item already exists. ID:" + item.Id;
             }
 
             _table.Add(item);
-            return "Successfully added.";
+            return "Successfully added. ID:" + item.Id;
         }
 
         public string Delete(string id)
