@@ -7,9 +7,9 @@ using IMS.Manager;
 
 namespace IMS
 {
-    struct Order
+    public struct Order
     {
-        public Vehicle vehicle;
+        public Vehicle buyVehicle;
         public List<Addon> addons;
     }
 }
@@ -26,7 +26,8 @@ namespace IMS.Builder
             _manager = new Dictionary<string, IManager>();
             _manager.Add("Vehicle", vm);
             _manager.Add("Addon", am);
-            _manager.Add("Bay", bm);
+
+            _order.addons = new List<Addon>();
         }
 
         public string Add(string vehicleId)
@@ -35,31 +36,51 @@ namespace IMS.Builder
             // if not found send msg
             // if found save in order
 
+            _order.buyVehicle = _manager["Vehicle"].Retrieve(vehicleId) as Vehicle;
+
+            if (_order.buyVehicle != null)
+            {
+                return "Successfully added.";
+            }
+
+            return "Cannot find the vehicle.";
         }
 
         public string Add(List<string> addon)
         {
             // if vehicle has not been added stop adding addons
-            if (_order.vehicle == null) 
+            // Use the manager to look for the addon ids
+            // if not found send msg
+            // if found save in order via loop
+
+            if (_order.buyVehicle == null) 
             {
                 return "No vehicle selected.";
             }
 
             foreach( string id in addon)
             {
-                _order.addons.Add()
-            }
-            
-           
-            // Use the manager to look for the addon ids
-            // if not found send msg
-            // if found save in order via loop
+                Addon a = _manager["Addon"].Retrieve(id) as Addon;
+                if (a == null)
+                {
+                    _order.addons.Clear();
+                    return "The list of addons is corrupt.";
+                }
 
+                _order.addons.Add(a);
+            }
+
+            return "Successfully added.";
         }
 
         public override Object Prepare()
         {
-            throw new NotImplementedException();
+            if (_order.buyVehicle == null && _order.addons.Count == 0)
+            {
+                return null;
+            }
+
+            return _order;    
         }
 
 
