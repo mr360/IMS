@@ -8,6 +8,6 @@ namespace IMS.Builder
 {
     public abstract class Builder
     {
-        public abstract string Prepare();
+        public abstract Object Prepare();
     }
 }

@@ -8,7 +8,7 @@ namespace IMS.Builder
 {
     public class ReportBuilder : Builder
     {
-        public override string Prepare()
+        public override Object Prepare()
         {
             throw new NotImplementedException();
         }
