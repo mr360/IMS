@@ -19,7 +19,7 @@ namespace IMS.Invoice.Tests
         [TestMethod()]
         public void SaleDateTest()
         {
-            Assert.AreEqual("", si01.Date);
+            Assert.AreEqual(DateTime.Now.ToShortDateString(), si01.Date);
         }
 
         [TestMethod()]
@@ -40,14 +40,14 @@ namespace IMS.Invoice.Tests
         public void SaleAddVehicleNewTest()
         {
             si01.Add(VType.New, v01);
-            Assert.AreEqual(155, si01.VehicleCost);
+            Assert.AreEqual(125000, si01.VehicleCost);
         }
 
         [TestMethod()]
         public void SaleAddVehicleTradeTest()
         {
             si01.Add(VType.TradeIn, v01);
-            Assert.AreEqual(155, si01.TradeRebateCost);
+            Assert.AreEqual(125000, si01.TradeRebateCost);
         }
 
         [TestMethod()]
