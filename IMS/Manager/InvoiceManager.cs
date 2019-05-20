@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace IMS.Manager
 {
-    class InvoiceManager : Manager, IManager
+    public class InvoiceManager : Manager, IManager
     {
         public InvoiceManager(string itable, Database db) : base(itable, db)
         {
