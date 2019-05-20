@@ -14,6 +14,7 @@ namespace IMS.Invoice.Tests
     {
         static Vehicle v01 = new Vehicle("V00001", Brand.Audi, "MX-60", new DateTime(2008, 01, 01), 125000.00);
         static Staff s01 = new Staff("S0001", "Steve", JobRole.Sale);
+        Addon a1 = new Addon("A0001", "BodyKit3", "The latest bodykit with seven carbon atoms", 155.0);
         Sale si01 = new Sale("SI0001", s01 , v01);
 
         [TestMethod()]
@@ -25,13 +26,12 @@ namespace IMS.Invoice.Tests
         [TestMethod()]
         public void SaleRepTest()
         {
-            Assert.AreEqual("", si01.SaleRep);
+            Assert.AreEqual("IMS.User.Staff", si01.SaleRep.ToString());
         }
 
         [TestMethod()]
         public void SaleAddAddonTest()
         {
-            Addon a1 = new Addon("A0001", "BodyKit3", "The latest bodykit with seven carbon atoms", 155.0);
             si01.Add(a1);
             Assert.AreEqual(155,si01.AddonCost);
         }
@@ -53,7 +53,6 @@ namespace IMS.Invoice.Tests
         [TestMethod()]
         public void SaleAddAddonDuplicateTradeTest()
         {
-            Addon a1 = new Addon("A0001", "BodyKit3", "The latest bodykit with seven carbon atoms", 155.0);
             bool status = si01.Add(a1);
             status = si01.Add(a1);
             Assert.AreEqual(false, status);
@@ -76,7 +75,6 @@ namespace IMS.Invoice.Tests
         [TestMethod()]
         public void SaleAddonCostTest()
         {
-            Addon a1 = new Addon("A0001", "BodyKit3", "The latest bodykit with seven carbon atoms", 155.0);
             si01.Add(a1);
             Assert.AreEqual(155, si01.AddonCost);
         }
@@ -90,7 +88,6 @@ namespace IMS.Invoice.Tests
         [TestMethod()]
         public void SaleViewAddonTest()
         {
-            Addon a1 = new Addon("A0001", "BodyKit3", "The latest bodykit with seven carbon atoms", 155.0);
             si01.Add(a1);
             Assert.AreEqual("Addon Name: BodyKit3| Desc: The latest bodykit with seven carbon atoms| Price: 155\n", si01.ViewAllAddon); ;
         }
@@ -98,7 +95,7 @@ namespace IMS.Invoice.Tests
         [TestMethod()]
         public void SaleViewTest()
         {
-            Assert.AreEqual(125000, si01.View);
+            Assert.AreEqual("it works", si01.View);
         }
     }
 }
