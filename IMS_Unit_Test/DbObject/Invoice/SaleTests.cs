@@ -19,85 +19,81 @@ namespace IMS.Invoice.Tests
         [TestMethod()]
         public void SaleDateTest()
         {
-            Assert.Fail();
+            Assert.AreEqual("", si01.Date);
         }
 
         [TestMethod()]
         public void SaleRepTest()
         {
-            Assert.Fail();
+            Assert.AreEqual("", si01.SaleRep);
         }
 
         [TestMethod()]
         public void SaleAddAddonTest()
         {
-            Assert.Fail();
+            Addon a1 = new Addon("A0001", "BodyKit3", "The latest bodykit with seven carbon atoms", 155.0);
+            si01.Add(a1);
+            Assert.AreEqual(155,si01.AddonCost);
         }
 
         [TestMethod()]
         public void SaleAddVehicleNewTest()
         {
-            Assert.Fail();
+            si01.Add(VType.New, v01);
+            Assert.AreEqual(155, si01.VehicleCost);
         }
 
         [TestMethod()]
         public void SaleAddVehicleTradeTest()
         {
-            Assert.Fail();
+            si01.Add(VType.TradeIn, v01);
+            Assert.AreEqual(155, si01.TradeRebateCost);
         }
 
         [TestMethod()]
         public void SaleAddAddonDuplicateTradeTest()
         {
-            Assert.Fail();
+            Addon a1 = new Addon("A0001", "BodyKit3", "The latest bodykit with seven carbon atoms", 155.0);
+            bool status = si01.Add(a1);
+            status = si01.Add(a1);
+            Assert.AreEqual(false, status);
         }
 
-        [TestMethod()]
-        public void SaleAddVehicleNewDuplicateTest()
-        {
-            Assert.Fail();
-        }
-
-        [TestMethod()]
-        public void SaleAddVehicleTradeDuplicateTest()
-        {
-            Assert.Fail();
-        }
-
+      
         [TestMethod()]
         public void SaleVehicleCostTest()
         {
-            Assert.Fail();
+            Assert.AreEqual(125000, si01.VehicleCost);
         }
 
         [TestMethod()]
         public void SaleTradeCostTest()
         {
-            Assert.Fail();
+            Assert.AreEqual(125000, si01.TradeRebateCost);
         }
 
         [TestMethod()]
         public void SaleAddonCostTest()
         {
-            Assert.Fail();
+            Assert.AreEqual(125000, si01.AddonCost);
         }
 
         [TestMethod()]
         public void SaleTotalCostTest()
         {
-            Assert.Fail();
+            Assert.AreEqual(125000, si01.TotalCost);
         }
 
         [TestMethod()]
         public void SaleViewAddonTest()
         {
-            Assert.Fail();
+            Assert.AreEqual(125000, si01.ViewAllAddon); ;
         }
 
         [TestMethod()]
         public void SaleViewTest()
         {
-            Assert.Fail();
+            Assert.AreEqual(125000, si01.View);
         }
     }
 }
