@@ -21,6 +21,7 @@ namespace IMS.Invoice
         public Sale(string id, Staff saleRep, Vehicle buy) : base(id, saleRep)
         {
             _buyVehicle = buy;
+            _addon = new List<Addon>();
         }
 
         public Sale(string id, Staff saleRep, Vehicle buy, Vehicle trade) : this(id, saleRep, buy)
