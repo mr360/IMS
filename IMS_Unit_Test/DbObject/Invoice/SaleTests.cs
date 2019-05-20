@@ -47,7 +47,7 @@ namespace IMS.Invoice.Tests
         public void SaleAddVehicleTradeTest()
         {
             si01.Add(VType.TradeIn, v01);
-            Assert.AreEqual(125000, si01.TradeRebateCost);
+            Assert.AreEqual(-31250, si01.TradeRebateCost);
         }
 
         [TestMethod()]
@@ -69,13 +69,16 @@ namespace IMS.Invoice.Tests
         [TestMethod()]
         public void SaleTradeCostTest()
         {
-            Assert.AreEqual(125000, si01.TradeRebateCost);
+            si01.Add(VType.TradeIn, v01);
+            Assert.AreEqual(-31250, si01.TradeRebateCost);
         }
 
         [TestMethod()]
         public void SaleAddonCostTest()
         {
-            Assert.AreEqual(125000, si01.AddonCost);
+            Addon a1 = new Addon("A0001", "BodyKit3", "The latest bodykit with seven carbon atoms", 155.0);
+            si01.Add(a1);
+            Assert.AreEqual(155, si01.AddonCost);
         }
 
         [TestMethod()]
@@ -87,7 +90,9 @@ namespace IMS.Invoice.Tests
         [TestMethod()]
         public void SaleViewAddonTest()
         {
-            Assert.AreEqual(125000, si01.ViewAllAddon); ;
+            Addon a1 = new Addon("A0001", "BodyKit3", "The latest bodykit with seven carbon atoms", 155.0);
+            si01.Add(a1);
+            Assert.AreEqual("Addon Name: BodyKit3| Desc: The latest bodykit with seven carbon atoms| Price: 155\n", si01.ViewAllAddon); ;
         }
 
         [TestMethod()]
