@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace IMS.Builder
 {
-    public class ReportBuilder : Builder
+    public class ReportBuilder
     {
-        public override Object Prepare()
+        public  Object Prepare()
         {
             throw new NotImplementedException();
         }

@@ -16,12 +16,12 @@ namespace IMS
 
 namespace IMS.Builder
 {
-    public class VehicleBuilder : Builder
+    public class VehicleBuilder
     {
-        Dictionary<string, IManager> _manager;
         Order _order;
+        Dictionary<string, IManager> _manager;
 
-        public VehicleBuilder(VehicleManager vm,AddonManager am, BayManager bm)
+        public VehicleBuilder(IManager vm, IManager am)
         {
             _manager = new Dictionary<string, IManager>();
             _manager.Add("Vehicle", vm);
@@ -40,7 +40,7 @@ namespace IMS.Builder
 
             if (_order.buyVehicle != null)
             {
-                return "Successfully added.";
+                return "Success.";
             }
 
             return "Cannot find the vehicle.";
@@ -70,14 +70,14 @@ namespace IMS.Builder
                 _order.addons.Add(a);
             }
 
-            return "Successfully added.";
+            return "Success.";
         }
 
-        public override Object Prepare()
+        public  Order Prepare()
         {
-            if (_order.buyVehicle == null && _order.addons.Count == 0)
+            if (_order.buyVehicle == null)
             {
-                return null;
+                throw new System.ArgumentException("Invalid code path. Need to declare builder parameters!");
             }
 
             return _order;    

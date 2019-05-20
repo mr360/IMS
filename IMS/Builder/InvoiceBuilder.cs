@@ -13,7 +13,7 @@ namespace IMS
 
 namespace IMS.Builder
 {
-    public class InvoiceBuilder : Builder
+    public class InvoiceBuilder
     {
         private Order _order;
         private Vehicle _tradeVehicle;
@@ -88,7 +88,7 @@ namespace IMS.Builder
 
         }
 
-        public override Object Prepare()
+        public Object Prepare()
         {
             switch(_invoiceType)
             {
@@ -106,7 +106,7 @@ namespace IMS.Builder
             // Sale Invoice Generation Check
             if (_order.buyVehicle == null || _order.addons.Count == 0 || _saleRep == null)
             {
-                return null;
+                throw new System.ArgumentException("Invalid code path. Need to declare builder parameters!");
             }
 
             Sale sInvoice = new Sale(UniqueId(),_saleRep,_order.buyVehicle,_tradeVehicle);
@@ -123,7 +123,7 @@ namespace IMS.Builder
             // Tax Invoice Generation Check
             if (_saleInvoice == null || _customer == null || _paymentId == null)
             {
-                return null;
+                throw new System.ArgumentException("Invalid code path. Need to declare builder parameters!");
             }
 
             Tax tInvoice = new Tax(_saleInvoice,_customer,_paymentId);
