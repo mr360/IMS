@@ -19,85 +19,85 @@ namespace IMS.Invoice.Tests
         [TestMethod()]
         public void SaleDateTest()
         {
-           // si01.Date
+            Assert.Fail();
         }
 
         [TestMethod()]
         public void SaleRepTest()
         {
-            //si01.SaleRep
+            Assert.Fail();
         }
 
         [TestMethod()]
         public void SaleAddAddonTest()
         {
-
+            Assert.Fail();
         }
 
         [TestMethod()]
         public void SaleAddVehicleNewTest()
         {
-
+            Assert.Fail();
         }
 
         [TestMethod()]
         public void SaleAddVehicleTradeTest()
         {
-
+            Assert.Fail();
         }
 
         [TestMethod()]
         public void SaleAddAddonDuplicateTradeTest()
         {
-
+            Assert.Fail();
         }
 
         [TestMethod()]
         public void SaleAddVehicleNewDuplicateTest()
         {
-
+            Assert.Fail();
         }
 
         [TestMethod()]
         public void SaleAddVehicleTradeDuplicateTest()
         {
-
+            Assert.Fail();
         }
 
         [TestMethod()]
         public void SaleVehicleCostTest()
         {
-
+            Assert.Fail();
         }
 
         [TestMethod()]
         public void SaleTradeCostTest()
         {
-
+            Assert.Fail();
         }
 
         [TestMethod()]
         public void SaleAddonCostTest()
         {
-
+            Assert.Fail();
         }
 
         [TestMethod()]
         public void SaleTotalCostTest()
         {
-
+            Assert.Fail();
         }
 
         [TestMethod()]
         public void SaleViewAddonTest()
         {
-
+            Assert.Fail();
         }
 
         [TestMethod()]
         public void SaleViewTest()
         {
-
+            Assert.Fail();
         }
     }
 }
