@@ -12,7 +12,13 @@ namespace IMS.Invoice.Tests
     public class TaxTests
     {
         [TestMethod()]
-        public void TaxTest()
+        public void TaxViewTest()
+        {
+            Assert.Fail();
+        }
+
+        [TestMethod()]
+        public void TaxTotalCostTest()
         {
             Assert.Fail();
         }
