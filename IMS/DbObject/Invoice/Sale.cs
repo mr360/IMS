@@ -38,7 +38,7 @@ namespace IMS.Invoice
 
         public bool Add(VType type, Vehicle vehicle)
         {
-            if (type != VType.New || type != VType.TradeIn || vehicle == null)
+            if ((type != VType.New && type != VType.TradeIn) || vehicle == null)
             {
                 return false;
             }
