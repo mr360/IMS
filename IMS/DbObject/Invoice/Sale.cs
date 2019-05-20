@@ -122,12 +122,12 @@ namespace IMS.Invoice
                 
                 if (_tradeVehicle != null)
                 {
-                    s1 += "TradeIn Vehicle" + _tradeVehicle.View;
+                    s1 += "TradeIn Vehicle : " + _tradeVehicle.View;
                 } 
 
-                s1 += "Addons: " + ViewAllAddon;
+                s1 += "Addons: \n" + ViewAllAddon;
 
-                s1 += "SubTotal: \n"  
+                s1 += "\nSubTotal: \n"  
                     + "    Base: " + VehicleCost + "\n"
                     + "    Rebate: " + TradeRebateCost + "\n"
                     + "    Addon(s): " + AddonCost + "\n";
