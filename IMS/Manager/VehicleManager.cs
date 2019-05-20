@@ -6,7 +6,12 @@ using System.Threading.Tasks;
 
 namespace IMS.Manager
 {
-    class VehicleManager
+    class VehicleManager : Manager, IManager
     {
+        public VehicleManager(string vtable, Database db) : base(vtable, db)
+        {
+
+        }
+
     }
 }

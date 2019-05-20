@@ -6,7 +6,12 @@ using System.Threading.Tasks;
 
 namespace IMS.Manager
 {
-    interface IManager
+    public interface IManager
     {
+        string Add(DbObject item);
+        List<string> ViewAll { get; }
+        List<DbObject> Retrieve(string id);
+        string Update(DbObject item);
+        string Delete(string id);
     }
 }

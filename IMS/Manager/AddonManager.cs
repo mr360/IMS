@@ -6,7 +6,12 @@ using System.Threading.Tasks;
 
 namespace IMS.Manager
 {
-    class AddonManager
+    public class AddonManager : Manager, IManager
     {
+        public AddonManager(string atable, Database db) : base(atable, db)
+        {
+            //_db = db;
+        }
+
     }
 }

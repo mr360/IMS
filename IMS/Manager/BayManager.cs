@@ -6,7 +6,13 @@ using System.Threading.Tasks;
 
 namespace IMS.Manager
 {
-    class BayManager
+    class BayManager : Manager, IManager
     {
+        //private IDb _db;
+        public BayManager(string btable, Database db) : base(btable, db)
+        {
+            //_db = db;
+        }
+
     }
 }
