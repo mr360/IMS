@@ -59,7 +59,9 @@
     <Compile Include="Database\IDb.cs" />
     <Compile Include="Manager\AddonManager.cs" />
     <Compile Include="Manager\BayManager.cs" />
+    <Compile Include="Manager\IManager.cs" />
     <Compile Include="Manager\InvoiceManager.cs" />
+    <Compile Include="Manager\Manager.cs" />
     <Compile Include="Manager\ReportManager.cs" />
     <Compile Include="Manager\UserManager.cs" />
     <Compile Include="Manager\VehicleManager.cs" />
