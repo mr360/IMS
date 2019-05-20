@@ -19,6 +19,8 @@ namespace IMS
             Staff s01 = new Staff("S0001", "Steve", JobRole.Sale);
             Sale si01 = new Sale("SI0001", s01, v01);
             si01.Add(VType.TradeIn, v01);
+            Addon a1 = new Addon("A0001", "BodyKit3", "The latest bodykit with seven carbon atoms", 155.0);
+            si01.Add(a1);
             Console.WriteLine(si01.View);
             Console.WriteLine(s1.AccountType);
             Console.ReadLine();
