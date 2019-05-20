@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using IMS.User;
 
 namespace IMS
 {
@@ -13,6 +14,13 @@ namespace IMS.Instance
 {
     public class SaleInstance
     {
+        public SaleInstance(Staff s)
+        {
+            if (s.Role != JobRole.Sale)
+            {
+                throw new System.ArgumentException("Invalid User! Cannot create instance!");
+            }
+        }
         public bool Add(IdType id, string vehicleId)
         {
             //add vehicle id ; add addon id
