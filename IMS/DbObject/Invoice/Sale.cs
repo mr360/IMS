@@ -75,6 +75,10 @@ namespace IMS.Invoice
         {
             get
             {
+                if (_tradeVehicle == null)
+                {
+                    return 0.00;
+                }
                 return (-(_tradeVehicle.Price * 0.25));
             }
         }
@@ -114,9 +118,14 @@ namespace IMS.Invoice
                 string s1 = "********SALE INVOICE************\n";
                 s1 = base.View;
                 s1 += "----------------------------------------------------------\n";
-                s1 += "Base Vehicle : " + _buyVehicle.View + 
-                      "TradeIn Vehicle" + _tradeVehicle.View + 
-                      "Addons: " + ViewAllAddon;
+                s1 += "Base Vehicle : " + _buyVehicle.View;
+                
+                if (_tradeVehicle != null)
+                {
+                    s1 += "TradeIn Vehicle" + _tradeVehicle.View;
+                } 
+
+                s1 += "Addons: " + ViewAllAddon;
 
                 s1 += "SubTotal: \n"  
                     + "    Base: " + VehicleCost + "\n"
