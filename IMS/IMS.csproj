@@ -61,6 +61,10 @@
     <Compile Include="DbObject\Vehicle.cs" />
     <Compile Include="Database\DbTable.cs" />
     <Compile Include="Database\IDb.cs" />
+    <Compile Include="Instance\AccountingInstance.cs" />
+    <Compile Include="Instance\GarageInstance.cs" />
+    <Compile Include="Instance\ReportInstance.cs" />
+    <Compile Include="Instance\SaleInstance.cs" />
     <Compile Include="Manager\AddonManager.cs" />
     <Compile Include="Manager\BayManager.cs" />
     <Compile Include="Manager\IManager.cs" />
@@ -75,7 +79,9 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Payment\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
