@@ -10,7 +10,8 @@ namespace IMS.Manager
     {
         string Add(DbObject item);
         List<string> ViewAll { get; }
-        List<DbObject> Retrieve(string id);
+        List<DbObject> RetrieveMany(string id);
+        DbObject Retrieve(string id);
         string Update(DbObject item);
         string Delete(string id);
     }
