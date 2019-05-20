@@ -12,18 +12,92 @@ namespace IMS.Invoice.Tests
     [TestClass()]
     public class SaleTests
     {
-        Sale si01 = new Sale("SI0001", new Staff("S0001", "Steve", JobRole.Sale), new Vehicle("V00001", Brand.Audi, "MX-60", new DateTime(2008, 01, 01), 125000.00));
+        static Vehicle v01 = new Vehicle("V00001", Brand.Audi, "MX-60", new DateTime(2008, 01, 01), 125000.00);
+        static Staff s01 = new Staff("S0001", "Steve", JobRole.Sale);
+        Sale si01 = new Sale("SI0001", s01 , v01);
 
         [TestMethod()]
-        public void SaleTest()
+        public void SaleDateTest()
         {
-            si01.Add
+           // si01.Date
         }
 
         [TestMethod()]
-        public void SaleTest1()
+        public void SaleRepTest()
         {
-            Assert.Fail();
+            //si01.SaleRep
+        }
+
+        [TestMethod()]
+        public void SaleAddAddonTest()
+        {
+
+        }
+
+        [TestMethod()]
+        public void SaleAddVehicleNewTest()
+        {
+
+        }
+
+        [TestMethod()]
+        public void SaleAddVehicleTradeTest()
+        {
+
+        }
+
+        [TestMethod()]
+        public void SaleAddAddonDuplicateTradeTest()
+        {
+
+        }
+
+        [TestMethod()]
+        public void SaleAddVehicleNewDuplicateTest()
+        {
+
+        }
+
+        [TestMethod()]
+        public void SaleAddVehicleTradeDuplicateTest()
+        {
+
+        }
+
+        [TestMethod()]
+        public void SaleVehicleCostTest()
+        {
+
+        }
+
+        [TestMethod()]
+        public void SaleTradeCostTest()
+        {
+
+        }
+
+        [TestMethod()]
+        public void SaleAddonCostTest()
+        {
+
+        }
+
+        [TestMethod()]
+        public void SaleTotalCostTest()
+        {
+
+        }
+
+        [TestMethod()]
+        public void SaleViewAddonTest()
+        {
+
+        }
+
+        [TestMethod()]
+        public void SaleViewTest()
+        {
+
         }
     }
 }
