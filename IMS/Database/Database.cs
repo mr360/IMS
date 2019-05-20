@@ -17,11 +17,16 @@ namespace IMS
             _table = new List<DbTable>();
         }
 
-        public int Count
+        public List<string> GetIDs
         {
             get
             {
-                return _table.Count;
+                List<string> temp = new List<string>();
+                foreach (DbObject itm in _table)
+                {
+                    temp.Add(itm.Id);
+                }
+                return temp;
             }
         }
 
