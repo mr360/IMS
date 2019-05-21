@@ -15,15 +15,14 @@ namespace IMS
 
 namespace IMS.Instance
 {
-    public class SaleInstance
+    public class SaleInstance : Instance
     {
         private string _vehicleId;
         private List<string> _addonIds;
         private Vehicle _tradeIn;
         Staff _saleRep;
-        Dictionary<string, IManager> _manager;
-
-        public SaleInstance(Staff s, VehicleManager vm, AddonManager am, InvoiceManager im)
+        
+        public SaleInstance(Staff s, VehicleManager vm, AddonManager am, InvoiceManager im) : base(vm,am,im)
         {
             if (s.Role != JobRole.Sale)
             {
@@ -31,12 +30,8 @@ namespace IMS.Instance
             }
 
             _saleRep = s;
-
-            _manager = new Dictionary<string, IManager>();
-            _manager.Add("Vehicle", vm);
-            _manager.Add("Addon", am);
-            _manager.Add("Invoice", im);
         }
+
         public bool Add(IdType type, string id)
         {
             //add vehicle id ; add addon id
