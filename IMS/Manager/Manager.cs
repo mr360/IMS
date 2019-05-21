@@ -14,7 +14,7 @@ namespace IMS.Manager
             _db = db.Read(table) as IDb;
             if (_db == null)
             {
-                throw new System.ArgumentException("The table does not exist. Cannot be null");
+                throw new System.NullReferenceException("The table does not exist. Cannot be null");
             }
         }
 
@@ -32,7 +32,7 @@ namespace IMS.Manager
             }
         }
 
-        public string Add(DbObject item)
+        public virtual string Add(DbObject item)
         {
             return _db.Create(item);
         }
@@ -55,10 +55,16 @@ namespace IMS.Manager
 
         public string Update(DbObject item)
         {
+            //<Todo>Update is just delete and add</Todo>
+            // 
+            // if (Delete(item.Id) == "Successfully deleted.")
+            // {
+            //      Add(item);
+            // }
             return _db.Update(item);
         }
 
-        DbObject IManager.Retrieve(string id)
+        public DbObject Retrieve(string id)
         {
             List<string> idList = _db.GetIDs;
             foreach (string ids in idList)
