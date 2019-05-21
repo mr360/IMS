@@ -104,7 +104,7 @@ namespace IMS.Builder
         private Sale GenerateSale()
         {
             // Sale Invoice Generation Check
-            if (_order.buyVehicle == null || _order.addons.Count == 0 || _saleRep == null)
+            if (_order.buyVehicle == null || _saleRep == null)
             {
                 throw new System.ArgumentException("Invalid code path. Need to declare builder parameters!");
             }
