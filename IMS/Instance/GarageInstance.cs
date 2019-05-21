@@ -14,7 +14,7 @@ namespace IMS.Instance
         {
             if (s.Role != JobRole.Garage)
             {
-                throw new System.ArgumentException("Invalid User! Cannot create instance!");
+                throw new System.InvalidOperationException("Invalid User! Cannot create instance!");
             }
         }
 
@@ -32,10 +32,10 @@ namespace IMS.Instance
         public string Add(Addon a)
         {
             // put this in the AddonManager Add section
-            if (a.Id == "" || a.Name == "" || a.Desc == "")
+            /*if (a.Id == "" || a.Name == "" || a.Desc == "")
             {
                 return "The addon does not have all information details.";
-            }
+            }*/
             return _manager["Addon"].Add(a);
         }
 
