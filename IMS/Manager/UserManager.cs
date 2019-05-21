@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace IMS.Manager
 {
-    class UserManager : Manager,IManager
+    public class UserManager : Manager,IManager
     {
         //private IDb _db;
         public UserManager(string utable, Database db) : base(utable, db)

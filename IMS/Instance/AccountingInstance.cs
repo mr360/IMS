@@ -4,12 +4,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using IMS.User;
+using IMS.Manager;
+using IMS.Invoice;
+using IMS.Payment;
+using IMS.Builder;
 
 namespace IMS.Instance
 {
-    public class AccountingInstance
+    public class AccountingInstance : Instance
     {
-        public AccountingInstance(Staff s)
+        Sale _sInvoice;
+        Customer _customer;
+        Tax tInvoice;
+
+        public AccountingInstance(Staff s, InvoiceManager im, UserManager um) : base (im, um)
         {
             if (s.Role != JobRole.Accounting)
             {
@@ -21,21 +29,41 @@ namespace IMS.Instance
         {
             //get invoice ; make sure its not empty
             // get from manager ; if no found return err
+            Sale sInvoice = _manager["Invoice"].Retrieve(invoiceId) as Sale;
+
+            if (sInvoice == null)
+            {
+                return "The sale invoice cannot be found.";
+            }
+
+            return "Success.";
         }
 
         public string CustomerLocate(string customerId)
         {
             // get customer id ; make sure its not empty
             // get frin manger; if no found return err
+            _customer = _manager["User"].Retrieve(customerId) as Customer;
+
+            if (_customer == null)
+            {
+                return "The customer cannot be found.";
+            }
+
+            return "Success.";
         }
 
         public string CreateCustomer(Customer c)
         {
-            // get customer ; make sure not null
-            // send to manager ; if err return err
+            if (c.Name == "" || c.Address == "" || c.Id == "")
+            {
+                return "Customer is missing key details.";
+            }
+            _customer = c;
+            return _manager["User"].Add(c);
         }
 
-        public string CreatePayment()
+        public string CreatePayment(CreditCard c)
         {
             // check everything is ready // validate
             // use invoice to get price total 
@@ -43,15 +71,43 @@ namespace IMS.Instance
             // get payid
             // create invoice thro invoicebuilder tax
             // get invoice tax id
+            if (_customer == null || _sInvoice == null)
+            {
+                throw new System.ArgumentException("Invalid code path. Need to declare payment parameters!");
+            }
 
+            string lResult = "";
+            PaymentProcessor pProcessor = new PaymentProcessor();
+            lResult = pProcessor.SetPaymentDetail(c);
+            if (lResult != "VALID")
+            {
+                return "Payment details are not vaild.";
+            }
 
+            string paymentId = pProcessor.Pay(_sInvoice.TotalCost);
+            if (paymentId == "ERROR")
+            {
+                return "An error occoured with the payment system. Unknown!.";
+            }
+
+            InvoiceBuilder iBuild = new InvoiceBuilder();
+            iBuild.SaleInvoice = _sInvoice;
+            iBuild.Customer = _customer;
+            iBuild.PaymentId = paymentId;
+            Tax tInvoice = iBuild.Prepare() as Tax;
+
+            return _manager["Invoice"].Add(tInvoice);
         }
 
         public string ViewTax
         {
             get
             {
-                return "Tax Reciept";
+                if (tInvoice == null)
+                {
+                    return "Tax Invoice : Not Available.";
+                }
+                return tInvoice.View;
             }
         }
     }

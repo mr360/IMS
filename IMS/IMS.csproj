@@ -63,6 +63,7 @@
     <Compile Include="Database\IDb.cs" />
     <Compile Include="Instance\AccountingInstance.cs" />
     <Compile Include="Instance\GarageInstance.cs" />
+    <Compile Include="Instance\Instance.cs" />
     <Compile Include="Instance\ReportInstance.cs" />
     <Compile Include="Instance\SaleInstance.cs" />
     <Compile Include="Manager\AddonManager.cs" />

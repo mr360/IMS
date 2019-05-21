@@ -8,9 +8,9 @@ namespace IMS
 {
     public struct CreditCard
     {
-        string cardNumber;
-        int expirationDate;
-        int cardCode;
+        public string cardNumber;
+        public int expirationDate;
+        public int cardCode;
     }
 
 }

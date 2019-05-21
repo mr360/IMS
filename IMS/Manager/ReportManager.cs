@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace IMS.Manager
 {
-    class ReportManager : Manager,IManager
+    public class ReportManager : Manager,IManager
     {
         public ReportManager(string rtable, Database db) : base(rtable,db)
         {
