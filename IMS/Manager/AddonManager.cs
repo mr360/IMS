@@ -13,5 +13,22 @@ namespace IMS.Manager
             //_db = db;
         }
 
+        public override string Add(DbObject item)
+        {
+            Addon a = item as Addon;
+            try
+            {
+                if (String.IsNullOrEmpty(a.Id) || String.IsNullOrEmpty(a.Name) || String.IsNullOrEmpty(a.Desc))
+                {
+                    return "The addon does not have all information details.";
+                }
+            }
+            catch(NullReferenceException e)
+            {
+                throw new NullReferenceException("Not of type Addon", e);
+            }
+
+            return _db.Create(item);
+        }
     }
 }

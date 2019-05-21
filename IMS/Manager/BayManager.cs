@@ -14,5 +14,22 @@ namespace IMS.Manager
             //_db = db;
         }
 
+        public override string Add(DbObject item)
+        {
+            Bay b = item as Bay;
+            try
+            {
+                if (String.IsNullOrEmpty(b.Id))
+                {
+                    return "The bay does not have all information details.";
+                }
+            }
+            catch (NullReferenceException e)
+            {
+                throw new NullReferenceException("Not of type Bay", e);
+            }
+
+            return _db.Create(item);
+        }
     }
 }

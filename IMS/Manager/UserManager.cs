@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using IMS.User;
 
 namespace IMS.Manager
 {
@@ -13,6 +14,23 @@ namespace IMS.Manager
         {
             //_db = db;
         }
+        public override string Add(DbObject item)
+        {
+            User.User u = item as User.User;
+            try
+            {
+                if (String.IsNullOrEmpty(u.Id) || String.IsNullOrEmpty(u.Name))
+                {
+                    return "The addon does not have all information details.";
+                }
+            }
+            catch (NullReferenceException e)
+            {
+                throw new NullReferenceException("Not of type Invoice", e);
+            }
 
+            return _db.Create(item);
+        }
     }
+}
 }
