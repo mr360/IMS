@@ -27,5 +27,12 @@ namespace IMS.Instance
         {
             _manager.Add("Report", rm);
         }
+
+        public Instance(VehicleManager vm, AddonManager am, BayManager bm)
+        {
+            _manager.Add("Vehicle", vm);
+            _manager.Add("Addon", am);
+            _manager.Add("Bay", bm);
+        }
     }
 }
