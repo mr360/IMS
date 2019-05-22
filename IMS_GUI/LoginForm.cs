@@ -12,9 +12,9 @@ using IMS;
 
 namespace IMS_GUI
 {
-    public partial class Login : Form
+    public partial class LoginForm : Form
     {
-        public Login()
+        public LoginForm()
         {
             InitializeComponent();
         }
@@ -30,7 +30,7 @@ namespace IMS_GUI
                     case JobRole.Accounting:
                         break;
                     case JobRole.Sale:
-                        SaleInstance sInstanceForm = new SaleInstance();
+                        SaleInstanceForm sInstanceForm = new SaleInstanceForm();
                         sInstanceForm.ShowDialog();
                         break;
                     case JobRole.Garage:
