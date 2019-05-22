@@ -17,6 +17,11 @@ namespace IMS.Instance
             }
         }
 
+        public Report.Report Report(string reportId)
+        {
+            throw new NotImplementedException();
+        }
+        public string ViewReportList { get; }
         
     }
 }
