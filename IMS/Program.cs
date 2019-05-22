@@ -7,34 +7,115 @@ using System.Threading.Tasks;
 using IMS.Invoice;
 using IMS.User;
 using IMS.Manager;
+using IMS.Instance;
 
 namespace IMS
 {
     class Program
     {
-        static void Main(string[] args)
+        static Database FakeData(int amount)
         {
-            Database db = new Database("DbOne");
-            DbTable dbT = new DbTable("dbVT001","Vehicle Table");
-            Vehicle v01 = new Vehicle("V00001", Brand.Audi, "MX-60", new DateTime(2008, 01, 01), 125000.00);
-            Vehicle v02 = new Vehicle("V00002", Brand.Audi, "MX-90", new DateTime(2012, 01, 01), 105000.00);
-            dbT.Create(v01);
-            db.Create(dbT);
+            // Database
+            Database db = new Database("HTV");
 
-            VehicleManager vm01 = new VehicleManager("dbVT001", db);
-            vm01.Add(v02);
-            vm01.ViewAll.ForEach(Console.Write);
-            Bay x = new Bay("ddd");
-            User.Staff s1 = new User.Staff("S000001", "Jack Jones", JobRole.Sale);
+            // DbTable
+            DbTable dbTableBay = new DbTable("bay", "Bay Table");
+            DbTable dbTableVehicle = new DbTable("vehicle", "Vehicle Table");
+            DbTable dbTableAddon = new DbTable("addon", "Addon Table");
+            DbTable dbTableUser  = new DbTable("user", "User Table");
+
+            DbTable dbTableInvoice = new DbTable("invoice", "Invoice Table");
+            DbTable dbTableReport  = new DbTable("report", "Report Table");
             
-            Staff s01 = new Staff("S0001", "Steve", JobRole.Sale);
-            Sale si01 = new Sale("SI0001", s01, v01);
-            si01.Add(VType.TradeIn, v01);
-            Addon a1 = new Addon("A0001", "BodyKit3", "The latest bodykit with seven carbon atoms", 155.0);
-            si01.Add(a1);
-            Console.WriteLine(si01.View);
-            Console.WriteLine(s1.AccountType);
-            Console.ReadLine();
+
+            // Bays
+            for(int i = 0; i < amount+20; i++)
+            {
+                dbTableBay.Create(new Bay("B000" + (i.ToString())));
+            }
+
+            // Vehicle
+            string chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            for (int i = 0; i < amount; i++)
+            {
+                string model = (chars[new Random().Next(chars.Length)] + chars[new Random().Next(chars.Length)] + chars[new Random().Next(chars.Length)] + chars[new Random().Next(chars.Length)]).ToString();
+                dbTableVehicle.Create(new Vehicle("VIN0000"+(i.ToString()), (Brand)new Random().Next(0, 11), model, new DateTime(new Random().Next(1990, 2019), 01, 01), new Random().Next(30000, 150000)));
+            }
+
+            // Addon
+            for(int i = 0; i < amount; i++)
+            {
+                Addon a = new Addon("A000" + (i.ToString()),"AddonT10"+ (i.ToString()), "Addon is xyz blah", new Random().Next(100, 3500));
+                a.AddCompatible("VIN0000" + (i.ToString()));
+                dbTableAddon.Create(a);
+            }
+            
+            // Users 
+            for (int i = 0; i < amount; i++)
+            {
+                string name = (chars[new Random().Next(chars.Length)] + chars[new Random().Next(chars.Length)] + chars[new Random().Next(chars.Length)] + chars[new Random().Next(chars.Length)]).ToString();
+                Staff s = new Staff("S00" + (i.ToString()), name, (JobRole)new Random().Next(0, 3));
+                Customer c = new Customer("C00" + (i.ToString()), name, "25 Makaby Street, VIC, 3752");
+
+                dbTableUser.Create(s);
+                dbTableUser.Create(c);
+            }
+
+            db.Create(dbTableBay);
+            db.Create(dbTableVehicle);
+            db.Create(dbTableAddon);
+            db.Create(dbTableUser);
+            db.Create(dbTableInvoice);
+            db.Create(dbTableReport);
+
+            return db;
         }
+        static int Main(string[] args)
+        {
+            Database db = FakeData(10);
+
+            BayManager bm = new BayManager("bay", db);
+            VehicleManager vm = new VehicleManager("vehicle", db);
+            AddonManager am = new AddonManager("addon", db);
+            UserManager um = new UserManager("user", db);
+            InvoiceManager im = new InvoiceManager("invoice", db);
+            ReportManager rm = new ReportManager("report", db);
+
+            // Start of application 
+            Console.WriteLine("Enter IMS Staff username: ");
+            string username = Console.ReadLine();
+            Staff staffAccount = um.Retrieve(username) as Staff;
+            while (staffAccount == null)
+            {
+                Console.WriteLine("Account does not exist");
+                Console.ReadLine();
+                return 0;  
+            }
+
+            Console.WriteLine("Welcome {0}", staffAccount.Name);
+
+            switch (staffAccount.Role)
+            {
+                case JobRole.Accounting:
+                    AccountingInstance aInstance = new AccountingInstance(staffAccount,im,um);
+                    break;
+                case JobRole.Sale:
+                    SaleInstance sInstance = new SaleInstance(staffAccount, vm, am, im);
+                    break;
+                case JobRole.Garage:
+                    GarageInstance gInstance = new GarageInstance(staffAccount, vm, am, bm, im);
+                    break;
+                case JobRole.Management:
+                    ReportInstance rInstance = new ReportInstance(staffAccount, rm);
+                    break;
+                default: 
+                    throw new ArgumentException("Unknown user! Unknown instance to create!");
+            }
+                        
+            Console.ReadLine();
+            return 0;
+
+        }
+
     }
 }
