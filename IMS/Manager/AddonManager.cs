@@ -30,5 +30,20 @@ namespace IMS.Manager
 
             return _db.Create(item);
         }
+
+        public override List<DbObject> RetrieveMany(string id)
+        {
+            List<DbObject> output = new List<DbObject>();
+            List<string> idList = _db.GetIDs;
+            foreach (string ids in idList)
+            {
+                Addon a = _db.Read(ids) as Addon;
+                if (a.IsCompatible(id))
+                {
+                    output.Add(a);
+                }
+            }
+            return output;
+        }
     }
 }

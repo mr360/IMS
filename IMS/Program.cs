@@ -54,9 +54,9 @@ namespace IMS
             for (int i = 0; i < amount; i++)
             {
                 string name = (chars[new Random().Next(chars.Length)] + chars[new Random().Next(chars.Length)] + chars[new Random().Next(chars.Length)] + chars[new Random().Next(chars.Length)]).ToString();
-                Staff s = new Staff("S00" + (i.ToString()), name, (JobRole)new Random().Next(0, 3));
+                Staff s = new Staff("S00" + (i.ToString()), name, (JobRole)new Random().Next(0, 0));
                 Customer c = new Customer("C00" + (i.ToString()), name, "25 Makaby Street, VIC, 3752");
-
+                
                 dbTableUser.Create(s);
                 dbTableUser.Create(c);
             }
@@ -93,7 +93,7 @@ namespace IMS
             }
 
             Console.WriteLine("Welcome {0}", staffAccount.Name);
-
+            /*
             switch (staffAccount.Role)
             {
                 case JobRole.Accounting:
@@ -111,7 +111,45 @@ namespace IMS
                 default: 
                     throw new ArgumentException("Unknown user! Unknown instance to create!");
             }
-                        
+            */
+            // LotInstance.ViewAvailableVehicles
+            /*
+             LotInstance.ViewVehicles
+             LotInstance.ViewAddons
+             LotInstance.ViewAddons(vehicleId)
+             LotInstance.ViewSoldVehicles
+             LotInstance.ViewUnallocatedVehicles
+             */
+            //////////////////////////////////////////////////////////////////
+
+            // LotInstance.ViewAvailableVehicles
+            List<string> vIdList = vm.GetIDs;
+            foreach(string vId in vIdList)
+            {
+                Vehicle temp = vm.Retrieve(vId) as Vehicle;
+                Console.Write(temp.Id + " : " + temp.View);
+            }
+
+            SaleInstance sInstance = new SaleInstance(staffAccount, vm, am, im);
+            string selection = Console.ReadLine();
+            if (sInstance.Add(IdType.Vehicle, selection))
+            {
+                // LotInstance.ViewAddons(vehicleId)
+                dynamic aList = am.RetrieveMany(selection) as dynamic;
+                if (aList != null)
+                {
+                    foreach (Addon a in aList)
+                    {
+                        Console.Write(a.Id + " : " + a.View);
+                    }
+
+                    
+                }
+                
+
+            }
+
+            sInstance.Add(IdType.Addon, "A001");
             Console.ReadLine();
             return 0;
 
