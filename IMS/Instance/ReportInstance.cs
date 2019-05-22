@@ -4,12 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using IMS.User;
+using IMS.Manager;
 
 namespace IMS.Instance
 {
-    public class ReportInstance
+    public class ReportInstance : Instance
     {
-        public ReportInstance(Staff s)
+        public ReportInstance(Staff s, ReportManager rm) : base(rm)
         {
             if (s.Role != JobRole.Management)
             {
