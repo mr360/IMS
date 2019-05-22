@@ -50,6 +50,9 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="Builder\InvoiceBuilderTests.cs" />
+    <Compile Include="Builder\ReportBuilderTests.cs" />
+    <Compile Include="Builder\VehicleBuilderTests.cs" />
     <Compile Include="Database\DatabaseTests.cs" />
     <Compile Include="Database\DbTableTests.cs" />
     <Compile Include="DbObject\AddonTests.cs" />
@@ -60,6 +63,7 @@
     <Compile Include="DbObject\User\CustomerTests.cs" />
     <Compile Include="DbObject\User\StaffTests.cs" />
     <Compile Include="DbObject\VehicleTests.cs" />
+    <Compile Include="Manager\ManagerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
