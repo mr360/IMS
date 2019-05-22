@@ -29,5 +29,10 @@ namespace IMS.Manager
 
             return _db.Create(item);
         }
+
+        // Use ReterieveMany("nonsold")
+        // returns non sold vehicles
+        // add a sold bool to vehicle
+
     }
 }
