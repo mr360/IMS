@@ -32,10 +32,7 @@ namespace IMS.Manager
             }
         }
 
-        public virtual string Add(DbObject item)
-        {
-            return _db.Create(item);
-        }
+        public abstract string Add(DbObject item);
 
         public string Delete(string id)
         {
@@ -74,5 +71,14 @@ namespace IMS.Manager
 
             return null;
         }
+
+        public List<string> GetIDs 
+        { 
+            get
+            {
+                return _db.GetIDs;
+            } 
+        }
+
     }
 }

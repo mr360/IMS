@@ -14,5 +14,7 @@ namespace IMS.Manager
         DbObject Retrieve(string id);
         string Update(DbObject item);
         string Delete(string id);
+        List<string> GetIDs { get; }
+
     }
 }
