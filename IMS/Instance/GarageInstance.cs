@@ -5,12 +5,13 @@ using System.Text;
 using System.Threading.Tasks;
 using IMS.User;
 using IMS.Manager;
+using IMS.Invoice;
 
 namespace IMS.Instance
 {
     public class GarageInstance : Instance
     {
-        public GarageInstance(Staff s, VehicleManager vm, AddonManager am, BayManager bm) : base(vm, am, bm)
+        public GarageInstance(Staff s, VehicleManager vm, AddonManager am, BayManager bm, InvoiceManager im) : base(vm, am, bm, im)
         {
             if (s.Role != JobRole.Garage)
             {
@@ -21,7 +22,7 @@ namespace IMS.Instance
         public string Add(Vehicle v)
         {
             // put this in the VehicleManager Add section
-            if (v.Id == "" || v.Model == "" || v.Price == 0.00 || v.Year == "")
+            if (v.Id == "" || v.Model == "" || v.Price < 0.00 || v.Year == "")
             {
                 return "The vehicle does not have all information detailed.";
             }
@@ -44,42 +45,102 @@ namespace IMS.Instance
             get
             {
                 string ss = "";
-                ss += "SOLD VEHICLES THAT NEED TO BE REMOVED: \n";
                 // foreach vehicle in Vehicle Manager and tax-invoice vehicles, show as sold and need to remove from bay
-                ss += "UNALLOCATED VEHICLES THAT NEED TO BE ADDED TO BAYS: \n";
+                ss += "SOLD VEHICLES THAT NEED TO BE REMOVED: \n";
+                foreach(string id in SoldVehicleID)
+                {
+                    Vehicle v = _manager["Vehicle"].Retrieve(id) as Vehicle;
+                    ss += v.View;
+                }
                 // foreach vehicle in Vehicle Manager and Bay Manager that does not have allocation, show and need to add to bay
-                ss += "TRADE-IN VEHICLES THAT NEED TO BE ADDED TO INVENTORY: \n";
+                ss += "UNALLOCATED VEHICLES THAT NEED TO BE ADDED TO BAYS: \n";
+                foreach (string id in UnallocatedVehicleID)
+                {
+                    Vehicle v = _manager["Vehicle"].Retrieve(id) as Vehicle;
+                    ss += v.View;
+                }
                 // foreach each trade in vehicle in tax-invoices not in vehicle manager, show and add to system
+                ss += "TRADE-IN VEHICLES THAT NEED TO BE ADDED TO INVENTORY: \n";
+                foreach (string id in NonProcessedTradeInVehicleID)
+                {
+                    Vehicle v = _manager["Vehicle"].Retrieve(id) as Vehicle;
+                    ss += v.View;
+                }
 
                 return ss;
             }
         }
 
-
-        List<string> SoldVehicle
+        List<string> SoldVehicleID
         {
             get
             {
                 // foreach vehicle in Vehicle Manager and tax-invoice vehicles, show as sold and need to remove from bay
-                throw new NotImplementedException();
+                List<string> invoiceIds = _manager["Invoice"].GetIDs;
+                List<string> vehicleIds = _manager["Vehicle"].GetIDs;
+                List<string> soldVehicle = new List<string>();
+
+                foreach(string vId in vehicleIds)
+                {
+                    foreach(string iId in invoiceIds)
+                    {
+                        Tax tInvoice = _manager["Invoice"].Retrieve(iId) as Tax;
+                        if (tInvoice == null) continue;
+                        Vehicle v = tInvoice.BuyVehicle;
+                        if (v.Id == vId)
+                        {
+                            soldVehicle.Add(vId);
+                        } 
+                    }
+                }
+                return soldVehicle;
             }
         }
 
-        List<string> UnallocatedVehicle
+        List<string> UnallocatedVehicleID
         {
             get
             {
                 // foreach vehicle in Vehicle Manager and Bay Manager that does not have allocation, show and need to add to bay
-                throw new NotImplementedException();
+                List<string> bayIds = _manager["Bay"].GetIDs;
+                List<string> vehicleIds = _manager["Vehicle"].GetIDs;
+
+                foreach (string bId in bayIds)
+                {
+                    Bay bay = _manager["Bay"].Retrieve(bId) as Bay;
+                    if (vehicleIds.Contains(bay.Vehicle)) continue;
+                    {
+                        vehicleIds.Remove(bay.Vehicle);
+                    }
+                }
+
+                return vehicleIds;
             }
         }
 
-        List<string> NonProcessedTradeInVehicle
+        List<string> NonProcessedTradeInVehicleID
         {
             get
             {
                 // foreach each trade in vehicle in tax-invoices not in vehicle manager, show and add to system
-                throw new NotImplementedException();
+                List<string> invoiceIds = _manager["Invoice"].GetIDs;
+                List<string> vehicleIds = _manager["Vehicle"].GetIDs;
+                List<string> tradeVehicle = new List<string>();
+
+                foreach (string vId in vehicleIds)
+                {
+                    foreach (string iId in invoiceIds)
+                    {
+                        Tax tInvoice = _manager["Invoice"].Retrieve(iId) as Tax;
+                        if (tInvoice == null) continue;
+                        Vehicle v = tInvoice.BuyVehicle;
+                        if (v.Id == vId)
+                        {
+                            tradeVehicle.Add(vId);
+                        }
+                    }
+                }
+                return tradeVehicle;
             }
         }
 
@@ -88,7 +149,16 @@ namespace IMS.Instance
             get
             {
                 // show bays that are open
-                return "";
+                List<string> bayIds = _manager["Bay"].GetIDs;
+                string openBay = "";
+                foreach (string bId in bayIds)
+                {
+                    Bay bay = _manager["Bay"].Retrieve(bId) as Bay;
+                    if (bay.Vehicle != null) continue;
+                    openBay += bay.Id + "\n";
+                }
+
+                return openBay;
             }
         }
 
@@ -98,19 +168,32 @@ namespace IMS.Instance
             // Check if bayid exists in Bay Manager (bay manager)
             // Get vehicle id and bayId
             // check if bay has the vehicle and check if vehicle isn't in multiple bays (probs do this in BayManager)
+            throw new NotImplementedException();
         }
 
-        public bool RemoveVehicleFromBay(string bayId)
+        string RemoveVehicleFromBay(string bayId)
         {
             // remove vehicle id from bay
+            Bay b = _manager["Bay"].Retrieve(bayId) as Bay;
+            if(b == null)
+            {
+                return "Invalid bay";
+            }
+            b.Vehicle = null;
+            
+            return _manager["Bay"].Update(b);
 
         }
 
-        public bool RemoveSoldVehicle(string bayId)
-        {
-            //remove vehicle from inventory
-            // remove vehicle from bay
-            RemoveVehicleFromBay(bayId);
+        public string RemoveSoldVehicle(string vehicleId)
+        {  
+            if (SoldVehicleID.Contains(vehicleId))
+            {
+                //remove vehicle from inventory
+            }
+            //RemoveVehicleFromBay(bayId);
+
+            throw new NotImplementedException();
         }
     }
 }
