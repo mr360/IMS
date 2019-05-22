@@ -18,7 +18,7 @@ namespace IMS.Instance
     public class SaleInstance : Instance
     {
         private string _vehicleId;
-        private List<string> _addonIds;
+        private List<string> _addonIds = new List<string>();
         private Vehicle _tradeIn;
         Staff _saleRep;
         
