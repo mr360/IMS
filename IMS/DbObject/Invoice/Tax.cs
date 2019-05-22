@@ -37,6 +37,14 @@ namespace IMS.Invoice
             }
         }
 
+        public Sale SaleInvoice
+        {
+            get
+            {
+                return _saleInvoice;
+            }
+        }
+
         public override double TotalCost
         {
             get
