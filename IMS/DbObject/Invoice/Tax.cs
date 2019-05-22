@@ -11,14 +11,16 @@ namespace IMS.Invoice
     public class Tax : Invoice
     {
         string _paymentId;
-        Sale _saleInvoice;
-        Customer _customer;
 
         public  Tax(Sale saleInvoice, Customer customer, string paymentId) : base(saleInvoice.Id,saleInvoice.SaleRep)
         {
             _paymentId = paymentId;
-            _saleInvoice = saleInvoice;
             _customer = customer;
+
+            _date = saleInvoice.Date;
+            _buyVehicle = saleInvoice.BuyVehicle;
+            _tradeVehicle = saleInvoice.TradeVehicle;
+            _addon = saleInvoice.Addon;
         }
 
         public override string View
@@ -30,27 +32,40 @@ namespace IMS.Invoice
                 s1 += "CUSTOMER DETAILS: " + _customer.View + "\n";
                 s1 += "----------------------------------------------------------\n";
                 s1 += "Payment ID: " + _paymentId + "\n"
-                    + "Payment Status: PAID\n"
-                    + "Tax Total (inc GST): " + TotalCost;
-            
+                    + "Payment Status: PAID\n";
+                s1 += "----------------------------------------------------------\n";
+                s1 += "\nSubTotal: \n"
+                    + "    Base (inc GST): " + VehicleCost + "\n"
+                    + "    Rebate: " + TradeRebateCost + "\n"
+                    + "    Addon(s) (inc GST): " + AddonCost + "\n";
+                s1 += "Tax Total (inc GST): " + TotalCost;            
                 return s1;
             }
         }
 
-        public Sale SaleInvoice
+        public string PaymentId
         {
             get
             {
-                return _saleInvoice;
+                return _paymentId;
             }
         }
 
-        public override double TotalCost
+        public override double VehicleCost
         {
             get
             {
-                return _saleInvoice.TotalCost + (_saleInvoice.TotalCost * 1.10);
+                return base.VehicleCost * 1.10;
             }
         }
+
+        public override double AddonCost
+        {
+            get
+            {
+                return base.AddonCost * 1.10;
+            }
+        }
+
     }
 }
