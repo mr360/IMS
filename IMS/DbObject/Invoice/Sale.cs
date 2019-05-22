@@ -55,6 +55,22 @@ namespace IMS.Invoice
             return true;
         }
 
+        public Vehicle TradeVehicle
+        {
+            get
+            {
+                return _tradeVehicle;
+            }
+        }
+
+        public Vehicle BuyVehicle
+        {
+            get
+            {
+                return _buyVehicle;
+            }
+        }
+
         public override double TotalCost
         {
             get
