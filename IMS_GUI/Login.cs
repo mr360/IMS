@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using IMS.User;
+using IMS;
 
 namespace IMS_GUI
 {
@@ -15,6 +17,35 @@ namespace IMS_GUI
         public Login()
         {
             InitializeComponent();
+        }
+
+        private void btnLogin_Click(object sender, EventArgs e)
+        {
+           Program.staffAccount = Program.um.Retrieve(txtUsername.Text) as Staff;
+           if (Program.staffAccount != null)
+           {
+                this.Hide();
+                switch (Program.staffAccount.Role)
+                {
+                    case JobRole.Accounting:
+                        break;
+                    case JobRole.Sale:
+                        SaleInstance sInstanceForm = new SaleInstance();
+                        sInstanceForm.ShowDialog();
+                        break;
+                    case JobRole.Garage:
+
+                        break;
+                    case JobRole.Management:
+
+                        break;
+                    default:
+                        throw new ArgumentException("Unknown user! Unknown instance to create!");
+                }
+                
+           }
+
+            MessageBox.Show("The user account does not exist.", "Unknown User", MessageBoxButtons.OK);
         }
     }
 }
