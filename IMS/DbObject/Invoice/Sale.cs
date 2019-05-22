@@ -5,10 +5,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace IMS
-{
-    public enum VType { TradeIn, New};
-}
 
 namespace IMS.Invoice
 {
