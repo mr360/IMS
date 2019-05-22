@@ -63,13 +63,7 @@ namespace IMS.Manager
 
         public DbObject Retrieve(string id)
         {
-            List<string> idList = _db.GetIDs;
-            foreach (string ids in idList)
-            {
-                return _db.Read(ids);
-            }
-
-            return null;
+            return _db.Read(id);
         }
 
         public List<string> GetIDs 
