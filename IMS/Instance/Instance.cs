@@ -7,7 +7,7 @@ using IMS.Manager;
 
 namespace IMS.Instance
 {
-    public class Instance
+    public abstract class Instance
     {
         protected Dictionary<string, IManager> _manager = new Dictionary<string, IManager>();
         public Instance(VehicleManager vm, AddonManager am, InvoiceManager im)
