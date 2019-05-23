@@ -11,7 +11,7 @@ using IMS;
 using System.Text.RegularExpressions;
 
 namespace IMS_GUI
-{
+{   
     public partial class CreateVehicleForm : Form
     {
         public CreateVehicleForm()
@@ -28,27 +28,16 @@ namespace IMS_GUI
         private void btnAddVehicle_Click(object sender, EventArgs e)
         {
             // https://stackoverflow.com/questions/906899/binding-an-enum-to-a-winforms-combo-box-and-then-setting-it
-
-            if (Validate(txtId, "^[a-zA-Z0-9-]+$") && Validate(txtModel, "^[a-zA-Z0-9-]+$") && Validate(txtPrice, "^[0-9]+$"))
+            try
             {
                 SaleInstanceForm.tradeVehicle = new Vehicle(txtId.Text, (Brand)cbBrand.SelectedItem, txtModel.Text, new DateTime(Convert.ToInt32(cbYear.SelectedItem), 01, 01), Convert.ToDouble(txtPrice.Text));
                 this.Close();
             }
-            else
+            catch
             {
-                MessageBox.Show("The inputted data is not valid and/or missing", "Validation Fail", MessageBoxButtons.OK);
+                MessageBox.Show("Price needs to be a number.", "Validation Fail", MessageBoxButtons.OK);
             }
             
-
-        }
-
-        private bool Validate(TextBox t, string regex)
-        {
-            if ((new Regex(@regex)).IsMatch(t.Text))
-            {
-                return true;
-            }
-            return false;
         }
     }
 }
