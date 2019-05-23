@@ -70,9 +70,10 @@ namespace IMS_GUI
         {
             sInstance.GetBaseVehicle(cbBay.SelectedItem as string);
 
-            // Loop through Checkbox and get Id
-            //sInstance.GetAddonId(cblAddon.SelectedItem as string)
-            //sInstance.GetTradeVehicle(tradeVehicle);
+            foreach (dynamic addon in cblAddon.CheckedItems)
+            {
+                sInstance.GetAddon(addon as string);
+            }
 
             string msg = sInstance.CreateSale((PriceRate)cbPriceRate.SelectedItem);
 
