@@ -54,9 +54,17 @@ namespace IMS_GUI
             // Addon
             for (int i = 0; i < amount; i++)
             {
-                Addon a = new Addon("A000" + (i.ToString()), "AddonT10" + (i.ToString()), "Addon is xyz blah", new Random().Next(100, 3500));
+                Addon a = new Addon("A000" + (i.ToString()), "AddonTA10" + (i.ToString()), "Addon is xyz blah", new Random().Next(100, 3500));
                 a.AddCompatible("VIN0000" + (i.ToString()));
                 dbTableAddon.Create(a);
+
+                Addon b = new Addon("A100" + (i.ToString()), "AddonTB10" + (i.ToString()), "Addon is xyz blah", new Random().Next(100, 3500));
+                b.AddCompatible("VIN0000" + (i.ToString()));
+                dbTableAddon.Create(b);
+
+                Addon c = new Addon("A200" + (i.ToString()), "AddonTC10" + (i.ToString()), "Addon is xyz blah", new Random().Next(100, 3500));
+                c.AddCompatible("VIN0000" + (i.ToString()));
+                dbTableAddon.Create(c);
             }
 
             // Users 
