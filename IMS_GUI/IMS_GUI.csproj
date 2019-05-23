@@ -52,6 +52,12 @@
     <Compile Include="CreateVehicleForm.Designer.cs">
       <DependentUpon>CreateVehicleForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="GarageInstanceForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GarageInstanceForm.Designer.cs">
+      <DependentUpon>GarageInstanceForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -68,6 +74,9 @@
     </Compile>
     <EmbeddedResource Include="CreateVehicleForm.resx">
       <DependentUpon>CreateVehicleForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GarageInstanceForm.resx">
+      <DependentUpon>GarageInstanceForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
