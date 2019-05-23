@@ -11,7 +11,7 @@ namespace IMS.Instance
 {
     public class GarageInstance : Instance
     {
-        public GarageInstance(Staff s, VehicleManager vm, AddonManager am, BayManager bm, InvoiceManager im) : base(vm, am, bm, im)
+        public GarageInstance(Staff s, VehicleManager vm, AddonManager am, BayManager bm, InvoiceManager im) : base(vm, am, im, bm)
         {
             if (s.Role != JobRole.Garage)
             {
