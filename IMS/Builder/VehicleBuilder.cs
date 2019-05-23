@@ -19,58 +19,33 @@ namespace IMS.Builder
     public class VehicleBuilder
     {
         Order _order;
-        Dictionary<string, IManager> _manager;
 
-        public VehicleBuilder(IManager vm, IManager am)
+        public VehicleBuilder()
         {
-            _manager = new Dictionary<string, IManager>();
-            _manager.Add("Vehicle", vm);
-            _manager.Add("Addon", am);
-
             _order.addons = new List<Addon>();
         }
 
-        public string Add(string vehicleId)
+        public void Add(Vehicle vehicle, PriceRate price)
         {
-            // Use the manager to look for the vehicle id
-            // if not found send msg
-            // if found save in order
-
-            _order.buyVehicle = _manager["Vehicle"].Retrieve(vehicleId) as Vehicle;
-
-            if (_order.buyVehicle != null)
-            {
-                return "Success.";
-            }
-
-            return "Cannot find the vehicle.";
+            vehicle.Price = vehicle.Price * ((int)price *0.01);
+            _order.buyVehicle = vehicle;
         }
 
-        public string Add(List<string> addon)
+        public void Add(List<string> addonId, List<Addon> addon)
         {
-            // if vehicle has not been added stop adding addons
-            // Use the manager to look for the addon ids
-            // if not found send msg
-            // if found save in order via loop
-
-            if (_order.buyVehicle == null) 
+            List<Addon> selectedAddons = new List<Addon>();
+            foreach (string id in addonId)
             {
-                return "No vehicle selected.";
-            }
-
-            foreach( string id in addon)
-            {
-                Addon a = _manager["Addon"].Retrieve(id) as Addon;
-                if (a == null)
+                foreach (Addon a in addon)
                 {
-                    _order.addons.Clear();
-                    return "The list of addons is corrupt.";
+                    if (addonId.Contains(a.Id))
+                    {
+                        selectedAddons.Add(a);
+                    }
                 }
-
-                _order.addons.Add(a);
             }
 
-            return "Success.";
+            _order.addons = selectedAddons;   
         }
 
         public  Order Prepare()
