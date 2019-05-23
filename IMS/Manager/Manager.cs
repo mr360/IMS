@@ -39,8 +39,8 @@ namespace IMS.Manager
             return _db.Delete(id);
         }
 
-        public virtual List<DbObject> RetrieveMany(string id)
-        {
+        public abstract List<DbObject> RetrieveMany(string id);
+        /*{
             List<DbObject> output = new List<DbObject>();
             List<string> idList = _db.GetIDs;
             foreach (string ids in idList)
@@ -48,7 +48,7 @@ namespace IMS.Manager
                 output.Add(_db.Read(ids));
             }
             return output;
-        }
+        }*/
 
         public string Update(DbObject item)
         {
