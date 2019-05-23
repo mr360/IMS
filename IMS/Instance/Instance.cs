@@ -28,10 +28,11 @@ namespace IMS.Instance
             _manager.Add("Report", rm);
         }
 
-        public Instance(VehicleManager vm, AddonManager am, BayManager bm, InvoiceManager im)
+        public Instance(VehicleManager vm, AddonManager am, InvoiceManager im, BayManager bm)
         {
             _manager.Add("Vehicle", vm);
             _manager.Add("Addon", am);
+            _manager.Add("Invoice", im);
             _manager.Add("Bay", bm);
         }
     }
