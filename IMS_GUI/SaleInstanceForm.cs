@@ -24,22 +24,74 @@ namespace IMS_GUI
 
         private void SaleInstance_Load(object sender, EventArgs e)
         {
-            // Load the vehicles into Base Vehicle text box
-            
-            
+            // SaleInstance.ViewAllBay (do not include empty or sold)
+            // Load the bay into bayid text box
+            List<string> vIdList = Program.bm.GetIDs;
+            foreach (string bId in vIdList)
+            {
+                cbBay.Items.Add(bId);
+            }
+
         }
 
         private void btnVehicleSelect_Click(object sender, EventArgs e)
         {
-            // Load the addon list into Addon checkbox panel
+            cblAddon.Items.Clear();
+
+            //Load vehicle that is in bay
+            Bay b = Program.bm.Retrieve(cbBay.SelectedItem as string) as Bay;
+            Vehicle v = Program.vm.Retrieve(b.Vehicle) as Vehicle;
+            if (v == null)
+            {
+                tbVehicleDetails.Text = "Empty Bay";
+            }
+            else
+            {
+                tbVehicleDetails.Text = v.View;
+
+                // Load the addon list into Addon checkbox panel
+                dynamic aList = Program.am.RetrieveMany(v.Id) as dynamic;
+                if (aList != null)
+                {
+                    foreach (Addon a in aList)
+                    {
+                        cblAddon.Items.Add(a.Id);
+                    }
+                }
+            }
         }
 
         private void btnTradeVehicleAdd_Click(object sender, EventArgs e)
         {
-            // Create a new vehicle object 
-            
             CreateVehicleForm sInstanceForm = new CreateVehicleForm();
             sInstanceForm.ShowDialog();
+            
+            if (SaleInstanceForm.tradeVehicle != null)
+            {
+                tbShowTradeInVehicle.Text = tradeVehicle.View;
+            }
+        }
+
+        private void btnCreateSale_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnClearTradeInVehicle_Click(object sender, EventArgs e)
+        {
+            SaleInstanceForm.tradeVehicle = null;
+            tbShowTradeInVehicle.Text = "";
+        }
+
+        private void cblAddon_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cblAddon.SelectedItem != null)
+            {
+                Addon a = Program.am.Retrieve(cblAddon.SelectedItem as string) as Addon;
+                tbAddonDetail.Text = a.View;
+            }
+
+            
         }
     }
 }

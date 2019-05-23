@@ -29,10 +29,8 @@
         private void InitializeComponent()
         {
             this.btnCreateSale = new System.Windows.Forms.Button();
-            this.btnVehicleSelect = new System.Windows.Forms.Button();
             this.btnAddonAdd = new System.Windows.Forms.Button();
             this.cblAddon = new System.Windows.Forms.CheckedListBox();
-            this.cbVehicle = new System.Windows.Forms.ComboBox();
             this.btnTradeVehicleAdd = new System.Windows.Forms.Button();
             this.txtOrderSummary = new System.Windows.Forms.TextBox();
             this.lblVehicleSelect = new System.Windows.Forms.Label();
@@ -40,18 +38,29 @@
             this.lblTradeVehicleAdd = new System.Windows.Forms.Label();
             this.lblOrderSummary = new System.Windows.Forms.Label();
             this.tbcSale = new System.Windows.Forms.TabControl();
-            this.tbpBaseVehicle = new System.Windows.Forms.TabPage();
             this.tbpAddon = new System.Windows.Forms.TabPage();
             this.tbpRebate = new System.Windows.Forms.TabPage();
             this.tbpSummary = new System.Windows.Forms.TabPage();
             this.lblSaleInstanceHeading = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.lblSaleTip = new System.Windows.Forms.Label();
+            this.tbShowTradeInVehicle = new System.Windows.Forms.TextBox();
+            this.btnClearTradeInVehicle = new System.Windows.Forms.Button();
+            this.cbBay = new System.Windows.Forms.ComboBox();
+            this.btnVehicleSelect = new System.Windows.Forms.Button();
+            this.tbPriceModify = new System.Windows.Forms.TextBox();
+            this.lbBaySelect = new System.Windows.Forms.Label();
+            this.tbpBaseVehicle = new System.Windows.Forms.TabPage();
+            this.lbVehicleDetail = new System.Windows.Forms.Label();
+            this.lbPriceModify = new System.Windows.Forms.Label();
+            this.tbVehicleDetails = new System.Windows.Forms.TextBox();
+            this.tbAddonDetail = new System.Windows.Forms.TextBox();
+            this.lblAddonDetail = new System.Windows.Forms.Label();
             this.tbcSale.SuspendLayout();
-            this.tbpBaseVehicle.SuspendLayout();
             this.tbpAddon.SuspendLayout();
             this.tbpRebate.SuspendLayout();
             this.tbpSummary.SuspendLayout();
+            this.tbpBaseVehicle.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnCreateSale
@@ -62,16 +71,7 @@
             this.btnCreateSale.TabIndex = 0;
             this.btnCreateSale.Text = "Create Sale";
             this.btnCreateSale.UseVisualStyleBackColor = true;
-            // 
-            // btnVehicleSelect
-            // 
-            this.btnVehicleSelect.Location = new System.Drawing.Point(294, 48);
-            this.btnVehicleSelect.Name = "btnVehicleSelect";
-            this.btnVehicleSelect.Size = new System.Drawing.Size(75, 27);
-            this.btnVehicleSelect.TabIndex = 1;
-            this.btnVehicleSelect.Text = "Select";
-            this.btnVehicleSelect.UseVisualStyleBackColor = true;
-            this.btnVehicleSelect.Click += new System.EventHandler(this.btnVehicleSelect_Click);
+            this.btnCreateSale.Click += new System.EventHandler(this.btnCreateSale_Click);
             // 
             // btnAddonAdd
             // 
@@ -87,22 +87,15 @@
             this.cblAddon.FormattingEnabled = true;
             this.cblAddon.Location = new System.Drawing.Point(19, 27);
             this.cblAddon.Name = "cblAddon";
-            this.cblAddon.Size = new System.Drawing.Size(292, 298);
+            this.cblAddon.Size = new System.Drawing.Size(292, 193);
             this.cblAddon.TabIndex = 3;
-            // 
-            // cbVehicle
-            // 
-            this.cbVehicle.FormattingEnabled = true;
-            this.cbVehicle.Location = new System.Drawing.Point(28, 49);
-            this.cbVehicle.Name = "cbVehicle";
-            this.cbVehicle.Size = new System.Drawing.Size(245, 27);
-            this.cbVehicle.TabIndex = 4;
+            this.cblAddon.SelectedIndexChanged += new System.EventHandler(this.cblAddon_SelectedIndexChanged);
             // 
             // btnTradeVehicleAdd
             // 
-            this.btnTradeVehicleAdd.Location = new System.Drawing.Point(87, 151);
+            this.btnTradeVehicleAdd.Location = new System.Drawing.Point(21, 151);
             this.btnTradeVehicleAdd.Name = "btnTradeVehicleAdd";
-            this.btnTradeVehicleAdd.Size = new System.Drawing.Size(204, 27);
+            this.btnTradeVehicleAdd.Size = new System.Drawing.Size(203, 27);
             this.btnTradeVehicleAdd.TabIndex = 6;
             this.btnTradeVehicleAdd.Text = "Add Vehicle";
             this.btnTradeVehicleAdd.UseVisualStyleBackColor = true;
@@ -114,6 +107,7 @@
             this.txtOrderSummary.Location = new System.Drawing.Point(9, 24);
             this.txtOrderSummary.Multiline = true;
             this.txtOrderSummary.Name = "txtOrderSummary";
+            this.txtOrderSummary.ReadOnly = true;
             this.txtOrderSummary.Size = new System.Drawing.Size(386, 306);
             this.txtOrderSummary.TabIndex = 7;
             // 
@@ -165,20 +159,10 @@
             this.tbcSale.Size = new System.Drawing.Size(421, 388);
             this.tbcSale.TabIndex = 12;
             // 
-            // tbpBaseVehicle
-            // 
-            this.tbpBaseVehicle.Controls.Add(this.btnVehicleSelect);
-            this.tbpBaseVehicle.Controls.Add(this.cbVehicle);
-            this.tbpBaseVehicle.Location = new System.Drawing.Point(4, 28);
-            this.tbpBaseVehicle.Name = "tbpBaseVehicle";
-            this.tbpBaseVehicle.Padding = new System.Windows.Forms.Padding(3);
-            this.tbpBaseVehicle.Size = new System.Drawing.Size(413, 356);
-            this.tbpBaseVehicle.TabIndex = 0;
-            this.tbpBaseVehicle.Text = "Base Vehicle";
-            this.tbpBaseVehicle.UseVisualStyleBackColor = true;
-            // 
             // tbpAddon
             // 
+            this.tbpAddon.Controls.Add(this.lblAddonDetail);
+            this.tbpAddon.Controls.Add(this.tbAddonDetail);
             this.tbpAddon.Controls.Add(this.cblAddon);
             this.tbpAddon.Controls.Add(this.btnAddonAdd);
             this.tbpAddon.Location = new System.Drawing.Point(4, 28);
@@ -191,6 +175,8 @@
             // 
             // tbpRebate
             // 
+            this.tbpRebate.Controls.Add(this.btnClearTradeInVehicle);
+            this.tbpRebate.Controls.Add(this.tbShowTradeInVehicle);
             this.tbpRebate.Controls.Add(this.btnTradeVehicleAdd);
             this.tbpRebate.Location = new System.Drawing.Point(4, 28);
             this.tbpRebate.Name = "tbpRebate";
@@ -238,6 +224,125 @@
             this.lblSaleTip.TabIndex = 15;
             this.lblSaleTip.Text = "Please go through the tab process.";
             // 
+            // tbShowTradeInVehicle
+            // 
+            this.tbShowTradeInVehicle.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbShowTradeInVehicle.Location = new System.Drawing.Point(21, 26);
+            this.tbShowTradeInVehicle.Multiline = true;
+            this.tbShowTradeInVehicle.Name = "tbShowTradeInVehicle";
+            this.tbShowTradeInVehicle.ReadOnly = true;
+            this.tbShowTradeInVehicle.Size = new System.Drawing.Size(366, 106);
+            this.tbShowTradeInVehicle.TabIndex = 7;
+            // 
+            // btnClearTradeInVehicle
+            // 
+            this.btnClearTradeInVehicle.Location = new System.Drawing.Point(246, 151);
+            this.btnClearTradeInVehicle.Name = "btnClearTradeInVehicle";
+            this.btnClearTradeInVehicle.Size = new System.Drawing.Size(141, 27);
+            this.btnClearTradeInVehicle.TabIndex = 8;
+            this.btnClearTradeInVehicle.Text = "Clear Vehicle";
+            this.btnClearTradeInVehicle.UseVisualStyleBackColor = true;
+            this.btnClearTradeInVehicle.Click += new System.EventHandler(this.btnClearTradeInVehicle_Click);
+            // 
+            // cbBay
+            // 
+            this.cbBay.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbBay.FormattingEnabled = true;
+            this.cbBay.Location = new System.Drawing.Point(28, 49);
+            this.cbBay.Name = "cbBay";
+            this.cbBay.Size = new System.Drawing.Size(245, 27);
+            this.cbBay.TabIndex = 4;
+            // 
+            // btnVehicleSelect
+            // 
+            this.btnVehicleSelect.Location = new System.Drawing.Point(294, 48);
+            this.btnVehicleSelect.Name = "btnVehicleSelect";
+            this.btnVehicleSelect.Size = new System.Drawing.Size(75, 27);
+            this.btnVehicleSelect.TabIndex = 1;
+            this.btnVehicleSelect.Text = "Select";
+            this.btnVehicleSelect.UseVisualStyleBackColor = true;
+            this.btnVehicleSelect.Click += new System.EventHandler(this.btnVehicleSelect_Click);
+            // 
+            // tbPriceModify
+            // 
+            this.tbPriceModify.Location = new System.Drawing.Point(28, 255);
+            this.tbPriceModify.Name = "tbPriceModify";
+            this.tbPriceModify.Size = new System.Drawing.Size(341, 26);
+            this.tbPriceModify.TabIndex = 5;
+            // 
+            // lbBaySelect
+            // 
+            this.lbBaySelect.AutoSize = true;
+            this.lbBaySelect.Location = new System.Drawing.Point(24, 24);
+            this.lbBaySelect.Name = "lbBaySelect";
+            this.lbBaySelect.Size = new System.Drawing.Size(99, 19);
+            this.lbBaySelect.TabIndex = 6;
+            this.lbBaySelect.Text = "Select Bay";
+            // 
+            // tbpBaseVehicle
+            // 
+            this.tbpBaseVehicle.Controls.Add(this.tbVehicleDetails);
+            this.tbpBaseVehicle.Controls.Add(this.lbPriceModify);
+            this.tbpBaseVehicle.Controls.Add(this.lbVehicleDetail);
+            this.tbpBaseVehicle.Controls.Add(this.lbBaySelect);
+            this.tbpBaseVehicle.Controls.Add(this.tbPriceModify);
+            this.tbpBaseVehicle.Controls.Add(this.btnVehicleSelect);
+            this.tbpBaseVehicle.Controls.Add(this.cbBay);
+            this.tbpBaseVehicle.Location = new System.Drawing.Point(4, 28);
+            this.tbpBaseVehicle.Name = "tbpBaseVehicle";
+            this.tbpBaseVehicle.Padding = new System.Windows.Forms.Padding(3);
+            this.tbpBaseVehicle.Size = new System.Drawing.Size(413, 356);
+            this.tbpBaseVehicle.TabIndex = 0;
+            this.tbpBaseVehicle.Text = "Base Vehicle";
+            this.tbpBaseVehicle.UseVisualStyleBackColor = true;
+            // 
+            // lbVehicleDetail
+            // 
+            this.lbVehicleDetail.AutoSize = true;
+            this.lbVehicleDetail.Location = new System.Drawing.Point(24, 93);
+            this.lbVehicleDetail.Name = "lbVehicleDetail";
+            this.lbVehicleDetail.Size = new System.Drawing.Size(144, 19);
+            this.lbVehicleDetail.TabIndex = 7;
+            this.lbVehicleDetail.Text = "Vehicle Details";
+            // 
+            // lbPriceModify
+            // 
+            this.lbPriceModify.AutoSize = true;
+            this.lbPriceModify.Location = new System.Drawing.Point(24, 230);
+            this.lbPriceModify.Name = "lbPriceModify";
+            this.lbPriceModify.Size = new System.Drawing.Size(135, 19);
+            this.lbPriceModify.TabIndex = 8;
+            this.lbPriceModify.Text = "Price Modifier";
+            // 
+            // tbVehicleDetails
+            // 
+            this.tbVehicleDetails.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbVehicleDetails.Location = new System.Drawing.Point(28, 115);
+            this.tbVehicleDetails.Multiline = true;
+            this.tbVehicleDetails.Name = "tbVehicleDetails";
+            this.tbVehicleDetails.ReadOnly = true;
+            this.tbVehicleDetails.Size = new System.Drawing.Size(341, 100);
+            this.tbVehicleDetails.TabIndex = 9;
+            // 
+            // tbAddonDetail
+            // 
+            this.tbAddonDetail.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbAddonDetail.Location = new System.Drawing.Point(19, 254);
+            this.tbAddonDetail.Multiline = true;
+            this.tbAddonDetail.Name = "tbAddonDetail";
+            this.tbAddonDetail.ReadOnly = true;
+            this.tbAddonDetail.Size = new System.Drawing.Size(292, 87);
+            this.tbAddonDetail.TabIndex = 4;
+            // 
+            // lblAddonDetail
+            // 
+            this.lblAddonDetail.AutoSize = true;
+            this.lblAddonDetail.Location = new System.Drawing.Point(15, 232);
+            this.lblAddonDetail.Name = "lblAddonDetail";
+            this.lblAddonDetail.Size = new System.Drawing.Size(63, 19);
+            this.lblAddonDetail.TabIndex = 5;
+            this.lblAddonDetail.Text = "Detail";
+            // 
             // SaleInstanceForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
@@ -262,11 +367,14 @@
             this.Text = "SaleInstance";
             this.Load += new System.EventHandler(this.SaleInstance_Load);
             this.tbcSale.ResumeLayout(false);
-            this.tbpBaseVehicle.ResumeLayout(false);
             this.tbpAddon.ResumeLayout(false);
+            this.tbpAddon.PerformLayout();
             this.tbpRebate.ResumeLayout(false);
+            this.tbpRebate.PerformLayout();
             this.tbpSummary.ResumeLayout(false);
             this.tbpSummary.PerformLayout();
+            this.tbpBaseVehicle.ResumeLayout(false);
+            this.tbpBaseVehicle.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -275,10 +383,8 @@
         #endregion
 
         private System.Windows.Forms.Button btnCreateSale;
-        private System.Windows.Forms.Button btnVehicleSelect;
         private System.Windows.Forms.Button btnAddonAdd;
         private System.Windows.Forms.CheckedListBox cblAddon;
-        private System.Windows.Forms.ComboBox cbVehicle;
         private System.Windows.Forms.Button btnTradeVehicleAdd;
         private System.Windows.Forms.TextBox txtOrderSummary;
         private System.Windows.Forms.Label lblVehicleSelect;
@@ -286,12 +392,23 @@
         private System.Windows.Forms.Label lblTradeVehicleAdd;
         private System.Windows.Forms.Label lblOrderSummary;
         private System.Windows.Forms.TabControl tbcSale;
-        private System.Windows.Forms.TabPage tbpBaseVehicle;
         private System.Windows.Forms.TabPage tbpAddon;
         private System.Windows.Forms.TabPage tbpRebate;
         private System.Windows.Forms.TabPage tbpSummary;
         private System.Windows.Forms.Label lblSaleInstanceHeading;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label lblSaleTip;
+        private System.Windows.Forms.TextBox tbShowTradeInVehicle;
+        private System.Windows.Forms.Button btnClearTradeInVehicle;
+        private System.Windows.Forms.TabPage tbpBaseVehicle;
+        private System.Windows.Forms.TextBox tbVehicleDetails;
+        private System.Windows.Forms.Label lbPriceModify;
+        private System.Windows.Forms.Label lbVehicleDetail;
+        private System.Windows.Forms.Label lbBaySelect;
+        private System.Windows.Forms.TextBox tbPriceModify;
+        private System.Windows.Forms.Button btnVehicleSelect;
+        private System.Windows.Forms.ComboBox cbBay;
+        private System.Windows.Forms.Label lblAddonDetail;
+        private System.Windows.Forms.TextBox tbAddonDetail;
     }
 }

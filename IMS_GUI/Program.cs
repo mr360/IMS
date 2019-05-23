@@ -38,7 +38,9 @@ namespace IMS_GUI
             // Bays
             for (int i = 0; i < amount + 20; i++)
             {
-                dbTableBay.Create(new Bay("B000" + (i.ToString())));
+                Bay x = new Bay("B000" + (i.ToString()));
+                x.Vehicle = "VIN0000" + (i.ToString());
+                dbTableBay.Create(x);
             }
 
             // Vehicle
