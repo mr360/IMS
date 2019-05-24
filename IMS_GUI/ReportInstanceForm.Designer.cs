@@ -30,17 +30,17 @@
         {
             this.lblReportInstanceHeading = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.listBox1 = new System.Windows.Forms.ListBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.tbpReportList = new System.Windows.Forms.TabControl();
+            this.tbReport = new System.Windows.Forms.TabPage();
+            this.tbpReportView = new System.Windows.Forms.TabPage();
+            this.lbReport = new System.Windows.Forms.ListBox();
+            this.txtReportView = new System.Windows.Forms.TextBox();
             this.btnClose = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnCreateReport = new System.Windows.Forms.Button();
             this.btnPrint = new System.Windows.Forms.Button();
-            this.tabControl1.SuspendLayout();
-            this.tabPage1.SuspendLayout();
-            this.tabPage2.SuspendLayout();
+            this.tbpReportList.SuspendLayout();
+            this.tbReport.SuspendLayout();
+            this.tbpReportView.SuspendLayout();
             this.SuspendLayout();
             // 
             // lblReportInstanceHeading
@@ -63,57 +63,57 @@
             this.panel1.Size = new System.Drawing.Size(442, 88);
             this.panel1.TabIndex = 33;
             // 
-            // tabControl1
+            // tbpReportList
             // 
-            this.tabControl1.Controls.Add(this.tabPage1);
-            this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Location = new System.Drawing.Point(0, 95);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(442, 351);
-            this.tabControl1.TabIndex = 34;
+            this.tbpReportList.Controls.Add(this.tbReport);
+            this.tbpReportList.Controls.Add(this.tbpReportView);
+            this.tbpReportList.Location = new System.Drawing.Point(0, 95);
+            this.tbpReportList.Name = "tbpReportList";
+            this.tbpReportList.SelectedIndex = 0;
+            this.tbpReportList.Size = new System.Drawing.Size(442, 351);
+            this.tbpReportList.TabIndex = 34;
             // 
-            // tabPage1
+            // tbReport
             // 
-            this.tabPage1.Controls.Add(this.button1);
-            this.tabPage1.Controls.Add(this.listBox1);
-            this.tabPage1.Location = new System.Drawing.Point(4, 28);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(434, 319);
-            this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "Reports";
-            this.tabPage1.UseVisualStyleBackColor = true;
+            this.tbReport.Controls.Add(this.btnCreateReport);
+            this.tbReport.Controls.Add(this.lbReport);
+            this.tbReport.Location = new System.Drawing.Point(4, 28);
+            this.tbReport.Name = "tbReport";
+            this.tbReport.Padding = new System.Windows.Forms.Padding(3);
+            this.tbReport.Size = new System.Drawing.Size(434, 319);
+            this.tbReport.TabIndex = 0;
+            this.tbReport.Text = "Reports";
+            this.tbReport.UseVisualStyleBackColor = true;
             // 
-            // tabPage2
+            // tbpReportView
             // 
-            this.tabPage2.Controls.Add(this.btnPrint);
-            this.tabPage2.Controls.Add(this.textBox1);
-            this.tabPage2.Location = new System.Drawing.Point(4, 28);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(434, 319);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "View";
-            this.tabPage2.UseVisualStyleBackColor = true;
+            this.tbpReportView.Controls.Add(this.btnPrint);
+            this.tbpReportView.Controls.Add(this.txtReportView);
+            this.tbpReportView.Location = new System.Drawing.Point(4, 28);
+            this.tbpReportView.Name = "tbpReportView";
+            this.tbpReportView.Padding = new System.Windows.Forms.Padding(3);
+            this.tbpReportView.Size = new System.Drawing.Size(434, 319);
+            this.tbpReportView.TabIndex = 1;
+            this.tbpReportView.Text = "View";
+            this.tbpReportView.UseVisualStyleBackColor = true;
             // 
-            // listBox1
+            // lbReport
             // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.ItemHeight = 19;
-            this.listBox1.Location = new System.Drawing.Point(7, 7);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(386, 308);
-            this.listBox1.TabIndex = 0;
+            this.lbReport.FormattingEnabled = true;
+            this.lbReport.ItemHeight = 19;
+            this.lbReport.Location = new System.Drawing.Point(7, 7);
+            this.lbReport.Name = "lbReport";
+            this.lbReport.Size = new System.Drawing.Size(386, 308);
+            this.lbReport.TabIndex = 0;
             // 
-            // textBox1
+            // txtReportView
             // 
-            this.textBox1.Location = new System.Drawing.Point(4, 4);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(385, 309);
-            this.textBox1.TabIndex = 0;
+            this.txtReportView.Location = new System.Drawing.Point(4, 4);
+            this.txtReportView.Multiline = true;
+            this.txtReportView.Name = "txtReportView";
+            this.txtReportView.ReadOnly = true;
+            this.txtReportView.Size = new System.Drawing.Size(385, 309);
+            this.txtReportView.TabIndex = 0;
             // 
             // btnClose
             // 
@@ -124,14 +124,14 @@
             this.btnClose.Text = "Close";
             this.btnClose.UseVisualStyleBackColor = true;
             // 
-            // button1
+            // btnCreateReport
             // 
-            this.button1.Image = global::IMS_GUI.Properties.Resources.plus_32_32;
-            this.button1.Location = new System.Drawing.Point(398, 7);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(32, 32);
-            this.button1.TabIndex = 36;
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnCreateReport.Image = global::IMS_GUI.Properties.Resources.plus_32_32;
+            this.btnCreateReport.Location = new System.Drawing.Point(398, 7);
+            this.btnCreateReport.Name = "btnCreateReport";
+            this.btnCreateReport.Size = new System.Drawing.Size(32, 32);
+            this.btnCreateReport.TabIndex = 36;
+            this.btnCreateReport.UseVisualStyleBackColor = true;
             // 
             // btnPrint
             // 
@@ -148,17 +148,17 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(442, 514);
             this.Controls.Add(this.btnClose);
-            this.Controls.Add(this.tabControl1);
+            this.Controls.Add(this.tbpReportList);
             this.Controls.Add(this.lblReportInstanceHeading);
             this.Controls.Add(this.panel1);
             this.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "ReportInstanceForm";
             this.Text = "Report Instance ";
-            this.tabControl1.ResumeLayout(false);
-            this.tabPage1.ResumeLayout(false);
-            this.tabPage2.ResumeLayout(false);
-            this.tabPage2.PerformLayout();
+            this.tbpReportList.ResumeLayout(false);
+            this.tbReport.ResumeLayout(false);
+            this.tbpReportView.ResumeLayout(false);
+            this.tbpReportView.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -168,13 +168,13 @@
 
         private System.Windows.Forms.Label lblReportInstanceHeading;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.TabControl tabControl1;
-        private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.ListBox listBox1;
-        private System.Windows.Forms.TabPage tabPage2;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TabControl tbpReportList;
+        private System.Windows.Forms.TabPage tbReport;
+        private System.Windows.Forms.ListBox lbReport;
+        private System.Windows.Forms.TabPage tbpReportView;
+        private System.Windows.Forms.TextBox txtReportView;
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Button btnPrint;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnCreateReport;
     }
 }
