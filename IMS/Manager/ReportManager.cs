@@ -34,7 +34,7 @@ namespace IMS.Manager
 
         public override List<DbObject> RetrieveMany(string id)
         {
-            // ?????
+            // report type
             throw new NotImplementedException();
         }
     }
