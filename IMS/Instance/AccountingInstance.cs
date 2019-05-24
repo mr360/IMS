@@ -15,9 +15,9 @@ namespace IMS.Instance
     {
         Sale _sInvoice;
         Customer _customer;
-        Tax tInvoice;
+        Tax _tInvoice;
 
-        public AccountingInstance(Staff s, InvoiceManager im, UserManager um) : base (im, um)
+        public AccountingInstance(Staff s, InvoiceManager im, UserManager um, VehicleManager vm) : base (im, um, vm)
         {
             if (s.Role != JobRole.Accounting)
             {
@@ -29,9 +29,9 @@ namespace IMS.Instance
         {
             //get invoice ; make sure its not empty
             // get from manager ; if no found return err
-            Sale sInvoice = _manager["Invoice"].Retrieve(invoiceId) as Sale;
+            _sInvoice = _manager["Invoice"].Retrieve(invoiceId) as Sale;
 
-            if (sInvoice == null)
+            if (_sInvoice == null)
             {
                 return "The sale invoice cannot be found.";
             }
@@ -55,15 +55,21 @@ namespace IMS.Instance
 
         public string CreateCustomer(Customer c)
         {
-            if (c.Name == "" || c.Address == "" || c.Id == "")
+            if (c == null)
             {
-                return "Customer is missing key details.";
+                return "Fail. No customer(null)";
             }
+
+            if (ValidateIMS.IsBad(c.Id, @"^[a-zA-Z0-9]+$") || ValidateIMS.IsBad(c.Name, @"^[a-zA-Z]+$") || ValidateIMS.IsBad(c.Address, @"^[a-zA-Z]+$"))
+            {
+                return "Fail. Not right format";
+            }
+
             _customer = c;
             return _manager["User"].Add(c);
         }
 
-        public string CreatePayment(CreditCard c)
+        public string CreatePayment(CreditCard card)
         {
             // check everything is ready // validate
             // use invoice to get price total 
@@ -73,12 +79,12 @@ namespace IMS.Instance
             // get invoice tax id
             if (_customer == null || _sInvoice == null)
             {
-                throw new System.ArgumentException("Invalid code path. Need to declare payment parameters!");
+                return "Need to declare payment parameters!";
             }
 
             string lResult = "";
             PaymentProcessor pProcessor = new PaymentProcessor();
-            lResult = pProcessor.SetPaymentDetail(c);
+            lResult = pProcessor.SetPaymentDetail(card);
             if (lResult != "VALID")
             {
                 return "Payment details are not vaild.";
@@ -91,23 +97,49 @@ namespace IMS.Instance
             }
 
             InvoiceBuilder iBuild = new InvoiceBuilder();
+            iBuild.Invoice = InvoiceType.Tax;
             iBuild.SaleInvoice = _sInvoice;
             iBuild.Customer = _customer;
             iBuild.PaymentId = paymentId;
-            Tax tInvoice = iBuild.Prepare() as Tax;
+            _tInvoice = iBuild.Prepare() as Tax;
 
-            return _manager["Invoice"].Add(tInvoice);
+            UpdateVehicleInventoryState();
+
+            _manager["Invoice"].Add(_tInvoice);
+
+            return "Payment Success.";
         }
 
+        private void UpdateVehicleInventoryState()
+        {
+            // Add trade-in vehicle to vehicle list
+            if (_tInvoice.TradeVehicle != null)
+            {
+                _manager["Vehicle"].Add(_tInvoice.TradeVehicle);
+            }
+
+            // Set vehicle as sold
+            Vehicle baseVehicle = _manager ["Vehicle"].Retrieve(_tInvoice.BuyVehicle.Id) as Vehicle;
+            baseVehicle.Sold = true;
+            _manager ["Vehicle"].Update(baseVehicle);
+        }
+
+        public double ViewTotal
+        {
+            get
+            {
+                return _sInvoice.TotalCost * 1.10;
+            }
+        }
         public string ViewTax
         {
             get
             {
-                if (tInvoice == null)
+                if (_tInvoice == null)
                 {
                     return "Tax Invoice : Not Available.";
                 }
-                return tInvoice.View;
+                return _tInvoice.View;
             }
         }
     }

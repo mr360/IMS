@@ -31,5 +31,30 @@ namespace IMS.Manager
 
             return _db.Create(item);
         }
+
+        public override List<DbObject> RetrieveMany(string id)
+        {
+            List<DbObject> output = new List<DbObject>();
+            List<string> idList = _db.GetIDs;
+            foreach (string ids in idList)
+            {
+                Bay b = _db.Read(ids) as Bay;
+
+                switch(id.ToLower())
+                {
+                    case "occupied":
+                        if (!(b.Available)) output.Add(b);
+                        break;
+                    case "free":
+                        if (b.Available) output.Add(b);
+                        break;
+                    default: 
+                        output.Add(b); 
+                        break;
+                }
+            }
+
+            return output;
+        }
     }
 }

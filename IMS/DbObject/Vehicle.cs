@@ -18,6 +18,7 @@ namespace IMS
         private string _model;
         private int _year;
         private double _price;
+        private bool _sold;
 
         public Vehicle(string id, Brand brand, string model, DateTime year, double price) : base(id)
         {
@@ -25,8 +26,11 @@ namespace IMS
             _model = model;
             _year = year.Year;
             _price = Math.Abs(price);
+            _sold = false;
             
         }
+
+        public bool Sold { get; set; }
 
         public override string View
         {

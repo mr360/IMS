@@ -46,11 +46,41 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AccountingInstanceForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AccountingInstanceForm.Designer.cs">
+      <DependentUpon>AccountingInstanceForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CreateAddonForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CreateAddonForm.Designer.cs">
+      <DependentUpon>CreateAddonForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CreateCustomerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CreateCustomerForm.Designer.cs">
+      <DependentUpon>CreateCustomerForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CreateReportForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CreateReportForm.Designer.cs">
+      <DependentUpon>CreateReportForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="CreateVehicleForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="CreateVehicleForm.Designer.cs">
       <DependentUpon>CreateVehicleForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GarageInstanceForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GarageInstanceForm.Designer.cs">
+      <DependentUpon>GarageInstanceForm.cs</DependentUpon>
     </Compile>
     <Compile Include="LoginForm.cs">
       <SubType>Form</SubType>
@@ -60,27 +90,52 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="ReportInstanceForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReportInstanceForm.Designer.cs">
+      <DependentUpon>ReportInstanceForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="SaleInstanceForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="SaleInstanceForm.Designer.cs">
       <DependentUpon>SaleInstanceForm.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="AccountingInstanceForm.resx">
+      <DependentUpon>AccountingInstanceForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CreateAddonForm.resx">
+      <DependentUpon>CreateAddonForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CreateCustomerForm.resx">
+      <DependentUpon>CreateCustomerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CreateReportForm.resx">
+      <DependentUpon>CreateReportForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CreateVehicleForm.resx">
       <DependentUpon>CreateVehicleForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GarageInstanceForm.resx">
+      <DependentUpon>GarageInstanceForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
+    <EmbeddedResource Include="ReportInstanceForm.resx">
+      <DependentUpon>ReportInstanceForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SaleInstanceForm.resx">
       <DependentUpon>SaleInstanceForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -102,6 +157,12 @@
       <Project>{c6a0f0d3-a29d-4762-804d-5f390ae04150}</Project>
       <Name>IMS</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\printer_32_32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\plus_32_32.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

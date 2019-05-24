@@ -30,9 +30,34 @@ namespace IMS.Manager
             return _db.Create(item);
         }
 
+        public override List<DbObject> RetrieveMany(string id)
+        {
+            List<DbObject> output = new List<DbObject>();
+            List<string> idList = _db.GetIDs;
+            foreach (string ids in idList)
+            {
+                Vehicle v = _db.Read(ids) as Vehicle;
+
+                switch (id.ToLower())
+                {
+                    case "unsold":
+                        if (!(v.Sold)) output.Add(v);
+                        break;
+                    case "sold":
+                        if (v.Sold) output.Add(v);
+                        break;
+                    default:
+                        output.Add(v);
+                        break;
+                }
+            }
+            return output;
+        }
+
         // Use ReterieveMany("nonsold")
         // returns non sold vehicles
         // add a sold bool to vehicle
+
 
     }
 }

@@ -31,7 +31,6 @@
             this.btnAddVehicle = new System.Windows.Forms.Button();
             this.txtId = new System.Windows.Forms.TextBox();
             this.txtModel = new System.Windows.Forms.TextBox();
-            this.txtPrice = new System.Windows.Forms.TextBox();
             this.cbBrand = new System.Windows.Forms.ComboBox();
             this.cbYear = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -41,13 +40,15 @@
             this.label5 = new System.Windows.Forms.Label();
             this.lblSaleInstanceHeading = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.nudPrice = new System.Windows.Forms.NumericUpDown();
+            ((System.ComponentModel.ISupportInitialize)(this.nudPrice)).BeginInit();
             this.SuspendLayout();
             // 
             // btnAddVehicle
             // 
             this.btnAddVehicle.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAddVehicle.Location = new System.Drawing.Point(104, 303);
-            this.btnAddVehicle.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnAddVehicle.Margin = new System.Windows.Forms.Padding(4);
             this.btnAddVehicle.Name = "btnAddVehicle";
             this.btnAddVehicle.Size = new System.Drawing.Size(112, 34);
             this.btnAddVehicle.TabIndex = 0;
@@ -59,28 +60,21 @@
             // 
             this.txtId.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtId.Location = new System.Drawing.Point(104, 119);
-            this.txtId.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtId.Margin = new System.Windows.Forms.Padding(4);
             this.txtId.Name = "txtId";
             this.txtId.Size = new System.Drawing.Size(289, 26);
             this.txtId.TabIndex = 1;
+            this.txtId.TextChanged += new System.EventHandler(this.txtId_TextChanged);
             // 
             // txtModel
             // 
             this.txtModel.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtModel.Location = new System.Drawing.Point(104, 188);
-            this.txtModel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtModel.Margin = new System.Windows.Forms.Padding(4);
             this.txtModel.Name = "txtModel";
             this.txtModel.Size = new System.Drawing.Size(289, 26);
             this.txtModel.TabIndex = 2;
-            // 
-            // txtPrice
-            // 
-            this.txtPrice.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPrice.Location = new System.Drawing.Point(104, 257);
-            this.txtPrice.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.txtPrice.Name = "txtPrice";
-            this.txtPrice.Size = new System.Drawing.Size(289, 26);
-            this.txtPrice.TabIndex = 4;
+            this.txtModel.TextChanged += new System.EventHandler(this.txtModel_TextChanged);
             // 
             // cbBrand
             // 
@@ -88,10 +82,11 @@
             this.cbBrand.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbBrand.FormattingEnabled = true;
             this.cbBrand.Location = new System.Drawing.Point(104, 153);
-            this.cbBrand.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbBrand.Margin = new System.Windows.Forms.Padding(4);
             this.cbBrand.Name = "cbBrand";
             this.cbBrand.Size = new System.Drawing.Size(289, 27);
             this.cbBrand.TabIndex = 5;
+            this.cbBrand.SelectedIndexChanged += new System.EventHandler(this.cbBrand_SelectedIndexChanged);
             // 
             // cbYear
             // 
@@ -99,10 +94,11 @@
             this.cbYear.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbYear.FormattingEnabled = true;
             this.cbYear.Location = new System.Drawing.Point(104, 222);
-            this.cbYear.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbYear.Margin = new System.Windows.Forms.Padding(4);
             this.cbYear.Name = "cbYear";
             this.cbYear.Size = new System.Drawing.Size(289, 27);
             this.cbYear.TabIndex = 6;
+            this.cbYear.SelectedIndexChanged += new System.EventHandler(this.cbYear_SelectedIndexChanged);
             // 
             // label1
             // 
@@ -114,6 +110,7 @@
             this.label1.Size = new System.Drawing.Size(36, 19);
             this.label1.TabIndex = 7;
             this.label1.Text = "VID";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // label2
             // 
@@ -125,6 +122,7 @@
             this.label2.Size = new System.Drawing.Size(54, 19);
             this.label2.TabIndex = 8;
             this.label2.Text = "Model";
+            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // label3
             // 
@@ -136,6 +134,7 @@
             this.label3.Size = new System.Drawing.Size(54, 19);
             this.label3.TabIndex = 9;
             this.label3.Text = "Brand";
+            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // label4
             // 
@@ -147,6 +146,7 @@
             this.label4.Size = new System.Drawing.Size(45, 19);
             this.label4.TabIndex = 10;
             this.label4.Text = "Year";
+            this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
             // label5
             // 
@@ -158,6 +158,7 @@
             this.label5.Size = new System.Drawing.Size(54, 19);
             this.label5.TabIndex = 11;
             this.label5.Text = "Price";
+            this.label5.Click += new System.EventHandler(this.label5_Click);
             // 
             // lblSaleInstanceHeading
             // 
@@ -170,6 +171,7 @@
             this.lblSaleInstanceHeading.Size = new System.Drawing.Size(207, 28);
             this.lblSaleInstanceHeading.TabIndex = 15;
             this.lblSaleInstanceHeading.Text = "HTV Add Vehicle";
+            this.lblSaleInstanceHeading.Click += new System.EventHandler(this.lblSaleInstanceHeading_Click);
             // 
             // panel1
             // 
@@ -178,12 +180,26 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(442, 88);
             this.panel1.TabIndex = 16;
+            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
+            // 
+            // nudPrice
+            // 
+            this.nudPrice.Location = new System.Drawing.Point(105, 258);
+            this.nudPrice.Maximum = new decimal(new int[] {
+            99999,
+            0,
+            0,
+            0});
+            this.nudPrice.Name = "nudPrice";
+            this.nudPrice.Size = new System.Drawing.Size(288, 26);
+            this.nudPrice.TabIndex = 33;
             // 
             // CreateVehicleForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(442, 364);
+            this.Controls.Add(this.nudPrice);
             this.Controls.Add(this.lblSaleInstanceHeading);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.label5);
@@ -193,16 +209,16 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.cbYear);
             this.Controls.Add(this.cbBrand);
-            this.Controls.Add(this.txtPrice);
             this.Controls.Add(this.txtModel);
             this.Controls.Add(this.txtId);
             this.Controls.Add(this.btnAddVehicle);
             this.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "CreateVehicleForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Add Vehicle";
             this.Load += new System.EventHandler(this.CreateVehicleForm_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.nudPrice)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -213,7 +229,6 @@
         private System.Windows.Forms.Button btnAddVehicle;
         private System.Windows.Forms.TextBox txtId;
         private System.Windows.Forms.TextBox txtModel;
-        private System.Windows.Forms.TextBox txtPrice;
         private System.Windows.Forms.ComboBox cbBrand;
         private System.Windows.Forms.ComboBox cbYear;
         private System.Windows.Forms.Label label1;
@@ -223,5 +238,6 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label lblSaleInstanceHeading;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.NumericUpDown nudPrice;
     }
 }

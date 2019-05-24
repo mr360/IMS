@@ -1,11 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using IMS.Instance;
 using IMS;
@@ -14,8 +8,7 @@ namespace IMS_GUI
 {
     public partial class SaleInstanceForm : Form
     {
-        SaleInstance sInstance = new SaleInstance(Program.staffAccount, Program.vm, Program.am, Program.im);
-        public static Vehicle tradeVehicle = null;
+        SaleInstance sInstance = new SaleInstance(Program.staffAccount, Program.vm, Program.am, Program.im, Program.bm);
 
         public SaleInstanceForm()
         {
@@ -26,12 +19,13 @@ namespace IMS_GUI
         {
             // SaleInstance.ViewAllBay (do not include empty or sold)
             // Load the bay into bayid text box
-            List<string> vIdList = Program.bm.GetIDs;
-            foreach (string bId in vIdList)
+            List<string> bList = sInstance.AllBays;
+            foreach (string bId in bList)
             {
                 cbBay.Items.Add(bId);
             }
 
+            cbPriceRate.DataSource = Enum.GetValues(typeof(PriceRate));
         }
 
         private void btnVehicleSelect_Click(object sender, EventArgs e)
@@ -39,25 +33,19 @@ namespace IMS_GUI
             cblAddon.Items.Clear();
 
             //Load vehicle that is in bay
-            Bay b = Program.bm.Retrieve(cbBay.SelectedItem as string) as Bay;
-            Vehicle v = Program.vm.Retrieve(b.Vehicle) as Vehicle;
-            if (v == null)
+            if (sInstance.GetBaseVehicle(cbBay.SelectedItem as string))
             {
-                tbVehicleDetails.Text = "Empty Bay";
+                tbVehicleDetails.Text = sInstance.ViewVehicle;
+                dynamic aList = sInstance.AllAddons;
+
+                foreach (Addon a in aList)
+                {
+                    cblAddon.Items.Add(a.Id);
+                }
             }
             else
             {
-                tbVehicleDetails.Text = v.View;
-
-                // Load the addon list into Addon checkbox panel
-                dynamic aList = Program.am.RetrieveMany(v.Id) as dynamic;
-                if (aList != null)
-                {
-                    foreach (Addon a in aList)
-                    {
-                        cblAddon.Items.Add(a.Id);
-                    }
-                }
+                tbVehicleDetails.Text = "Empty Bay";
             }
         }
 
@@ -65,21 +53,44 @@ namespace IMS_GUI
         {
             CreateVehicleForm sInstanceForm = new CreateVehicleForm();
             sInstanceForm.ShowDialog();
-            
-            if (SaleInstanceForm.tradeVehicle != null)
+
+            string msg = sInstance.GetTradeVehicle(Program.vehicle);
+            if (msg == "Success.")
             {
-                tbShowTradeInVehicle.Text = tradeVehicle.View;
+                tbShowTradeInVehicle.Text = Program.vehicle.View;
+            }
+            else
+            {
+                MessageBox.Show(msg, "Add Trade-in Vehicle", MessageBoxButtons.OK);
             }
         }
 
         private void btnCreateSale_Click(object sender, EventArgs e)
         {
+            sInstance.GetBaseVehicle(cbBay.SelectedItem as string);
+            foreach (dynamic addon in cblAddon.CheckedItems)
+            {
+                sInstance.GetAddon(addon as string);
+            }
 
+            string msg = sInstance.CreateSale((PriceRate)cbPriceRate.SelectedItem);
+            if (msg != "Missing key sales details")
+            {
+                tbInvoice.Text = sInstance.ViewInvoice.Replace("\n", "\r\n");
+                tbcSale.SelectTab(3);
+                tbcSale.Enabled = false;
+                btnCreateSale.Hide();
+                btnClose.Show();
+            }
+            else 
+            {
+                MessageBox.Show(msg, "Create Sale", MessageBoxButtons.OK);
+            }
         }
 
         private void btnClearTradeInVehicle_Click(object sender, EventArgs e)
         {
-            SaleInstanceForm.tradeVehicle = null;
+            Program.vehicle = null;
             tbShowTradeInVehicle.Text = "";
         }
 
@@ -87,11 +98,15 @@ namespace IMS_GUI
         {
             if (cblAddon.SelectedItem != null)
             {
-                Addon a = Program.am.Retrieve(cblAddon.SelectedItem as string) as Addon;
+                Addon a = sInstance.SingleAddon(cblAddon.SelectedItem as string);
                 tbAddonDetail.Text = a.View;
             }
 
-            
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

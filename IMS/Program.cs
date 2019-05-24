@@ -46,7 +46,7 @@ namespace IMS
             for(int i = 0; i < amount; i++)
             {
                 Addon a = new Addon("A000" + (i.ToString()),"AddonT10"+ (i.ToString()), "Addon is xyz blah", new Random().Next(100, 3500));
-                a.AddCompatible("VIN0000" + (i.ToString()));
+                a.Compatible = ("VIN0000" + (i.ToString()));
                 dbTableAddon.Create(a);
             }
             
@@ -123,36 +123,36 @@ namespace IMS
             //////////////////////////////////////////////////////////////////
 
             // LotInstance.ViewAvailableVehicles
-            List<string> vIdList = vm.GetIDs;
-            foreach(string vId in vIdList)
-            {
-                Vehicle temp = vm.Retrieve(vId) as Vehicle;
-                Console.Write(temp.Id + " : " + temp.View);
-            }
+            /* List<string> vIdList = vm.GetIDs;
+             foreach(string vId in vIdList)
+             {
+                 Vehicle temp = vm.Retrieve(vId) as Vehicle;
+                 Console.Write(temp.Id + " : " + temp.View);
+             }
 
-            SaleInstance sInstance = new SaleInstance(staffAccount, vm, am, im);
-            string selection = Console.ReadLine();
-            if (sInstance.Add(IdType.Vehicle, selection))
-            {
-                // LotInstance.ViewAddons(vehicleId)
-                dynamic aList = am.RetrieveMany(selection) as dynamic;
-                if (aList != null)
-                {
-                    foreach (Addon a in aList)
-                    {
-                        Console.Write(a.Id + " : " + a.View);
-                    }
+             SaleInstance sInstance = new SaleInstance(staffAccount, vm, am, im);
+             string selection = Console.ReadLine();
+             if (sInstance.Add(IdType.Vehicle, selection))
+             {
+                 // LotInstance.ViewAddons(vehicleId)
+                 dynamic aList = am.RetrieveMany(selection) as dynamic;
+                 if (aList != null)
+                 {
+                     foreach (Addon a in aList)
+                     {
+                         Console.Write(a.Id + " : " + a.View);
+                     }
 
-                    
-                }
-                
 
-            }
+                 }
 
+
+             }
+             
             sInstance.Add(IdType.Addon, "A001");
-            Console.ReadLine();
+            Console.ReadLine();*/
             return 0;
-
+            
         }
 
     }

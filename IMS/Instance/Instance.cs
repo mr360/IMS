@@ -17,21 +17,24 @@ namespace IMS.Instance
             _manager.Add("Invoice", im);
         }
 
-        public Instance(InvoiceManager im, UserManager um)
+        public Instance(InvoiceManager im, UserManager um, VehicleManager vm)
         {
             _manager.Add("Invoice", im);
             _manager.Add("User", um);
+            _manager.Add("Vehicle", vm);
         }
 
-        public Instance(ReportManager rm)
+        public Instance(ReportManager rm, InvoiceManager im)
         {
             _manager.Add("Report", rm);
+            _manager.Add("Invoice", im);
         }
 
-        public Instance(VehicleManager vm, AddonManager am, BayManager bm, InvoiceManager im)
+        public Instance(VehicleManager vm, AddonManager am, InvoiceManager im, BayManager bm)
         {
             _manager.Add("Vehicle", vm);
             _manager.Add("Addon", am);
+            _manager.Add("Invoice", im);
             _manager.Add("Bay", bm);
         }
     }

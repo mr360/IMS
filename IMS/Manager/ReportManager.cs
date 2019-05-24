@@ -31,5 +31,11 @@ namespace IMS.Manager
 
             return _db.Create(item);
         }
+
+        public override List<DbObject> RetrieveMany(string id)
+        {
+            // ?????
+            throw new NotImplementedException();
+        }
     }
 }
