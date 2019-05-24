@@ -5,12 +5,13 @@ using System.Text;
 using System.Threading.Tasks;
 using IMS.User;
 using IMS.Manager;
+using IMS.Builder;
 
 namespace IMS.Instance
 {
     public class ReportInstance : Instance
     {
-        public ReportInstance(Staff s, ReportManager rm) : base(rm)
+        public ReportInstance(Staff s, ReportManager rm, InvoiceManager im) : base(rm,im)
         {
             if (s.Role != JobRole.Management)
             {
@@ -18,11 +19,43 @@ namespace IMS.Instance
             }
         }
 
-        public Report.Report Report(string reportId)
+        public string CreateReport(string reportName, string periodStart, string periodEnd, ReportType rType)
         {
-            throw new NotImplementedException();
+            // Output report
+            ReportBuilder rBuild = new ReportBuilder(_manager);
+            rBuild.Name = reportName;
+            rBuild.Period(periodStart, periodEnd);
+            rBuild.Type = rType;
+
+            string lOutputMsg = rBuild.Prepare();
+            if (lOutputMsg == "Success")
+            {
+                Report.Report lReport = rBuild.Report;
+                if (lReport != null)
+                {
+                    lOutputMsg = _manager["Report"].Add(lReport);
+                } 
+            }
+            return lOutputMsg;
         }
-        public string ViewReportList { get; }
+
+        public string ViewSelectedReport(string reportId)
+        {
+            Report.Report lSelectedReport = _manager["Report"].Retrieve(reportId) as Report.Report;
+            if (lSelectedReport == null)
+            {
+                return "Fail.No report of that id exists.";
+            }
+            return lSelectedReport.View;
+        }
+
+        public List<string> GetReportList 
+        { 
+            get
+            {
+                return _manager["Report"].GetIDs;
+            }
+        }
         
     }
 }
