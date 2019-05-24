@@ -55,10 +55,16 @@ namespace IMS.Instance
 
         public string CreateCustomer(Customer c)
         {
-            if (c.Name == "" || c.Address == "" || c.Id == "")
+            if (c == null)
             {
-                return "Customer is missing key details.";
+                return "Fail. No customer(null)";
             }
+
+            if (ValidateIMS.IsBad(c.Id, @"^[a-zA-Z0-9]+$") || ValidateIMS.IsBad(c.Name, @"^[a-zA-Z]+$") || ValidateIMS.IsBad(c.Address, @"^[a-zA-Z]+$"))
+            {
+                return "Fail. Not right format";
+            }
+
             _customer = c;
             return _manager["User"].Add(c);
         }
