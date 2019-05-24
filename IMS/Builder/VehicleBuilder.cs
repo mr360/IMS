@@ -18,7 +18,7 @@ namespace IMS.Builder
 {
     public class VehicleBuilder
     {
-        Order _order;
+        private Order _order;
 
         public VehicleBuilder()
         {
@@ -57,7 +57,6 @@ namespace IMS.Builder
 
             return _order;    
         }
-
 
     }
 }
