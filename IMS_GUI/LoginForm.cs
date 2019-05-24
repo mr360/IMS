@@ -24,7 +24,7 @@ namespace IMS_GUI
            Program.staffAccount = Program.um.Retrieve(txtUsername.Text) as Staff;
            if (Program.staffAccount != null)
            {
-                this.Hide();
+                //this.Hide();
                 switch (Program.staffAccount.Role)
                 {
                     case JobRole.Accounting:

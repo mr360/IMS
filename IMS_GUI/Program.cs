@@ -84,12 +84,32 @@ namespace IMS_GUI
             for (int i = 0; i < amount; i++)
             {
                 string name = (chars[new Random().Next(chars.Length)] + chars[new Random().Next(chars.Length)] + chars[new Random().Next(chars.Length)] + chars[new Random().Next(chars.Length)]).ToString();
-                Staff s = new Staff("S00" + (i.ToString()), name, (JobRole)new Random().Next(1, 1));
-                Customer c = new Customer("C00" + (i.ToString()), name, "25 Makaby Street, VIC, 3752");
-                
-                dbTableUser.Create(s);
+                Customer c = new Customer("C00" + (i.ToString()), "Customer Name", "25 Makaby Street, VIC, 3752");
+
+
                 dbTableUser.Create(c);
             }
+
+            Staff s1 = new Staff("S10", "Example Name", JobRole.Sale);
+            Staff s2 = new Staff("S20", "Example Name", JobRole.Management);
+            Staff s3 = new Staff("S30", "Example Name", JobRole.Accounting);
+            Staff s4 = new Staff("S40", "Example Name", JobRole.Garage);
+
+            dbTableUser.Create(s1);
+            dbTableUser.Create(s2);
+            dbTableUser.Create(s3);
+            dbTableUser.Create(s4);
+
+            IMS.Builder.InvoiceBuilder iBuild = new IMS.Builder.InvoiceBuilder();
+            Order z;
+            z.addons = new List<Addon>() { new Addon("A00001", "AddonTA10", "Addon is xyz blah", 5600.00) };
+            z.buyVehicle = new Vehicle("VIN00001", Brand.Audi, "MN-67", new DateTime(new Random().Next(1990, 2019), 01, 01), new Random().Next(30000, 150000));
+            iBuild.Order = z;
+            iBuild.Staff = new Staff("SR689", "Example Staff", JobRole.Sale);
+
+            IMS.Invoice.Sale iSale = iBuild.Prepare() as IMS.Invoice.Sale;
+
+            dbTableInvoice.Create(iSale);
 
             db.Create(dbTableBay);
             db.Create(dbTableVehicle);
