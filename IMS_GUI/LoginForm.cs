@@ -28,6 +28,8 @@ namespace IMS_GUI
                 switch (Program.staffAccount.Role)
                 {
                     case JobRole.Accounting:
+                        AccountingInstanceForm aInstanceForm = new AccountingInstanceForm();
+                        aInstanceForm.ShowDialog();
                         break;
                     case JobRole.Sale:
                         SaleInstanceForm sInstanceForm = new SaleInstanceForm();
@@ -38,7 +40,8 @@ namespace IMS_GUI
                         gInstanceForm.ShowDialog();
                         break;
                     case JobRole.Management:
-
+                        ReportInstanceForm rInstanceForm = new ReportInstanceForm();
+                        rInstanceForm.ShowDialog();
                         break;
                     default:
                         throw new ArgumentException("Unknown user! Unknown instance to create!");
