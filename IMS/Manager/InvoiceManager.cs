@@ -36,7 +36,26 @@ namespace IMS.Manager
         public override List<DbObject> RetrieveMany(string id)
         {
             // Tax / Sale
-            throw new NotImplementedException();
+            List<DbObject> lOutput = new List<DbObject>();
+            List<string> lIdList = _db.GetIDs;
+            foreach (string ids in lIdList)
+            {
+                Invoice.Invoice lInvoice = null;
+                switch (id.ToLower())
+                {
+                    case "tax":
+                        lInvoice = _db.Read(ids) as Tax;
+                        break;
+                    case "sale":
+                        lInvoice = _db.Read(ids) as Sale;
+                        break;
+                    default:
+                        throw new ArgumentException("Needs to be either tax or sale");
+                }
+
+                if (lInvoice != null) lOutput.Add(lInvoice);
+            }
+            return lOutput;
         }
     }
 }
