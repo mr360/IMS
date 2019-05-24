@@ -46,7 +46,7 @@ namespace IMS
             for(int i = 0; i < amount; i++)
             {
                 Addon a = new Addon("A000" + (i.ToString()),"AddonT10"+ (i.ToString()), "Addon is xyz blah", new Random().Next(100, 3500));
-                a.AddCompatible("VIN0000" + (i.ToString()));
+                a.Compatible = ("VIN0000" + (i.ToString()));
                 dbTableAddon.Create(a);
             }
             
