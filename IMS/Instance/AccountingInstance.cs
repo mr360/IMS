@@ -15,9 +15,9 @@ namespace IMS.Instance
     {
         Sale _sInvoice;
         Customer _customer;
-        Tax tInvoice;
+        Tax _tInvoice;
 
-        public AccountingInstance(Staff s, InvoiceManager im, UserManager um) : base (im, um)
+        public AccountingInstance(Staff s, InvoiceManager im, UserManager um, VehicleManager vm) : base (im, um, vm)
         {
             if (s.Role != JobRole.Accounting)
             {
@@ -96,6 +96,9 @@ namespace IMS.Instance
             iBuild.PaymentId = paymentId;
             Tax tInvoice = iBuild.Prepare() as Tax;
 
+            // Add trade-in vehicle to vehicle list
+            _manager["vehicle"].Add(tInvoice.TradeVehicle);
+
             return _manager["Invoice"].Add(tInvoice);
         }
 
@@ -103,11 +106,11 @@ namespace IMS.Instance
         {
             get
             {
-                if (tInvoice == null)
+                if (_tInvoice == null)
                 {
                     return "Tax Invoice : Not Available.";
                 }
-                return tInvoice.View;
+                return _tInvoice.View;
             }
         }
     }
