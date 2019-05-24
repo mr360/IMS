@@ -43,18 +43,6 @@ namespace IMS.Instance
             _saleRep = s;
         }
 
-        /*
-        SaleInstance.AllBays                    --> Return List<string>
-        SaleInstance.ViewVehicle                --> Return Vehicle.View
-        SaleInstance.AllAddons                  --> Return List<Addon>
-        SaleInstance.Addon(string addonId)      --> Return Addon
-
-        SaleInstance.ViewInvoice                --> Return string                     D
-         
-        SaleInstance.GetBaseVehicle(bayid);     --> Return bool
-        SaleInstance.GetAddon                   --> Return void
-        */
-
         public List<string> AllBays
         {
             get
