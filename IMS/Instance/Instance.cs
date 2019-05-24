@@ -24,9 +24,10 @@ namespace IMS.Instance
             _manager.Add("Vehicle", vm);
         }
 
-        public Instance(ReportManager rm)
+        public Instance(ReportManager rm, InvoiceManager im)
         {
             _manager.Add("Report", rm);
+            _manager.Add("Invoice", im);
         }
 
         public Instance(VehicleManager vm, AddonManager am, InvoiceManager im, BayManager bm)
