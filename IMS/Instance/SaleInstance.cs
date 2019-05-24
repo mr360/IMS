@@ -44,7 +44,7 @@ namespace IMS.Instance
         }
 
 
-        // Lot Class Candidate
+        // Lot Class Candidate (Refactor first)
         public List<string> AllBays
         {
             get
@@ -78,7 +78,7 @@ namespace IMS.Instance
         {
             get
             {
-                if (_vehicle == null) return "No vehicle to view!";
+                if (_vehicle == null) return "No vehicle selected. No vehicle to view!";
                 return _vehicle.View;
             }
         }
@@ -87,6 +87,16 @@ namespace IMS.Instance
         {
             get
             {
+                _addon = new List<Addon>();
+
+                List<DbObject> addonList = _manager["Addon"].RetrieveMany(_vehicle.Id);
+                if (addonList != null)
+                {
+                    foreach (Addon a in addonList)
+                    {
+                        _addon.Add(a);
+                    }
+                }
                 return _addon;
             }
         }
@@ -109,24 +119,13 @@ namespace IMS.Instance
 
         public bool SelectBaseVehicle(string bayId)
         {
-            Bay b = _manager["Bay"].Retrieve(bayId) as Bay;
-            if (b == null)
+            Bay selectedBay = _manager["Bay"].Retrieve(bayId) as Bay;
+            if (selectedBay == null)
             {
                 return false;
             }
             
-            _vehicle = _manager["Vehicle"].Retrieve(b.Vehicle) as Vehicle;
-            _addon = new List<Addon>();
-            
-            List<DbObject> addonList = _manager["Addon"].RetrieveMany(_vehicle.Id);
-            if (addonList != null)
-            {
-                foreach (Addon a in addonList)
-                {
-                    _addon.Add(a);
-                }
-            }
-
+            _vehicle = _manager["Vehicle"].Retrieve(selectedBay.Vehicle) as Vehicle;
             return true;
         }
 
@@ -150,8 +149,7 @@ namespace IMS.Instance
                 return "Fail. Not right format";
             }
 
-            Vehicle v = _manager["Vehicle"].Retrieve(tradeIn.Id) as Vehicle;
-            if ( v != null )
+            if (_manager["Vehicle"].Contain(tradeIn.Id))
             {
                 return "Fail. Already exists within system";
             }

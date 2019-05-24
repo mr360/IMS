@@ -98,7 +98,7 @@ namespace IMS_GUI
         {
             if (cblAddon.SelectedItem != null)
             {
-                Addon a = sInstance.GetSelectedAddon(cblAddon.SelectedItem as string);
+                Addon a = sInstance.ViewSelectedAddon(cblAddon.SelectedItem as string);
                 tbAddonDetail.Text = a.View;
             }
 

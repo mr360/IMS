@@ -22,7 +22,7 @@ namespace IMS.Instance
             }
         }
 
-        // Lot Class Candidate
+        // Lot Class Candidate (Refactor first)
         public List<string> GetOpenBayList
         {
             get
@@ -91,7 +91,7 @@ namespace IMS.Instance
             get
             {
                 Addon a = _manager["Addon"].Retrieve(_addonId) as Addon;
-                if(a == null) return "";
+                if(a == null) return "No addon to show. No addon has been added yet.";
                 return a.View;
             }
         }
@@ -101,7 +101,7 @@ namespace IMS.Instance
             get
             {
                 Vehicle v = _manager["Vehicle"].Retrieve(_vehicleId) as Vehicle;
-                if (v == null) return "";
+                if (v == null) return "No vehicle to show. No vehicle has been added yet.";
                 return v.View;
             }
         }
@@ -118,14 +118,13 @@ namespace IMS.Instance
                 return "Fail. Not right format";
             }
 
-            Vehicle v = _manager["Vehicle"].Retrieve(vehicle.Id) as Vehicle;
-            if (v != null)
+            if (_manager["Vehicle"].Contain(vehicle.Id))
             {
                 return "Fail. Already exists within system";
             }
 
             // If vehicle fails to be added to database we can try to find it in db when ViewVehicle
-            _vehicleId = vehicle.Id;
+            //_vehicleId = vehicle.Id;
 
             return _manager["Vehicle"].Add(vehicle);
         }
@@ -142,13 +141,13 @@ namespace IMS.Instance
                 return "Fail. Not right format";
             }
 
-            if (_manager["Vehicle"].Retrieve(addon.Compatible) == null)
+            if (_manager["Vehicle"].Contain(addon.Compatible))
             {
                 return "Fail. No vehicle in inventory is compatible.";
             }
 
             // If addon fails to be added to database we can try to find it in db when ViewAddon
-            _addonId = addon.Id;
+            //_addonId = addon.Id;
 
             return _manager["Addon"].Add(addon);
         }
@@ -156,42 +155,40 @@ namespace IMS.Instance
 
         public string AssignVehicleToBay(string vehicleId, string bayId)
         {
-            Bay b = _manager["Bay"].Retrieve(bayId) as Bay;
-            if (_manager["Vehicle"].Retrieve(vehicleId) == null || b == null)
+            if (!(_manager["Vehicle"].Contain(vehicleId)) || !(_manager["Bay"].Contain(bayId)))
             {
                 return "Fail.One or more of the items does not exist within the system.";
             }
-            
-            b.Vehicle = vehicleId;
-            return _manager["Bay"].Update(b);
+
+            Bay selectedBay = _manager["Bay"].Retrieve(bayId) as Bay;
+            selectedBay.Vehicle = vehicleId;
+            return _manager["Bay"].Update(selectedBay);
         }
 
         private string RemoveVehicleFromBay(string vehicleId)
         {
-            // remove vehicle id from bay
             List<DbObject> bList = _manager["Bay"].RetrieveMany("occupied");
-            foreach( Bay b in bList)
+            foreach( Bay bay in bList)
             {
-                if(b.Vehicle == vehicleId)
+                if(bay.Vehicle == vehicleId)
                 {
-                    b.Vehicle = null;
-                    return _manager["Bay"].Update(b);
+                    bay.Vehicle = null;
+                    return _manager["Bay"].Update(bay);
                 }
             }
 
             return "Fail.Vehicle not stored in bay.";
         }
 
-        public string RemoveSoldVehicle(string vehicleId)
+        public string RemoveVehicle(string vehicleId)
         {  
-            if (GetSoldVehicleList.Contains(vehicleId))
+            if (_manager["Vehicle"].Contain(vehicleId))
             {
-                //remove vehicle from inventory
                 _manager["Vehicle"].Delete(vehicleId);
                 return RemoveVehicleFromBay(vehicleId);
             }
             
-            return "Fail.Vehicle has not been sold or doesn't exist.";
+            return "Fail.Vehicle does not exist.";
         }
         
     }
