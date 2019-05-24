@@ -46,6 +46,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AccountingInstanceForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AccountingInstanceForm.Designer.cs">
+      <DependentUpon>AccountingInstanceForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CreateAddonForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CreateAddonForm.Designer.cs">
+      <DependentUpon>CreateAddonForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="CreateVehicleForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -72,6 +84,9 @@
     <Compile Include="SaleInstanceForm.Designer.cs">
       <DependentUpon>SaleInstanceForm.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="CreateAddonForm.resx">
+      <DependentUpon>CreateAddonForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CreateVehicleForm.resx">
       <DependentUpon>CreateVehicleForm.cs</DependentUpon>
     </EmbeddedResource>
