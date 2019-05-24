@@ -34,7 +34,8 @@ namespace IMS_GUI
                         sInstanceForm.ShowDialog();
                         break;
                     case JobRole.Garage:
-
+                        GarageInstanceForm gInstanceForm = new GarageInstanceForm();
+                        gInstanceForm.ShowDialog();
                         break;
                     case JobRole.Management:
 
@@ -44,8 +45,11 @@ namespace IMS_GUI
                 }
                 
            }
-
-            MessageBox.Show("The user account does not exist.", "Unknown User", MessageBoxButtons.OK);
+           else
+           {
+                MessageBox.Show("The user account does not exist.", "Unknown User", MessageBoxButtons.OK);
+            }
+            
         }
     }
 }

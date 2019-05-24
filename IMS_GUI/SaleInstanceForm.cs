@@ -9,7 +9,6 @@ namespace IMS_GUI
     public partial class SaleInstanceForm : Form
     {
         SaleInstance sInstance = new SaleInstance(Program.staffAccount, Program.vm, Program.am, Program.im, Program.bm);
-        public static Vehicle tradeVehicle = null;
 
         public SaleInstanceForm()
         {
@@ -55,10 +54,10 @@ namespace IMS_GUI
             CreateVehicleForm sInstanceForm = new CreateVehicleForm();
             sInstanceForm.ShowDialog();
 
-            string msg = sInstance.GetTradeVehicle(tradeVehicle);
+            string msg = sInstance.GetTradeVehicle(Program.vehicle);
             if (msg == "Success.")
             {
-                tbShowTradeInVehicle.Text = tradeVehicle.View;
+                tbShowTradeInVehicle.Text = Program.vehicle.View;
             }
             else
             {
@@ -69,14 +68,12 @@ namespace IMS_GUI
         private void btnCreateSale_Click(object sender, EventArgs e)
         {
             sInstance.GetBaseVehicle(cbBay.SelectedItem as string);
-
             foreach (dynamic addon in cblAddon.CheckedItems)
             {
                 sInstance.GetAddon(addon as string);
             }
 
             string msg = sInstance.CreateSale((PriceRate)cbPriceRate.SelectedItem);
-
             if (msg != "Missing key sales details")
             {
                 tbInvoice.Text = sInstance.ViewInvoice.Replace("\n", "\r\n");
@@ -93,7 +90,7 @@ namespace IMS_GUI
 
         private void btnClearTradeInVehicle_Click(object sender, EventArgs e)
         {
-            SaleInstanceForm.tradeVehicle = null;
+            Program.vehicle = null;
             tbShowTradeInVehicle.Text = "";
         }
 

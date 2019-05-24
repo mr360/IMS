@@ -11,6 +11,9 @@ namespace IMS_GUI
 {
     static class Program
     {
+        public static Vehicle vehicle = null;
+        public static Addon addon = null;
+
         public static Staff staffAccount;
 
         public static BayManager bm;
@@ -36,10 +39,14 @@ namespace IMS_GUI
 
 
             // Bays
-            for (int i = 0; i < amount + 20; i++)
+            for (int i = 0; i < amount; i++)
             {
                 Bay x = new Bay("B000" + (i.ToString()));
-                x.Vehicle = "VIN0000" + (i.ToString());
+                if (i < amount/2)
+                {
+                    x.Vehicle = "VIN0000" + (i.ToString());
+                }
+                
                 dbTableBay.Create(x);
             }
 
@@ -48,22 +55,28 @@ namespace IMS_GUI
             for (int i = 0; i < amount; i++)
             {
                 string model = (chars[new Random().Next(chars.Length)] + chars[new Random().Next(chars.Length)] + chars[new Random().Next(chars.Length)] + chars[new Random().Next(chars.Length)]).ToString();
-                dbTableVehicle.Create(new Vehicle("VIN0000" + (i.ToString()), (Brand)new Random().Next(0, 11), model, new DateTime(new Random().Next(1990, 2019), 01, 01), new Random().Next(30000, 150000)));
+                Vehicle x = new Vehicle("VIN0000" + (i.ToString()), (Brand)new Random().Next(0, 11), model, new DateTime(new Random().Next(1990, 2019), 01, 01), new Random().Next(30000, 150000));
+                if (i < amount/3)
+                {
+                    x.Sold = true;
+                }
+                dbTableVehicle.Create(x);
+
             }
 
             // Addon
             for (int i = 0; i < amount; i++)
             {
                 Addon a = new Addon("A000" + (i.ToString()), "AddonTA10" + (i.ToString()), "Addon is xyz blah", new Random().Next(100, 3500));
-                a.AddCompatible("VIN0000" + (i.ToString()));
+                a.Compatible = "VIN0000" + (i.ToString());
                 dbTableAddon.Create(a);
 
                 Addon b = new Addon("A100" + (i.ToString()), "AddonTB10" + (i.ToString()), "Addon is xyz blah", new Random().Next(100, 3500));
-                b.AddCompatible("VIN0000" + (i.ToString()));
+                b.Compatible = "VIN0000" + (i.ToString());
                 dbTableAddon.Create(b);
 
                 Addon c = new Addon("A200" + (i.ToString()), "AddonTC10" + (i.ToString()), "Addon is xyz blah", new Random().Next(100, 3500));
-                c.AddCompatible("VIN0000" + (i.ToString()));
+                c.Compatible = "VIN0000" + (i.ToString());
                 dbTableAddon.Create(c);
             }
 
@@ -71,9 +84,9 @@ namespace IMS_GUI
             for (int i = 0; i < amount; i++)
             {
                 string name = (chars[new Random().Next(chars.Length)] + chars[new Random().Next(chars.Length)] + chars[new Random().Next(chars.Length)] + chars[new Random().Next(chars.Length)]).ToString();
-                Staff s = new Staff("S00" + (i.ToString()), name, (JobRole)new Random().Next(0, 0));
+                Staff s = new Staff("S00" + (i.ToString()), name, (JobRole)new Random().Next(1, 1));
                 Customer c = new Customer("C00" + (i.ToString()), name, "25 Makaby Street, VIC, 3752");
-
+                
                 dbTableUser.Create(s);
                 dbTableUser.Create(c);
             }
