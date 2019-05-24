@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using IMS.User;
 
 namespace IMS_GUI
 {
@@ -15,6 +16,12 @@ namespace IMS_GUI
         public CreateCustomerForm()
         {
             InitializeComponent();
+        }
+
+        private void btnAddCustomer_Click(object sender, EventArgs e)
+        {
+            AccountingInstanceForm.newCustomer = new Customer(txtId.Text, txtName.Text, txtAddress.Text);
+            this.Hide();
         }
     }
 }
