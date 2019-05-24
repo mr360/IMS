@@ -43,6 +43,8 @@ namespace IMS.Instance
             _saleRep = s;
         }
 
+
+        // Lot Class Candidate
         public List<string> AllBays
         {
             get
@@ -68,7 +70,11 @@ namespace IMS.Instance
             }
         }
 
-        public string ViewVehicle
+
+
+
+
+        public string ViewSelectedVehicle
         {
             get
             {
@@ -77,7 +83,7 @@ namespace IMS.Instance
             }
         }
 
-        public List<Addon> AllAddons
+        public List<Addon> GetSelectedVehicleAvailableAddons
         {
             get
             {
@@ -85,7 +91,7 @@ namespace IMS.Instance
             }
         }
 
-        public Addon SingleAddon(string id)
+        public Addon ViewSelectedAddon(string id)
         {
             foreach (Addon a in _addon)
             {
@@ -96,7 +102,12 @@ namespace IMS.Instance
             return null;
         }
 
-        public bool GetBaseVehicle(string bayId)
+
+
+
+
+
+        public bool SelectBaseVehicle(string bayId)
         {
             Bay b = _manager["Bay"].Retrieve(bayId) as Bay;
             if (b == null)
@@ -119,7 +130,7 @@ namespace IMS.Instance
             return true;
         }
 
-        public void GetAddon(string addonId)
+        public void SelectAddon(string addonId)
         {
             if (!(_addonIds.Contains(addonId)))
             {
@@ -149,6 +160,7 @@ namespace IMS.Instance
             return "Success.";
 
         }
+
 
         public string ViewInvoice
         {

@@ -22,7 +22,71 @@ namespace IMS.Instance
             }
         }
 
-        public string ViewAddon
+        // Lot Class Candidate
+        public List<string> GetOpenBayList
+        {
+            get
+            {
+                // Select bays that are unoccupied 
+                List<DbObject> bList = _manager["Bay"].RetrieveMany("free");
+                List<string> allBay = new List<string>();
+                foreach (Bay b in bList)
+                {
+                    allBay.Add(b.Id);
+                }
+
+                return allBay;
+            }
+        }
+        public List<string> GetSoldVehicleList
+        {
+            get
+            {
+                // Check each vehicle in inventory, to see if it is in a bay
+                List<DbObject> vList = _manager["Vehicle"].RetrieveMany("sold");
+                List<string> soldVehicle = new List<string>();
+
+                // foreach vehicle in the inventory check if it is linked in a bay, if it is not then it is unallocated
+                foreach (Vehicle v in vList)
+                {
+                    soldVehicle.Add(v.Id);
+                }
+
+                return soldVehicle;
+            }
+        }
+
+        public List<string> GetUnallocatedVehicleList
+        {
+            get
+            {
+                // Check each vehicle in inventory, to see if it is in a bay
+                List<string> vList = _manager["Vehicle"].GetIDs;
+                List<DbObject> bList = _manager["Bay"].RetrieveMany("occupied");
+                List<string> unallocatedVehicle = new List<string>(vList);
+
+                // foreach vehicle in the inventory check if it is linked in a bay, if it is not then it is unallocated
+                foreach (string v in vList)
+                {
+                    foreach (Bay b in bList)
+                    {
+                        if (v == b.Vehicle)
+                        {
+                            unallocatedVehicle.Remove(v);
+                        }
+                    }
+                }
+
+                return unallocatedVehicle;
+            }
+        }
+
+
+
+
+
+
+        public string ViewAddAddon
         {
             get
             {
@@ -32,7 +96,7 @@ namespace IMS.Instance
             }
         }
 
-        public string ViewVehicle
+        public string ViewAddVehicle
         {
             get
             {
@@ -89,64 +153,7 @@ namespace IMS.Instance
             return _manager["Addon"].Add(addon);
         }
 
-        public List<string> AllBays
-        {
-            get
-            {
-                // Select bays that are unoccupied 
-                List<DbObject> bList = _manager["Bay"].RetrieveMany("free");
-                List<string> allBay = new List<string>();
-                foreach (Bay b in bList)
-                {
-                    allBay.Add(b.Id);
-                }
 
-                return allBay;
-            }
-        }
-        public List<string> SoldVehicle
-        {
-            get
-            {
-                // Check each vehicle in inventory, to see if it is in a bay
-                List<DbObject> vList = _manager["Vehicle"].RetrieveMany("sold");
-                List<string> soldVehicle = new List<string>();
-
-                // foreach vehicle in the inventory check if it is linked in a bay, if it is not then it is unallocated
-                foreach (Vehicle v in vList)
-                {
-                    soldVehicle.Add(v.Id);
-                }
-
-                return soldVehicle;
-            }
-        }
-
-        public List<string> UnallocatedVehicle
-        {
-            get
-            {
-                // Check each vehicle in inventory, to see if it is in a bay
-                List<string> vList = _manager["Vehicle"].GetIDs;
-                List<DbObject> bList = _manager["Bay"].RetrieveMany("occupied");
-                List<string> unallocatedVehicle = new List<string>(vList);
-
-                // foreach vehicle in the inventory check if it is linked in a bay, if it is not then it is unallocated
-                foreach(string v in vList)
-                {
-                    foreach(Bay b in bList)
-                    {
-                        if (v == b.Vehicle)
-                        {
-                            unallocatedVehicle.Remove(v);
-                        }
-                    }
-                }
-                
-                return unallocatedVehicle;
-            }
-        }
-        
         public string AssignVehicleToBay(string vehicleId, string bayId)
         {
             Bay b = _manager["Bay"].Retrieve(bayId) as Bay;
@@ -159,7 +166,7 @@ namespace IMS.Instance
             return _manager["Bay"].Update(b);
         }
 
-        string RemoveVehicleFromBay(string vehicleId)
+        private string RemoveVehicleFromBay(string vehicleId)
         {
             // remove vehicle id from bay
             List<DbObject> bList = _manager["Bay"].RetrieveMany("occupied");
@@ -177,7 +184,7 @@ namespace IMS.Instance
 
         public string RemoveSoldVehicle(string vehicleId)
         {  
-            if (SoldVehicle.Contains(vehicleId))
+            if (GetSoldVehicleList.Contains(vehicleId))
             {
                 //remove vehicle from inventory
                 _manager["Vehicle"].Delete(vehicleId);
