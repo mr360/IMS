@@ -118,7 +118,7 @@ namespace IMS_GUI
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new LoginForm());
+            Application.Run(new AccountingInstanceForm());
         }
     }
 }

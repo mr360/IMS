@@ -84,6 +84,9 @@
     <Compile Include="SaleInstanceForm.Designer.cs">
       <DependentUpon>SaleInstanceForm.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="AccountingInstanceForm.resx">
+      <DependentUpon>AccountingInstanceForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CreateAddonForm.resx">
       <DependentUpon>CreateAddonForm.cs</DependentUpon>
     </EmbeddedResource>
