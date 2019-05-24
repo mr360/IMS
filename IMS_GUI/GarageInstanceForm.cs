@@ -77,11 +77,11 @@ namespace IMS_GUI
 
         private void btnAddConfirm_Click(object sender, EventArgs e)
         {
-            string msg = "Can only add a single item";
+            string msg = "Enter in a items details, then click Add.";
 
             if (Program.addon != null && Program.vehicle != null)
             {
-                MessageBox.Show(msg, "Adding Items", MessageBoxButtons.OK);
+                MessageBox.Show("Can only add a single item", "Adding Items", MessageBoxButtons.OK);
             }
             else
             {
@@ -90,13 +90,13 @@ namespace IMS_GUI
                     msg = gInstance.Add(Program.addon);
                     tbAddDetail.Text = gInstance.ViewAddon;
                 }
-                else
+                else if(Program.vehicle != null)
                 {
                     msg = gInstance.Add(Program.vehicle);
                     tbAddDetail.Text = gInstance.ViewVehicle;
                 }
 
-                MessageBox.Show(msg, "AAdding Item", MessageBoxButtons.OK);
+                MessageBox.Show(msg, "Adding Item", MessageBoxButtons.OK);
             }
         }
 
