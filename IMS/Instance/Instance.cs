@@ -17,10 +17,11 @@ namespace IMS.Instance
             _manager.Add("Invoice", im);
         }
 
-        public Instance(InvoiceManager im, UserManager um)
+        public Instance(InvoiceManager im, UserManager um, VehicleManager vm)
         {
             _manager.Add("Invoice", im);
             _manager.Add("User", um);
+            _manager.Add("Vehicle", vm);
         }
 
         public Instance(ReportManager rm)
