@@ -32,8 +32,8 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.tbpReportList = new System.Windows.Forms.TabControl();
             this.tbReport = new System.Windows.Forms.TabPage();
-            this.tbpReportView = new System.Windows.Forms.TabPage();
             this.lbReport = new System.Windows.Forms.ListBox();
+            this.tbpReportView = new System.Windows.Forms.TabPage();
             this.txtReportView = new System.Windows.Forms.TextBox();
             this.btnClose = new System.Windows.Forms.Button();
             this.btnCreateReport = new System.Windows.Forms.Button();
@@ -85,6 +85,16 @@
             this.tbReport.Text = "Reports";
             this.tbReport.UseVisualStyleBackColor = true;
             // 
+            // lbReport
+            // 
+            this.lbReport.FormattingEnabled = true;
+            this.lbReport.ItemHeight = 19;
+            this.lbReport.Location = new System.Drawing.Point(7, 7);
+            this.lbReport.Name = "lbReport";
+            this.lbReport.Size = new System.Drawing.Size(386, 308);
+            this.lbReport.TabIndex = 0;
+            this.lbReport.SelectedIndexChanged += new System.EventHandler(this.lbReport_SelectedIndexChanged);
+            // 
             // tbpReportView
             // 
             this.tbpReportView.Controls.Add(this.btnPrint);
@@ -97,17 +107,9 @@
             this.tbpReportView.Text = "View";
             this.tbpReportView.UseVisualStyleBackColor = true;
             // 
-            // lbReport
-            // 
-            this.lbReport.FormattingEnabled = true;
-            this.lbReport.ItemHeight = 19;
-            this.lbReport.Location = new System.Drawing.Point(7, 7);
-            this.lbReport.Name = "lbReport";
-            this.lbReport.Size = new System.Drawing.Size(386, 308);
-            this.lbReport.TabIndex = 0;
-            // 
             // txtReportView
             // 
+            this.txtReportView.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtReportView.Location = new System.Drawing.Point(4, 4);
             this.txtReportView.Multiline = true;
             this.txtReportView.Name = "txtReportView";
@@ -123,6 +125,7 @@
             this.btnClose.TabIndex = 35;
             this.btnClose.Text = "Close";
             this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // btnCreateReport
             // 
@@ -132,6 +135,7 @@
             this.btnCreateReport.Size = new System.Drawing.Size(32, 32);
             this.btnCreateReport.TabIndex = 36;
             this.btnCreateReport.UseVisualStyleBackColor = true;
+            this.btnCreateReport.Click += new System.EventHandler(this.btnCreateReport_Click);
             // 
             // btnPrint
             // 
@@ -141,6 +145,7 @@
             this.btnPrint.Size = new System.Drawing.Size(32, 32);
             this.btnPrint.TabIndex = 1;
             this.btnPrint.UseVisualStyleBackColor = true;
+            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
             // 
             // ReportInstanceForm
             // 
@@ -152,9 +157,13 @@
             this.Controls.Add(this.lblReportInstanceHeading);
             this.Controls.Add(this.panel1);
             this.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "ReportInstanceForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Report Instance ";
+            this.Load += new System.EventHandler(this.ReportInstanceForm_Load);
             this.tbpReportList.ResumeLayout(false);
             this.tbReport.ResumeLayout(false);
             this.tbpReportView.ResumeLayout(false);

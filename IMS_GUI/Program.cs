@@ -6,6 +6,7 @@ using System.Windows.Forms;
 using IMS.User;
 using IMS;
 using IMS.Manager;
+using IMS.Report;
 
 namespace IMS_GUI
 {
@@ -110,6 +111,13 @@ namespace IMS_GUI
             IMS.Invoice.Sale iSale = iBuild.Prepare() as IMS.Invoice.Sale;
 
             dbTableInvoice.Create(iSale);
+
+
+            Report dd = new Report("R006","Test Report Name", ReportType.Sale, new DateTime(2019, 01, 01), new DateTime(2019, 04, 01));
+            dd.AmountOfSale = 60;
+            dd.TotalSalePrice = 176500.00;
+
+            dbTableReport.Create(dd);
 
             db.Create(dbTableBay);
             db.Create(dbTableVehicle);
