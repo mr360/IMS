@@ -41,6 +41,7 @@
             this.lbSoldVehicleRemove = new System.Windows.Forms.ListBox();
             this.btnSoldVehicleRemove = new System.Windows.Forms.Button();
             this.tbpAddEntity = new System.Windows.Forms.TabPage();
+            this.btnAddClear = new System.Windows.Forms.Button();
             this.btnAddConfirm = new System.Windows.Forms.Button();
             this.lblDetail = new System.Windows.Forms.Label();
             this.tbAddDetail = new System.Windows.Forms.TextBox();
@@ -48,7 +49,6 @@
             this.btnAddAddon = new System.Windows.Forms.Button();
             this.btnAddVehicle = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
-            this.btnAddClear = new System.Windows.Forms.Button();
             this.tbcGarage.SuspendLayout();
             this.tbpUnallocatedVehicle.SuspendLayout();
             this.tbpSoldVehicle.SuspendLayout();
@@ -194,6 +194,16 @@
             this.tbpAddEntity.Text = "Add";
             this.tbpAddEntity.UseVisualStyleBackColor = true;
             // 
+            // btnAddClear
+            // 
+            this.btnAddClear.Location = new System.Drawing.Point(17, 266);
+            this.btnAddClear.Name = "btnAddClear";
+            this.btnAddClear.Size = new System.Drawing.Size(87, 27);
+            this.btnAddClear.TabIndex = 12;
+            this.btnAddClear.Text = "Clear";
+            this.btnAddClear.UseVisualStyleBackColor = true;
+            this.btnAddClear.Click += new System.EventHandler(this.btnAddClear_Click);
+            // 
             // btnAddConfirm
             // 
             this.btnAddConfirm.Location = new System.Drawing.Point(301, 266);
@@ -260,16 +270,7 @@
             this.btnClose.TabIndex = 18;
             this.btnClose.Text = "Close";
             this.btnClose.UseVisualStyleBackColor = true;
-            // 
-            // btnAddClear
-            // 
-            this.btnAddClear.Location = new System.Drawing.Point(17, 266);
-            this.btnAddClear.Name = "btnAddClear";
-            this.btnAddClear.Size = new System.Drawing.Size(87, 27);
-            this.btnAddClear.TabIndex = 12;
-            this.btnAddClear.Text = "Clear";
-            this.btnAddClear.UseVisualStyleBackColor = true;
-            this.btnAddClear.Click += new System.EventHandler(this.btnAddClear_Click);
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // GarageInstanceForm
             // 

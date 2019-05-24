@@ -106,5 +106,10 @@ namespace IMS_GUI
             Program.vehicle = null;
             Program.addon = null;
         }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }
