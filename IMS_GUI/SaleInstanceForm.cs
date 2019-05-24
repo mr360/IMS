@@ -33,10 +33,10 @@ namespace IMS_GUI
             cblAddon.Items.Clear();
 
             //Load vehicle that is in bay
-            if (sInstance.GetBaseVehicle(cbBay.SelectedItem as string))
+            if (sInstance.SelectBaseVehicle(cbBay.SelectedItem as string))
             {
-                tbVehicleDetails.Text = sInstance.ViewVehicle;
-                dynamic aList = sInstance.AllAddons;
+                tbVehicleDetails.Text = sInstance.ViewSelectedVehicle;
+                dynamic aList = sInstance.GetSelectedVehicleAvailableAddons;
 
                 foreach (Addon a in aList)
                 {
@@ -45,7 +45,7 @@ namespace IMS_GUI
             }
             else
             {
-                tbVehicleDetails.Text = "Empty Bay";
+                tbVehicleDetails.Text = "No vehicle selected";
             }
         }
 
@@ -67,10 +67,10 @@ namespace IMS_GUI
 
         private void btnCreateSale_Click(object sender, EventArgs e)
         {
-            sInstance.GetBaseVehicle(cbBay.SelectedItem as string);
+            sInstance.SelectBaseVehicle(cbBay.SelectedItem as string);
             foreach (dynamic addon in cblAddon.CheckedItems)
             {
-                sInstance.GetAddon(addon as string);
+                sInstance.SelectAddon(addon as string);
             }
 
             string msg = sInstance.CreateSale((PriceRate)cbPriceRate.SelectedItem);
@@ -98,7 +98,7 @@ namespace IMS_GUI
         {
             if (cblAddon.SelectedItem != null)
             {
-                Addon a = sInstance.SingleAddon(cblAddon.SelectedItem as string);
+                Addon a = sInstance.GetSelectedAddon(cblAddon.SelectedItem as string);
                 tbAddonDetail.Text = a.View;
             }
 

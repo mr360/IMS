@@ -28,21 +28,21 @@ namespace IMS_GUI
             cbOpenBay.Items.Clear();
 
             // Load the unassigned vehicles
-            List<string> vList = gInstance.UnallocatedVehicle;
+            List<string> vList = gInstance.GetUnallocatedVehicleList;
             foreach (string vId in vList)
             {
                 lbUnassignedVehicle.Items.Add(vId);
             }
 
             // Load the sold vehicles
-            List<string> sList = gInstance.SoldVehicle;
+            List<string> sList = gInstance.GetSoldVehicleList;
             foreach (string sId in sList)
             {
                 lbSoldVehicleRemove.Items.Add(sId);
             }
             
             // Load the available bays
-            List<string> bList = gInstance.AllBays;
+            List<string> bList = gInstance.GetOpenBayList;
             foreach (string bId in bList)
             {
                 cbOpenBay.Items.Add(bId);
@@ -88,12 +88,12 @@ namespace IMS_GUI
                 if (Program.addon != null)
                 {
                     msg = gInstance.Add(Program.addon);
-                    tbAddDetail.Text = gInstance.ViewAddon;
+                    tbAddDetail.Text = gInstance.ViewAddAddon;
                 }
                 else if(Program.vehicle != null)
                 {
                     msg = gInstance.Add(Program.vehicle);
-                    tbAddDetail.Text = gInstance.ViewVehicle;
+                    tbAddDetail.Text = gInstance.ViewAddVehicle;
                 }
 
                 MessageBox.Show(msg, "Adding Item", MessageBoxButtons.OK);
