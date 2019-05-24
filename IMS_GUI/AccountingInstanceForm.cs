@@ -9,12 +9,15 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using IMS;
 using IMS.Instance;
+using IMS.User;
 
 namespace IMS_GUI
 {
     public partial class AccountingInstanceForm : Form
     {
         AccountingInstance aInstance = new AccountingInstance(Program.staffAccount, Program.im, Program.um, Program.vm);
+        public static Customer newCustomer = null;
+
         public AccountingInstanceForm()
         {
             InitializeComponent();
@@ -63,6 +66,15 @@ namespace IMS_GUI
         private void btnClose_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void btnCreateNewCustomer_Click(object sender, EventArgs e)
+        {
+            CreateCustomerForm createCustomerForm = new CreateCustomerForm();
+            createCustomerForm.ShowDialog();
+
+            string msg = aInstance.CreateCustomer(newCustomer);
+            MessageBox.Show(msg, "Customer", MessageBoxButtons.OK);
         }
     }
 }

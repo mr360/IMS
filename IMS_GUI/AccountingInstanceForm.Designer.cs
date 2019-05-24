@@ -223,6 +223,7 @@
             this.btnCreateNewCustomer.TabIndex = 37;
             this.btnCreateNewCustomer.Text = "Create Customer";
             this.btnCreateNewCustomer.UseVisualStyleBackColor = true;
+            this.btnCreateNewCustomer.Click += new System.EventHandler(this.btnCreateNewCustomer_Click);
             // 
             // txtCustomerExisting
             // 
@@ -285,7 +286,10 @@
             this.Controls.Add(this.panel2);
             this.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "AccountingInstanceForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "AccountingInstanceForm";
             this.panel2.ResumeLayout(false);
             this.tabControl1.ResumeLayout(false);
