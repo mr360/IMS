@@ -11,6 +11,9 @@ namespace IMS.Instance
 {
     public class GarageInstance : Instance
     {
+        string _vehicleId;
+        string _addonId;
+
         public GarageInstance(Staff s, VehicleManager vm, AddonManager am, BayManager bm, InvoiceManager im) : base(vm, am, im, bm)
         {
             if (s.Role != JobRole.Garage)
@@ -19,181 +22,170 @@ namespace IMS.Instance
             }
         }
 
-        public string Add(Vehicle v)
-        {
-            // put this in the VehicleManager Add section
-            if (v.Id == "" || v.Model == "" || v.Price < 0.00 || v.Year == "")
-            {
-                return "The vehicle does not have all information detailed.";
-            }
-
-            return _manager["Vehicle"].Add(v);
-        }
-
-        public string Add(Addon a)
-        {
-            // put this in the AddonManager Add section
-            /*if (a.Id == "" || a.Name == "" || a.Desc == "")
-            {
-                return "The addon does not have all information details.";
-            }*/
-            return _manager["Addon"].Add(a);
-        }
-
-        public string ViewTasks
+        public string ViewAddon
         {
             get
             {
-                string ss = "";
-                // foreach vehicle in Vehicle Manager and tax-invoice vehicles, show as sold and need to remove from bay
-                ss += "SOLD VEHICLES THAT NEED TO BE REMOVED: \n";
-                foreach(string id in SoldVehicleID)
-                {
-                    Vehicle v = _manager["Vehicle"].Retrieve(id) as Vehicle;
-                    ss += v.View;
-                }
-                // foreach vehicle in Vehicle Manager and Bay Manager that does not have allocation, show and need to add to bay
-                ss += "UNALLOCATED VEHICLES THAT NEED TO BE ADDED TO BAYS: \n";
-                foreach (string id in UnallocatedVehicleID)
-                {
-                    Vehicle v = _manager["Vehicle"].Retrieve(id) as Vehicle;
-                    ss += v.View;
-                }
-                // foreach each trade in vehicle in tax-invoices not in vehicle manager, show and add to system
-                ss += "TRADE-IN VEHICLES THAT NEED TO BE ADDED TO INVENTORY: \n";
-                foreach (string id in NonProcessedTradeInVehicleID)
-                {
-                    Vehicle v = _manager["Vehicle"].Retrieve(id) as Vehicle;
-                    ss += v.View;
-                }
-
-                return ss;
+                Addon a = _manager["Addon"].Retrieve(_addonId) as Addon;
+                if(a == null) return "";
+                return a.View;
             }
         }
 
-        List<string> SoldVehicleID
+        public string ViewVehicle
         {
             get
             {
-                // foreach vehicle in Vehicle Manager and tax-invoice vehicles, show as sold and need to remove from bay
-                List<string> invoiceIds = _manager["Invoice"].GetIDs;
-                List<string> vehicleIds = _manager["Vehicle"].GetIDs;
+                Vehicle v = _manager["Vehicle"].Retrieve(_vehicleId) as Vehicle;
+                if (v == null) return "";
+                return v.View;
+            }
+        }
+
+        public string Add(Vehicle vehicle)
+        {
+            if (vehicle == null)
+            {
+                return "Fail. No vehicle(null)";
+            }
+
+            if (ValidateIMS.IsBad(vehicle.Id, @"^[a-zA-Z0-9]+$") || ValidateIMS.IsBad(vehicle.Model, @"^[a-zA-Z0-9-]+$") || vehicle.Price < 0.00)
+            {
+                return "Fail. Not right format";
+            }
+
+            Vehicle v = _manager["Vehicle"].Retrieve(vehicle.Id) as Vehicle;
+            if (v != null)
+            {
+                return "Fail. Already exists within system";
+            }
+
+            // If vehicle fails to be added to database we can try to find it in db when ViewVehicle
+            _vehicleId = vehicle.Id;
+
+            return _manager["Vehicle"].Add(vehicle);
+        }
+
+        public string Add(Addon addon)
+        {
+            if (addon == null)
+            {
+                return "Fail. No addon(null)";
+            }
+
+            if (ValidateIMS.IsBad(addon.Id, @"^[a-zA-Z0-9]+$") || ValidateIMS.IsBad(addon.Name, @"^[a-zA-Z0-9-]+$") || addon.Price < 0.00)
+            {
+                return "Fail. Not right format";
+            }
+
+            if (_manager["Vehicle"].Retrieve(addon.Compatible) == null)
+            {
+                return "Fail. No vehicle in inventory is compatible.";
+            }
+
+            // If addon fails to be added to database we can try to find it in db when ViewAddon
+            _addonId = addon.Id;
+
+            return _manager["Addon"].Add(addon);
+        }
+
+        public List<string> AllBays
+        {
+            get
+            {
+                // Select bays that are unoccupied 
+                List<DbObject> bList = _manager["Bay"].RetrieveMany("free");
+                List<string> allBay = new List<string>();
+                foreach (Bay b in bList)
+                {
+                    allBay.Add(b.Id);
+                }
+
+                return allBay;
+            }
+        }
+        public List<string> SoldVehicle
+        {
+            get
+            {
+                // Check each vehicle in inventory, to see if it is in a bay
+                List<DbObject> vList = _manager["Vehicle"].RetrieveMany("sold");
                 List<string> soldVehicle = new List<string>();
 
-                foreach(string vId in vehicleIds)
+                // foreach vehicle in the inventory check if it is linked in a bay, if it is not then it is unallocated
+                foreach (Vehicle v in vList)
                 {
-                    foreach(string iId in invoiceIds)
-                    {
-                        Tax tInvoice = _manager["Invoice"].Retrieve(iId) as Tax;
-                        if (tInvoice == null) continue;
-                        Vehicle v = tInvoice.BuyVehicle;
-                        if (v.Id == vId)
-                        {
-                            soldVehicle.Add(vId);
-                        } 
-                    }
+                    soldVehicle.Add(v.Id);
                 }
+
                 return soldVehicle;
             }
         }
 
-        List<string> UnallocatedVehicleID
+        public List<string> UnallocatedVehicle
         {
             get
             {
-                // foreach vehicle in Vehicle Manager and Bay Manager that does not have allocation, show and need to add to bay
-                List<string> bayIds = _manager["Bay"].GetIDs;
-                List<string> vehicleIds = _manager["Vehicle"].GetIDs;
+                // Check each vehicle in inventory, to see if it is in a bay
+                List<string> vList = _manager["Vehicle"].GetIDs;
+                List<DbObject> bList = _manager["Bay"].RetrieveMany("occupied");
+                List<string> unallocatedVehicle = new List<string>(vList);
 
-                foreach (string bId in bayIds)
+                // foreach vehicle in the inventory check if it is linked in a bay, if it is not then it is unallocated
+                foreach(string v in vList)
                 {
-                    Bay bay = _manager["Bay"].Retrieve(bId) as Bay;
-                    if (vehicleIds.Contains(bay.Vehicle)) continue;
+                    foreach(Bay b in bList)
                     {
-                        vehicleIds.Remove(bay.Vehicle);
-                    }
-                }
-
-                return vehicleIds;
-            }
-        }
-
-        List<string> NonProcessedTradeInVehicleID
-        {
-            get
-            {
-                // foreach each trade in vehicle in tax-invoices not in vehicle manager, show and add to system
-                List<string> invoiceIds = _manager["Invoice"].GetIDs;
-                List<string> vehicleIds = _manager["Vehicle"].GetIDs;
-                List<string> tradeVehicle = new List<string>();
-
-                foreach (string vId in vehicleIds)
-                {
-                    foreach (string iId in invoiceIds)
-                    {
-                        Tax tInvoice = _manager["Invoice"].Retrieve(iId) as Tax;
-                        if (tInvoice == null) continue;
-                        Vehicle v = tInvoice.BuyVehicle;
-                        if (v.Id == vId)
+                        if (v == b.Vehicle)
                         {
-                            tradeVehicle.Add(vId);
+                            unallocatedVehicle.Remove(v);
                         }
                     }
                 }
-                return tradeVehicle;
+                
+                return unallocatedVehicle;
             }
         }
-
-        public string ViewOpenBays
+        
+        public string AssignVehicleToBay(string vehicleId, string bayId)
         {
-            get
+            Bay b = _manager["Bay"].Retrieve(bayId) as Bay;
+            if (_manager["Vehicle"].Retrieve(vehicleId) == null || b == null)
             {
-                // show bays that are open
-                List<string> bayIds = _manager["Bay"].GetIDs;
-                string openBay = "";
-                foreach (string bId in bayIds)
-                {
-                    Bay bay = _manager["Bay"].Retrieve(bId) as Bay;
-                    if (bay.Vehicle != null) continue;
-                    openBay += bay.Id + "\n";
-                }
-
-                return openBay;
+                return "Fail.One or more of the items does not exist within the system.";
             }
+            
+            b.Vehicle = vehicleId;
+            return _manager["Bay"].Update(b);
         }
 
-        public string AssignVehicleToBay(string bayId, string vehicleId)
-        {
-            // Check if vehicleid of vehicle exists (vehicle manager)
-            // Check if bayid exists in Bay Manager (bay manager)
-            // Get vehicle id and bayId
-            // check if bay has the vehicle and check if vehicle isn't in multiple bays (probs do this in BayManager)
-            throw new NotImplementedException();
-        }
-
-        string RemoveVehicleFromBay(string bayId)
+        string RemoveVehicleFromBay(string vehicleId)
         {
             // remove vehicle id from bay
-            Bay b = _manager["Bay"].Retrieve(bayId) as Bay;
-            if(b == null)
+            List<DbObject> bList = _manager["Bay"].RetrieveMany("occupied");
+            foreach( Bay b in bList)
             {
-                return "Invalid bay";
+                if(b.Vehicle == vehicleId)
+                {
+                    b.Vehicle = null;
+                    return _manager["Bay"].Update(b);
+                }
             }
-            b.Vehicle = null;
-            
-            return _manager["Bay"].Update(b);
 
+            return "Fail.Vehicle not stored in bay.";
         }
 
         public string RemoveSoldVehicle(string vehicleId)
         {  
-            if (SoldVehicleID.Contains(vehicleId))
+            if (SoldVehicle.Contains(vehicleId))
             {
                 //remove vehicle from inventory
+                _manager["Vehicle"].Delete(vehicleId);
+                return RemoveVehicleFromBay(vehicleId);
             }
-            //RemoveVehicleFromBay(bayId);
-
-            throw new NotImplementedException();
+            
+            return "Fail.Vehicle has not been sold or doesn't exist.";
         }
+        
     }
 }
