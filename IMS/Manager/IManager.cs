@@ -15,6 +15,6 @@ namespace IMS.Manager
         string Update(DbObject item);
         string Delete(string id);
         List<string> GetIDs { get; }
-
+        bool Contain(string id);
     }
 }

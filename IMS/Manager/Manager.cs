@@ -74,5 +74,10 @@ namespace IMS.Manager
             } 
         }
 
+        public bool Contain(string id)
+        {
+            return GetIDs.Contains(id);
+        }
+
     }
 }
