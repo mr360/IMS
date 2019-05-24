@@ -51,7 +51,7 @@ namespace IMS_GUI
 
         private void btnSoldVehicleRemove_Click(object sender, EventArgs e)
         {
-            string msg = gInstance.RemoveSoldVehicle(lbSoldVehicleRemove.SelectedItem as string);
+            string msg = gInstance.RemoveVehicle(lbSoldVehicleRemove.SelectedItem as string);
             MessageBox.Show(msg, "Remove Vehicle", MessageBoxButtons.OK);
             GarageInstanceForm_Load(sender, e);
         }
