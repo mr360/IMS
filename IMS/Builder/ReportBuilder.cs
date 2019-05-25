@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using IMS.Manager;
 using IMS.Invoice;
 using IMS;
-
+using IMS.Tools;
 namespace IMS
 {
     public enum ReportType { Addon, TradeIn, Sale};

@@ -7,6 +7,7 @@ using IMS.User;
 using IMS.Builder;
 using IMS.Invoice;
 using IMS.Manager;
+using IMS.Tools;
 
 namespace IMS
 {

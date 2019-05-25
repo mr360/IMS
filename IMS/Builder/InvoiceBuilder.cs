@@ -5,30 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 using IMS.User;
 using IMS.Invoice;
+using IMS.Tools;
 
 namespace IMS
 {
     public enum InvoiceType { Sale, Tax };
-
-    public class IdGenerator
-    {
-        // https://stackoverflow.com/questions/11313205/generate-a-unique-id
-        // Author: Ashraf Ali
-        public static string UniqueId()
-        {
-            StringBuilder builder = new StringBuilder();
-            Enumerable
-               .Range(65, 26)
-                .Select(e => ((char)e).ToString())
-                .Concat(Enumerable.Range(97, 26).Select(e => ((char)e).ToString()))
-                .Concat(Enumerable.Range(0, 10).Select(e => e.ToString()))
-                .OrderBy(e => Guid.NewGuid())
-                .Take(11)
-                .ToList().ForEach(e => builder.Append(e));
-            return builder.ToString();
-        }
-    }
-
 }
 
 namespace IMS.Builder

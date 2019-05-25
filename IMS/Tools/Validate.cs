@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using IMS.User;
 using System.Text.RegularExpressions;
 
-namespace IMS
+namespace IMS.Tools
 {
     public class ValidateIMS
     {

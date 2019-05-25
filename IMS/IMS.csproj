@@ -74,10 +74,11 @@
     <Compile Include="Manager\ReportManager.cs" />
     <Compile Include="Manager\UserManager.cs" />
     <Compile Include="Manager\VehicleManager.cs" />
+    <Compile Include="Tools\IdGenerator.cs" />
     <Compile Include="Payment\PaymentProcessor.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Validate.cs" />
+    <Compile Include="Tools\Validate.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

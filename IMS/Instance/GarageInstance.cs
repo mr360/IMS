@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using IMS.User;
 using IMS.Manager;
 using IMS.Invoice;
+using IMS.Tools;
 
 namespace IMS.Instance
 {
