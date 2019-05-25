@@ -27,7 +27,7 @@ namespace IMS.Builder
 
         public void Add(Vehicle vehicle, PriceRate price)
         {
-            vehicle.Price = vehicle.Price * ((int)price *0.01);
+            vehicle.Price = vehicle.Price * ((int)price * 0.01);
             _order.buyVehicle = vehicle;
         }
 
@@ -45,17 +45,17 @@ namespace IMS.Builder
                 }
             }
 
-            _order.addons = selectedAddons;   
+            _order.addons = selectedAddons;
         }
 
-        public  Order Prepare()
+        public Order Prepare()
         {
             if (_order.buyVehicle == null)
             {
                 throw new System.ArgumentException("Invalid code path. Need to declare builder parameters!");
             }
 
-            return _order;    
+            return _order;
         }
 
     }

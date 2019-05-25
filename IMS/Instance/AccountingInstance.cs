@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using IMS.User;
+﻿using IMS.User;
 using IMS.Manager;
 using IMS.Invoice;
 using IMS.Payment;
@@ -13,9 +8,9 @@ namespace IMS.Instance
 {
     public class AccountingInstance : Instance
     {
-        Sale _sInvoice;
-        Customer _customer;
-        Tax _tInvoice;
+        private Sale _sInvoice;
+        private Customer _customer;
+        private Tax _tInvoice;
 
         public AccountingInstance(Staff s, InvoiceManager im, UserManager um, VehicleManager vm) : base (im, um, vm)
         {
@@ -27,8 +22,6 @@ namespace IMS.Instance
 
         public string Invoice(string invoiceId)
         {
-            //get invoice ; make sure its not empty
-            // get from manager ; if no found return err
             _sInvoice = _manager["Invoice"].Retrieve(invoiceId) as Sale;
 
             if (_sInvoice == null)
@@ -41,8 +34,6 @@ namespace IMS.Instance
 
         public string CustomerLocate(string customerId)
         {
-            // get customer id ; make sure its not empty
-            // get frin manger; if no found return err
             _customer = _manager["User"].Retrieve(customerId) as Customer;
 
             if (_customer == null)
@@ -71,12 +62,6 @@ namespace IMS.Instance
 
         public string CreatePayment(CreditCard card)
         {
-            // check everything is ready // validate
-            // use invoice to get price total 
-            // send to pay
-            // get payid
-            // create invoice thro invoicebuilder tax
-            // get invoice tax id
             if (_customer == null || _sInvoice == null)
             {
                 return "Need to declare payment parameters!";
@@ -131,6 +116,7 @@ namespace IMS.Instance
                 return _sInvoice.TotalCost * 1.10;
             }
         }
+
         public string ViewTax
         {
             get

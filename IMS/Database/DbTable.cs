@@ -9,7 +9,7 @@ namespace IMS
 {
     public class DbTable : DbObject, IDb
     {
-        private string _name; 
+        private string _name;
         private List<DbObject> _table;
 
         public DbTable(string id, string name) : base(id)
@@ -36,7 +36,7 @@ namespace IMS
             get
             {
                 string temp = "";
-                foreach(DbObject itm in _table)
+                foreach (DbObject itm in _table)
                 {
                     temp += itm.Id;
                 }
@@ -44,33 +44,29 @@ namespace IMS
             }
         }
 
-        public string Create(DbObject item)
+        public bool Create(DbObject item)
         {
-            if (item == null)
+            if (_table.Contains(item))
             {
-                return "Not valid item.";
-            }
-            if(_table.Contains(item))
-            {
-                return "Duplication! Item already exists. ID:" + item.Id;
+                return true;
             }
 
             _table.Add(item);
-            return "Successfully added. ID:" + item.Id;
+            return false;
         }
 
-        public string Delete(string id)
+        public bool Delete(string id)
         {
             foreach (DbObject itm in _table)
             {
                 if (itm.Id == id)
                 {
                     _table.Remove(itm);
-                    return "Successfully deleted.";
+                    return true;
                 }
             }
 
-            return "No such item found.";
+            return false;
         }
 
         public DbObject Read(string id)
@@ -86,17 +82,17 @@ namespace IMS
             return null;
         }
 
-        public string Update(DbObject item)
+        public bool Update(DbObject item)
         {
             int index = _table.IndexOf(Read(item.Id));
 
             if (!(index == -1))
             {
                 _table[index] = item;
-                return "Successfully updated.";
+                return true;
             }
+            return false;
 
-            return "No such item found";
         }
     }
 }

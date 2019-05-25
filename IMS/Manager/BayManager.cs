@@ -8,28 +8,25 @@ namespace IMS.Manager
 {
     public class BayManager : Manager, IManager
     {
-        //private IDb _db;
         public BayManager(string btable, Database db) : base(btable, db)
         {
-            //_db = db;
         }
 
         public override string Add(DbObject item)
         {
             Bay b = item as Bay;
-            try
+            
+            if (b == null)
             {
-                if (String.IsNullOrEmpty(b.Id))
-                {
-                    return "The bay does not have all information details.";
-                }
-            }
-            catch (NullReferenceException e)
-            {
-                throw new NullReferenceException("Not of type Bay", e);
+                throw new NullReferenceException("Not of type Bay");
             }
 
-            return _db.Create(item);
+            if (_db.Create(item))
+            {
+                return "Successfully added bay. ID:" + item.Id;
+            }
+
+            return "Duplication! Bay already exists. ID:" + item.Id;
         }
 
         public override List<DbObject> RetrieveMany(string id)
@@ -48,9 +45,11 @@ namespace IMS.Manager
                     case "free":
                         if (b.Available) output.Add(b);
                         break;
-                    default: 
+                    case "all": 
                         output.Add(b); 
                         break;
+                    default:
+                        throw new ArgumentException("Needs to be either occupied / free or all");
                 }
             }
 

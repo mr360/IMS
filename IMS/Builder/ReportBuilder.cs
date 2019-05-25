@@ -9,7 +9,7 @@ using IMS;
 
 namespace IMS
 {
-    public enum ReportType { Addon, TradeIn, Sale, None};
+    public enum ReportType { Addon, TradeIn, Sale, None };
 }
 
 namespace IMS.Builder
@@ -27,7 +27,7 @@ namespace IMS.Builder
         Report.Report _report;
         Dictionary<string, IManager> _manager;
 
-        public ReportBuilder(Dictionary<string,IManager> manager)
+        public ReportBuilder(Dictionary<string, IManager> manager)
         {
             _manager = manager;
         }
@@ -36,8 +36,8 @@ namespace IMS.Builder
         {
             try
             {
-                
-                _periodStart =  Convert.ToDateTime(start);
+
+                _periodStart = Convert.ToDateTime(start);
                 _periodEnd = Convert.ToDateTime(end);
             }
             catch
@@ -55,17 +55,17 @@ namespace IMS.Builder
                 {
                     _name = null;
                 }
-                _name = value; 
+                _name = value;
             }
         }
-        public ReportType Type 
+        public ReportType Type
         {
             set
             {
                 _reportType = value;
-            } 
+            }
         }
-        public  string Prepare()
+        public string Prepare()
         {
             if (_reportType == ReportType.None || _periodStart.Year == 1 || _periodEnd.Year == 1 || String.IsNullOrEmpty(_name))
             {
@@ -93,11 +93,11 @@ namespace IMS.Builder
 
             }
 
-            _report = new Report.Report("UniqueIDReport", _name, _reportType, _periodStart, _periodEnd);
+            _report = new Report.Report(IdGenerator.UniqueId(), _name, _reportType, _periodStart, _periodEnd);
             _report.TotalSalePrice = _totalPrice;
             _report.AmountOfSale = _amountOfSale;
             return "Success";
-           
+
         }
 
         private bool ValidDateRangeCheck(Invoice.Invoice t, DateTime start, DateTime end)

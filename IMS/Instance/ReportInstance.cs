@@ -21,7 +21,6 @@ namespace IMS.Instance
 
         public string CreateReport(string reportName, string periodStart, string periodEnd, ReportType rType)
         {
-            // Output report
             ReportBuilder rBuild = new ReportBuilder(_manager);
             rBuild.Name = reportName;
             rBuild.Period(periodStart, periodEnd);

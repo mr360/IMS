@@ -10,40 +10,24 @@ namespace IMS.Manager
     {
         public AddonManager(string atable, Database db) : base(atable, db)
         {
-            //_db = db;
         }
 
         public override string Add(DbObject item)
         {
             Addon a = item as Addon;
-            try
+            
+            if(a == null)
             {
-                if (String.IsNullOrEmpty(a.Id) || String.IsNullOrEmpty(a.Name) || String.IsNullOrEmpty(a.Desc))
-                {
-                    return "The addon does not have all information details.";
-                }
-            }
-            catch(NullReferenceException e)
-            {
-                throw new NullReferenceException("Not of type Addon", e);
+                throw new NullReferenceException("Not of type Addon");
             }
 
-            return _db.Create(item);
-        }
-
-        public override List<DbObject> RetrieveMany(string id)
-        {
-            List<DbObject> output = new List<DbObject>();
-            List<string> idList = _db.GetIDs;
-            foreach (string ids in idList)
+            if (_db.Create(item))
             {
-                Addon a = _db.Read(ids) as Addon;
-                if (a.IsCompatible(id))
-                {
-                    output.Add(a);
-                }
+                return "Successfully added addon. ID:" + item.Id;
             }
-            return output;
+
+            return "Duplication! Addon already exists. ID:" + item.Id;
+            
         }
     }
 }

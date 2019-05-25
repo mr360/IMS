@@ -30,8 +30,8 @@ namespace IMS.Instance
         private List<Addon> _addon;
         private List<string> _addonIds = new List<string>();
         private Vehicle _tradeIn;
-        Staff _saleRep;
-        Sale _sInvoice;
+        private Staff _saleRep;
+        private Sale _sInvoice;
 
         public SaleInstance(Staff s, VehicleManager vm, AddonManager am, InvoiceManager im, BayManager bm) : base(vm, am, im, bm)
         {
@@ -42,37 +42,6 @@ namespace IMS.Instance
 
             _saleRep = s;
         }
-
-
-        // Lot Class Candidate (Refactor first)
-        public List<string> AllBays
-        {
-            get
-            {
-                // Vehicles should have a bool called Sold ; select vehicles that are unsold
-                List<DbObject> vList = _manager["Vehicle"].RetrieveMany("UnSold") ;
-                // Select bays that are occupied 
-                List<DbObject> bList = _manager["Bay"].RetrieveMany("Occupied");
-
-                List<string> allBay = new List<string>();
-                foreach (Bay b in bList)
-                {
-                    foreach (Vehicle v in vList)
-                    {
-                        if (b.Vehicle == v.Id)
-                        {
-                            allBay.Add(b.Id);
-                        }
-                    }
-                }
-
-                return allBay;
-            }
-        }
-
-
-
-
 
         public string ViewSelectedVehicle
         {
@@ -117,15 +86,16 @@ namespace IMS.Instance
 
 
 
+
         public bool SelectBaseVehicle(string bayId)
         {
-            Bay selectedBay = _manager["Bay"].Retrieve(bayId) as Bay;
-            if (selectedBay == null)
+            Bay bay = _manager["Bay"].Retrieve(bayId) as Bay;
+            if (bay == null)
             {
                 return false;
             }
             
-            _vehicle = _manager["Vehicle"].Retrieve(selectedBay.Vehicle) as Vehicle;
+            _vehicle = _manager["Vehicle"].Retrieve(bay.Vehicle) as Vehicle;
             return true;
         }
 
@@ -159,14 +129,10 @@ namespace IMS.Instance
 
         }
 
-
         public string ViewInvoice
         {
             get
             {
-                // Once the sale invoice has been created then the summary will be show here.
-                // the winform will be able to show the summary. Msg user saying that it will be available once
-                // CreateSale is done.
                 return _sInvoice.View;
             }
         }
@@ -177,10 +143,6 @@ namespace IMS.Instance
             {
                 return "Missing key sales details";
             }
-                // Validate everything / run vehiclebuilder , if error return err result
-                // Validate everything / run invoicebuilder , if error return err result
-                // Add sale invoice to invoice db
-                // Output the sale invoice id
 
             VehicleBuilder vBuild = new VehicleBuilder();
             vBuild.Add(_vehicle, priceRate);

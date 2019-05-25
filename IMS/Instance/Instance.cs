@@ -10,12 +10,6 @@ namespace IMS.Instance
     public abstract class Instance
     {
         protected Dictionary<string, IManager> _manager = new Dictionary<string, IManager>();
-        public Instance(VehicleManager vm, AddonManager am, InvoiceManager im)
-        {
-            _manager.Add("Vehicle", vm);
-            _manager.Add("Addon", am);
-            _manager.Add("Invoice", im);
-        }
 
         public Instance(InvoiceManager im, UserManager um, VehicleManager vm)
         {
@@ -30,11 +24,24 @@ namespace IMS.Instance
             _manager.Add("Invoice", im);
         }
 
+        public Instance(VehicleManager vm, AddonManager am, BayManager bm)
+        {
+            _manager.Add("Vehicle", vm);
+            _manager.Add("Addon", am);
+            _manager.Add("Bay", bm);
+        }
+
         public Instance(VehicleManager vm, AddonManager am, InvoiceManager im, BayManager bm)
         {
             _manager.Add("Vehicle", vm);
             _manager.Add("Addon", am);
+            _manager.Add("Bay", bm);
             _manager.Add("Invoice", im);
+        }
+
+        public Instance(VehicleManager vm, BayManager bm)
+        {
+            _manager.Add("Vehicle", vm);
             _manager.Add("Bay", bm);
         }
     }

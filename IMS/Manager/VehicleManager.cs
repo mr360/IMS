@@ -15,19 +15,18 @@ namespace IMS.Manager
         public override string Add(DbObject item)
         {
             Vehicle v = item as Vehicle;
-            try
+            
+            if (v == null)
             {
-                if (String.IsNullOrEmpty(v.Id) || String.IsNullOrEmpty(v.Model) || String.IsNullOrEmpty(v.Year) || v.Price < 0.00)
-                {
-                    return "The Vehicle does not have all information details.";
-                }
-            }
-            catch (NullReferenceException e)
-            {
-                throw new NullReferenceException("Not of type Vehicle", e);
+                throw new NullReferenceException("Not of type Vehicle");
             }
 
-            return _db.Create(item);
+            if (_db.Create(item))
+            {
+                return "Successfully added vehicle. ID:" + item.Id;
+            }
+
+            return "Duplication! Vehicle already exists. ID:" + item.Id;
         }
 
         public override List<DbObject> RetrieveMany(string id)
@@ -46,18 +45,14 @@ namespace IMS.Manager
                     case "sold":
                         if (v.Sold) output.Add(v);
                         break;
-                    default:
+                    case "all":
                         output.Add(v);
                         break;
+                    default:
+                        throw new ArgumentException("Needs to be either unsold / sold or all");
                 }
             }
             return output;
         }
-
-        // Use ReterieveMany("nonsold")
-        // returns non sold vehicles
-        // add a sold bool to vehicle
-
-
     }
 }

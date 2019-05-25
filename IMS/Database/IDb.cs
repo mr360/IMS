@@ -9,10 +9,10 @@ namespace IMS
 {
     public interface IDb
     {
-        string Create(DbObject item);
+        bool Create(DbObject item);
         DbObject Read(string id);
-        string Update(DbObject item);
-        string Delete(string id);
+        bool Update(DbObject item);
+        bool Delete(string id);
         List<string> GetIDs { get; }
     }
 }

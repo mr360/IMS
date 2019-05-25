@@ -18,24 +18,22 @@ namespace IMS.Manager
         public override string Add(DbObject item)
         {
             Invoice.Invoice i = item as Invoice.Invoice;
-            try
+            
+            if (i == null)
             {
-                if (String.IsNullOrEmpty(i.Id) || i.SaleRep == null)
-                {
-                    return "The addon does not have all information details.";
-                }
-            }
-            catch (NullReferenceException e)
-            {
-                throw new NullReferenceException("Not of type Invoice", e);
+                throw new NullReferenceException("Not of type Invoice");
             }
 
-            return _db.Create(item);
+            if (_db.Create(item))
+            {
+                return "Successfully added invoice. ID:" + item.Id;
+            }
+
+            return "Duplication! Invoice already exists. ID:" + item.Id;
         }
 
         public override List<DbObject> RetrieveMany(string id)
         {
-            // Tax / Sale
             List<DbObject> lOutput = new List<DbObject>();
             List<string> lIdList = _db.GetIDs;
             foreach (string ids in lIdList)
@@ -49,8 +47,11 @@ namespace IMS.Manager
                     case "sale":
                         lInvoice = _db.Read(ids) as Sale;
                         break;
+                    case "all":
+                        lInvoice = _db.Read(ids) as Invoice.Invoice;
+                        break;
                     default:
-                        throw new ArgumentException("Needs to be either tax or sale");
+                        throw new ArgumentException("Needs to be either tax / sale or all");
                 }
 
                 if (lInvoice != null) lOutput.Add(lInvoice);
