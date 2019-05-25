@@ -3,6 +3,7 @@ using IMS.Manager;
 using IMS.Invoice;
 using IMS.Payment;
 using IMS.Builder;
+using IMS.Tools;
 
 namespace IMS.Instance
 {
