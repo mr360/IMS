@@ -13,7 +13,7 @@ namespace IMS
 
         public Database(string name)
         {
-            _name = name;
+            _name = name.ToUpper();
             _table = new List<DbTable>();
         }
 
@@ -45,7 +45,7 @@ namespace IMS
         {
             foreach (DbObject itm in _table)
             {
-                if (itm.Id == id)
+                if (itm.Id == id.ToUpper())
                 {
                     _table.Remove(itm as DbTable);
                     return true;
@@ -59,7 +59,7 @@ namespace IMS
         {
             foreach (DbObject item in _table)
             {
-                if (item.Id == id)
+                if (item.Id == id.ToUpper())
                 {
                     return item;
                 }
