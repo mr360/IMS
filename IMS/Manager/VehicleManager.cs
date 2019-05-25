@@ -15,7 +15,7 @@ namespace IMS.Manager
         public override string Add(DbObject item)
         {
             Vehicle v = item as Vehicle;
-            
+
             if (v == null)
             {
                 throw new NullReferenceException("Not of type Vehicle");

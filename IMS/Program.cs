@@ -22,14 +22,14 @@ namespace IMS
             DbTable dbTableBay = new DbTable("bay", "Bay Table");
             DbTable dbTableVehicle = new DbTable("vehicle", "Vehicle Table");
             DbTable dbTableAddon = new DbTable("addon", "Addon Table");
-            DbTable dbTableUser  = new DbTable("user", "User Table");
+            DbTable dbTableUser = new DbTable("user", "User Table");
 
             DbTable dbTableInvoice = new DbTable("invoice", "Invoice Table");
-            DbTable dbTableReport  = new DbTable("report", "Report Table");
-            
+            DbTable dbTableReport = new DbTable("report", "Report Table");
+
 
             // Bays
-            for(int i = 0; i < amount+20; i++)
+            for (int i = 0; i < amount + 20; i++)
             {
                 dbTableBay.Create(new Bay("B000" + (i.ToString())));
             }
@@ -39,24 +39,24 @@ namespace IMS
             for (int i = 0; i < amount; i++)
             {
                 string model = (chars[new Random().Next(chars.Length)] + chars[new Random().Next(chars.Length)] + chars[new Random().Next(chars.Length)] + chars[new Random().Next(chars.Length)]).ToString();
-                dbTableVehicle.Create(new Vehicle("VIN0000"+(i.ToString()), (Brand)new Random().Next(0, 11), model, new DateTime(new Random().Next(1990, 2019), 01, 01), new Random().Next(30000, 150000)));
+                dbTableVehicle.Create(new Vehicle("VIN0000" + (i.ToString()), (Brand)new Random().Next(0, 11), model, new DateTime(new Random().Next(1990, 2019), 01, 01), new Random().Next(30000, 150000)));
             }
 
             // Addon
-            for(int i = 0; i < amount; i++)
+            for (int i = 0; i < amount; i++)
             {
-                Addon a = new Addon("A000" + (i.ToString()),"AddonT10"+ (i.ToString()), "Addon is xyz blah", new Random().Next(100, 3500));
+                Addon a = new Addon("A000" + (i.ToString()), "AddonT10" + (i.ToString()), "Addon is xyz blah", new Random().Next(100, 3500));
                 a.Compatible = ("VIN0000" + (i.ToString()));
                 dbTableAddon.Create(a);
             }
-            
+
             // Users 
             for (int i = 0; i < amount; i++)
             {
                 string name = (chars[new Random().Next(chars.Length)] + chars[new Random().Next(chars.Length)] + chars[new Random().Next(chars.Length)] + chars[new Random().Next(chars.Length)]).ToString();
                 Staff s = new Staff("S00" + (i.ToString()), name, (JobRole)new Random().Next(0, 0));
                 Customer c = new Customer("C00" + (i.ToString()), name, "25 Makaby Street, VIC, 3752");
-                
+
                 dbTableUser.Create(s);
                 dbTableUser.Create(c);
             }
@@ -89,7 +89,7 @@ namespace IMS
             {
                 Console.WriteLine("Account does not exist");
                 Console.ReadLine();
-                return 0;  
+                return 0;
             }
 
             Console.WriteLine("Welcome {0}", staffAccount.Name);
@@ -152,7 +152,7 @@ namespace IMS
             sInstance.Add(IdType.Addon, "A001");
             Console.ReadLine();*/
             return 0;
-            
+
         }
 
     }
