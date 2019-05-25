@@ -30,33 +30,29 @@ namespace IMS
             }
         }
 
-        public string Create(DbObject item)
+        public bool Create(DbObject item)
         {
-            if (item == null)
+            if (item == null || _table.Contains(item))
             {
-                return "Not valid table.";
-            }
-            if (_table.Contains(item))
-            {
-                return "Duplication! Table already exists.";
+                throw new ArgumentException("Either the table is null or it already exists within database.");
             }
 
             _table.Add(item as DbTable);
-            return "Successfully added.";
+            return true;
         }
 
-        public string Delete(string id)
+        public bool Delete(string id)
         {
             foreach (DbObject itm in _table)
             {
                 if (itm.Id == id)
                 {
                     _table.Remove(itm as DbTable);
-                    return "Successfully deleted.";
+                    return true;
                 }
             }
 
-            return "No such table found.";
+            return false;
         }
 
         public DbObject Read(string id)
@@ -72,17 +68,17 @@ namespace IMS
             return null;
         }
 
-        public string Update(DbObject item)
+        public bool Update(DbObject item)
         {
             int index = _table.IndexOf(Read(item.Id) as DbTable);
 
             if (!(index == -1))
             {
                 _table[index] = item as DbTable;
-                return "Successfully updated.";
+                return true;
             }
 
-            return "No such table found";
+            return false;
         }
     }
 }

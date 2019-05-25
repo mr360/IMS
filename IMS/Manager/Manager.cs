@@ -18,29 +18,26 @@ namespace IMS.Manager
             }
         }
 
-        public List<string> ViewAll
-        {
-            get
-            {
-                List<string> output = new List<string>();
-                List<string> idList = _db.GetIDs;
-                foreach(string ids in idList)
-                {
-                    output.Add(_db.Read(ids).View);
-                }
-                return output;
-            }
-        }
-
         public abstract string Add(DbObject item);
 
         public string Delete(string id)
         {
-            return _db.Delete(id);
+            if (_db.Delete(id))
+            {
+                return "Successfully deleted.";
+            }
+            else 
+            {
+                return "No such item found.";
+            }
         }
 
-        public abstract List<DbObject> RetrieveMany(string id);
-        /*{
+        public virtual List<DbObject> RetrieveMany(string id)
+        {
+            if (id.ToLower() != "all")
+            {
+                throw new ArgumentException("Needs to include an 'all' quantifier");
+            }
             List<DbObject> output = new List<DbObject>();
             List<string> idList = _db.GetIDs;
             foreach (string ids in idList)
@@ -48,17 +45,16 @@ namespace IMS.Manager
                 output.Add(_db.Read(ids));
             }
             return output;
-        }*/
+        }
 
         public string Update(DbObject item)
         {
-            //<Todo>Update is just delete and add</Todo>
-            // 
-            // if (Delete(item.Id) == "Successfully deleted.")
-            // {
-            //      Add(item);
-            // }
-            return _db.Update(item);
+            if (_db.Update(item))
+            {
+                return "Successfully updated.";
+            }
+
+            return "No such item found";
         }
 
         public DbObject Retrieve(string id)

@@ -9,6 +9,7 @@ namespace IMS_GUI
     public partial class SaleInstanceForm : Form
     {
         SaleInstance sInstance = new SaleInstance(Program.staffAccount, Program.vm, Program.am, Program.im, Program.bm);
+        LotInstance lInstance = new LotInstance(Program.vm, Program.bm);
 
         public SaleInstanceForm()
         {
@@ -17,9 +18,7 @@ namespace IMS_GUI
 
         private void SaleInstance_Load(object sender, EventArgs e)
         {
-            // SaleInstance.ViewAllBay (do not include empty or sold)
-            // Load the bay into bayid text box
-            List<string> bList = sInstance.AllBays;
+            List<string> bList = lInstance.BaysWithNonSoldVehicles;
             foreach (string bId in bList)
             {
                 cbBay.Items.Add(bId);

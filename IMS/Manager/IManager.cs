@@ -9,7 +9,6 @@ namespace IMS.Manager
     public interface IManager
     {
         string Add(DbObject item);
-        List<string> ViewAll { get; }
         List<DbObject> RetrieveMany(string id);
         DbObject Retrieve(string id);
         string Update(DbObject item);

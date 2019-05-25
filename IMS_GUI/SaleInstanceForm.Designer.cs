@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.btnCreateSale = new System.Windows.Forms.Button();
-            this.btnAddonAdd = new System.Windows.Forms.Button();
             this.cblAddon = new System.Windows.Forms.CheckedListBox();
             this.btnTradeVehicleAdd = new System.Windows.Forms.Button();
             this.tbInvoice = new System.Windows.Forms.TextBox();
@@ -39,6 +38,7 @@
             this.lblOrderSummary = new System.Windows.Forms.Label();
             this.tbcSale = new System.Windows.Forms.TabControl();
             this.tbpBaseVehicle = new System.Windows.Forms.TabPage();
+            this.cbPriceRate = new System.Windows.Forms.ComboBox();
             this.tbVehicleDetails = new System.Windows.Forms.TextBox();
             this.lbPriceModify = new System.Windows.Forms.Label();
             this.lbVehicleDetail = new System.Windows.Forms.Label();
@@ -56,7 +56,6 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.lblSaleTip = new System.Windows.Forms.Label();
             this.btnClose = new System.Windows.Forms.Button();
-            this.cbPriceRate = new System.Windows.Forms.ComboBox();
             this.tbcSale.SuspendLayout();
             this.tbpBaseVehicle.SuspendLayout();
             this.tbpAddon.SuspendLayout();
@@ -74,21 +73,12 @@
             this.btnCreateSale.UseVisualStyleBackColor = true;
             this.btnCreateSale.Click += new System.EventHandler(this.btnCreateSale_Click);
             // 
-            // btnAddonAdd
-            // 
-            this.btnAddonAdd.Location = new System.Drawing.Point(317, 27);
-            this.btnAddonAdd.Name = "btnAddonAdd";
-            this.btnAddonAdd.Size = new System.Drawing.Size(75, 27);
-            this.btnAddonAdd.TabIndex = 2;
-            this.btnAddonAdd.Text = "Add";
-            this.btnAddonAdd.UseVisualStyleBackColor = true;
-            // 
             // cblAddon
             // 
             this.cblAddon.FormattingEnabled = true;
             this.cblAddon.Location = new System.Drawing.Point(19, 27);
             this.cblAddon.Name = "cblAddon";
-            this.cblAddon.Size = new System.Drawing.Size(292, 193);
+            this.cblAddon.Size = new System.Drawing.Size(361, 193);
             this.cblAddon.TabIndex = 3;
             this.cblAddon.SelectedIndexChanged += new System.EventHandler(this.cblAddon_SelectedIndexChanged);
             // 
@@ -178,6 +168,15 @@
             this.tbpBaseVehicle.Text = "Base Vehicle";
             this.tbpBaseVehicle.UseVisualStyleBackColor = true;
             // 
+            // cbPriceRate
+            // 
+            this.cbPriceRate.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbPriceRate.FormattingEnabled = true;
+            this.cbPriceRate.Location = new System.Drawing.Point(28, 253);
+            this.cbPriceRate.Name = "cbPriceRate";
+            this.cbPriceRate.Size = new System.Drawing.Size(341, 27);
+            this.cbPriceRate.TabIndex = 10;
+            // 
             // tbVehicleDetails
             // 
             this.tbVehicleDetails.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -239,7 +238,6 @@
             this.tbpAddon.Controls.Add(this.lblAddonDetail);
             this.tbpAddon.Controls.Add(this.tbAddonDetail);
             this.tbpAddon.Controls.Add(this.cblAddon);
-            this.tbpAddon.Controls.Add(this.btnAddonAdd);
             this.tbpAddon.Location = new System.Drawing.Point(4, 28);
             this.tbpAddon.Name = "tbpAddon";
             this.tbpAddon.Padding = new System.Windows.Forms.Padding(3);
@@ -264,7 +262,7 @@
             this.tbAddonDetail.Multiline = true;
             this.tbAddonDetail.Name = "tbAddonDetail";
             this.tbAddonDetail.ReadOnly = true;
-            this.tbAddonDetail.Size = new System.Drawing.Size(292, 87);
+            this.tbAddonDetail.Size = new System.Drawing.Size(361, 87);
             this.tbAddonDetail.TabIndex = 4;
             // 
             // tbpRebate
@@ -349,15 +347,6 @@
             this.btnClose.Visible = false;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
-            // cbPriceRate
-            // 
-            this.cbPriceRate.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbPriceRate.FormattingEnabled = true;
-            this.cbPriceRate.Location = new System.Drawing.Point(28, 253);
-            this.cbPriceRate.Name = "cbPriceRate";
-            this.cbPriceRate.Size = new System.Drawing.Size(341, 27);
-            this.cbPriceRate.TabIndex = 10;
-            // 
             // SaleInstanceForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
@@ -399,7 +388,6 @@
         #endregion
 
         private System.Windows.Forms.Button btnCreateSale;
-        private System.Windows.Forms.Button btnAddonAdd;
         private System.Windows.Forms.CheckedListBox cblAddon;
         private System.Windows.Forms.Button btnTradeVehicleAdd;
         private System.Windows.Forms.TextBox tbInvoice;

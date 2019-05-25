@@ -12,30 +12,23 @@ namespace IMS.Manager
         //private IDb _db;
         public UserManager(string utable, Database db) : base(utable, db)
         {
-            //_db = db;
         }
+
         public override string Add(DbObject item)
         {
             User.User u = item as User.User;
-            try
+            
+            if (u == null)
             {
-                if (String.IsNullOrEmpty(u.Id) || String.IsNullOrEmpty(u.Name))
-                {
-                    return "The addon does not have all information details.";
-                }
-            }
-            catch (NullReferenceException e)
-            {
-                throw new NullReferenceException("Not of type Invoice", e);
+                throw new NullReferenceException("Not of type User");
             }
 
-            return _db.Create(item);
-        }
+            if (_db.Create(item))
+            {
+                return "Successfully added user. ID:" + item.Id;
+            }
 
-        public override List<DbObject> RetrieveMany(string id)
-        {
-            // Staff / Customer
-            throw new NotImplementedException();
+            return "Duplication! User already exists. ID:" + item.Id;
         }
     }
 }

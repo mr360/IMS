@@ -8,7 +8,27 @@ using IMS.Invoice;
 
 namespace IMS
 {
-    public enum InvoiceType { Sale, Tax};
+    public enum InvoiceType { Sale, Tax };
+
+    public class IdGenerator
+    {
+        // https://stackoverflow.com/questions/11313205/generate-a-unique-id
+        // Author: Ashraf Ali
+        public static string UniqueId()
+        {
+            StringBuilder builder = new StringBuilder();
+            Enumerable
+               .Range(65, 26)
+                .Select(e => ((char)e).ToString())
+                .Concat(Enumerable.Range(97, 26).Select(e => ((char)e).ToString()))
+                .Concat(Enumerable.Range(0, 10).Select(e => e.ToString()))
+                .OrderBy(e => Guid.NewGuid())
+                .Take(11)
+                .ToList().ForEach(e => builder.Append(e));
+            return builder.ToString();
+        }
+    }
+
 }
 
 namespace IMS.Builder
@@ -35,7 +55,7 @@ namespace IMS.Builder
                 if (value != "")
                 {
                     _paymentId = value;
-                } 
+                }
             }
         }
         public InvoiceType Invoice
@@ -67,7 +87,7 @@ namespace IMS.Builder
         {
             set
             {
-                _order = value; 
+                _order = value;
             }
         }
 
@@ -90,13 +110,13 @@ namespace IMS.Builder
 
         public Object Prepare()
         {
-            switch(_invoiceType)
+            switch (_invoiceType)
             {
-                case InvoiceType.Sale : 
+                case InvoiceType.Sale:
                     return GenerateSale();
-                case InvoiceType.Tax : 
+                case InvoiceType.Tax:
                     return GenerateTax();
-                default: 
+                default:
                     return null;
             }
         }
@@ -109,12 +129,12 @@ namespace IMS.Builder
                 throw new System.ArgumentException("Invalid code path. Need to declare builder parameters!");
             }
 
-            Sale sInvoice = new Sale(UniqueId(),_saleRep,_order.buyVehicle,_tradeVehicle);
+            Sale sInvoice = new Sale(IdGenerator.UniqueId(), _saleRep, _order.buyVehicle, _tradeVehicle);
             foreach (Addon a in _order.addons)
             {
                 sInvoice.Add(a);
             }
-            
+
             return sInvoice;
         }
 
@@ -126,24 +146,8 @@ namespace IMS.Builder
                 throw new System.ArgumentException("Invalid code path. Need to declare builder parameters!");
             }
 
-            Tax tInvoice = new Tax(_saleInvoice,_customer,_paymentId);
+            Tax tInvoice = new Tax(_saleInvoice, _customer, _paymentId);
             return tInvoice;
-        }
-
-        // https://stackoverflow.com/questions/11313205/generate-a-unique-id
-        // Author: Ashraf Ali
-        private string UniqueId()
-        {
-            StringBuilder builder = new StringBuilder();
-            Enumerable
-               .Range(65, 26)
-                .Select(e => ((char)e).ToString())
-                .Concat(Enumerable.Range(97, 26).Select(e => ((char)e).ToString()))
-                .Concat(Enumerable.Range(0, 10).Select(e => e.ToString()))
-                .OrderBy(e => Guid.NewGuid())
-                .Take(11)
-                .ToList().ForEach(e => builder.Append(e));
-            return builder.ToString();
         }
     }
 }

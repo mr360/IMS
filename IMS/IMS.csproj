@@ -43,7 +43,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Builder\Builder.cs" />
     <Compile Include="Builder\InvoiceBuilder.cs" />
     <Compile Include="Builder\ReportBuilder.cs" />
     <Compile Include="Builder\VehicleBuilder.cs" />
@@ -64,6 +63,7 @@
     <Compile Include="Instance\AccountingInstance.cs" />
     <Compile Include="Instance\GarageInstance.cs" />
     <Compile Include="Instance\Instance.cs" />
+    <Compile Include="Instance\LotInstance.cs" />
     <Compile Include="Instance\ReportInstance.cs" />
     <Compile Include="Instance\SaleInstance.cs" />
     <Compile Include="Manager\AddonManager.cs" />

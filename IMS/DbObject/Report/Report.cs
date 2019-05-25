@@ -16,7 +16,7 @@ namespace IMS.Report
         private double _totalSalePrice;
         private double _amountOfSale;
 
-        public Report(string id,string name, ReportType rType, DateTime periodStart, DateTime periodEnd) : base(id)
+        public Report(string id, string name, ReportType rType, DateTime periodStart, DateTime periodEnd) : base(id)
         {
             _name = name;
             _periodStart = periodStart;
@@ -26,14 +26,14 @@ namespace IMS.Report
 
         public string Name
         {
-            get 
+            get
             {
                 return _name;
             }
         }
         public string PeriodStart
         {
-            get 
+            get
             {
                 return _periodStart.ToShortDateString();
             }
@@ -55,12 +55,12 @@ namespace IMS.Report
             }
         }
         public double TotalSalePrice { get; set; }
-        public double AverageSalePrice 
+        public double AverageSalePrice
         {
-            get 
-            { 
-                return TotalSalePrice / AmountOfSale; 
-            } 
+            get
+            {
+                return TotalSalePrice / AmountOfSale;
+            }
         }
 
         public int AmountOfSale { get; set; }
@@ -75,9 +75,9 @@ namespace IMS.Report
                           + "Start Period: " + PeriodStart + "\n"
                           + "End Period: " + PeriodEnd + "\n"
                           + "-----------------------------------------------------\n"
-                          + reportType + " #: " + AmountOfSale + "\n"
-                          + "Average " + reportType + " #: " + AverageSalePrice + "\n"
-                          + "Total " + reportType + " #: " + TotalSalePrice + "\n";
+                          + reportType + "  : " + AmountOfSale + "\n"
+                          + "Average " + reportType + " Price: " + AverageSalePrice + "\n"
+                          + "Total " + reportType + " Price: " + TotalSalePrice + "\n";
                 return ss;
             }
         }

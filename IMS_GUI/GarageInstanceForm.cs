@@ -14,7 +14,8 @@ namespace IMS_GUI
 {
     public partial class GarageInstanceForm : Form
     {
-        GarageInstance gInstance = new GarageInstance(Program.staffAccount, Program.vm, Program.am, Program.bm, Program.im);
+        GarageInstance gInstance = new GarageInstance(Program.staffAccount, Program.vm, Program.am, Program.bm);
+        LotInstance lInstance = new LotInstance(Program.vm, Program.bm);
 
         public GarageInstanceForm()
         {
@@ -28,21 +29,21 @@ namespace IMS_GUI
             cbOpenBay.Items.Clear();
 
             // Load the unassigned vehicles
-            List<string> vList = gInstance.GetUnallocatedVehicleList;
+            List<string> vList = lInstance.UnallocatedVehicles;
             foreach (string vId in vList)
             {
                 lbUnassignedVehicle.Items.Add(vId);
             }
 
             // Load the sold vehicles
-            List<string> sList = gInstance.GetSoldVehicleList;
+            List<string> sList = lInstance.SoldVehicles;
             foreach (string sId in sList)
             {
                 lbSoldVehicleRemove.Items.Add(sId);
             }
             
             // Load the available bays
-            List<string> bList = gInstance.GetOpenBayList;
+            List<string> bList = lInstance.OpenBays;
             foreach (string bId in bList)
             {
                 cbOpenBay.Items.Add(bId);

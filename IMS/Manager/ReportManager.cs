@@ -17,25 +17,18 @@ namespace IMS.Manager
         public override string Add(DbObject item)
         {
             Report.Report r = item as Report.Report;
-            try
+            
+            if (r == null)
             {
-                if (String.IsNullOrEmpty(r.Id))
-                {
-                    return "The report does not have all information details.";
-                }
-            }
-            catch (NullReferenceException e)
-            {
-                throw new NullReferenceException("Not of type Report", e);
+                throw new NullReferenceException("Not of type Report");
             }
 
-            return _db.Create(item);
-        }
+            if (_db.Create(item))
+            {
+                return "Successfully added report. ID:" + item.Id;
+            }
 
-        public override List<DbObject> RetrieveMany(string id)
-        {
-            // report type
-            throw new NotImplementedException();
+            return "Duplication! Report already exists. ID:" + item.Id;
         }
     }
 }
