@@ -15,7 +15,7 @@ namespace IMS.Manager
         public override string Add(DbObject item)
         {
             Bay b = item as Bay;
-            
+
             if (b == null)
             {
                 throw new NullReferenceException("Not of type Bay");
@@ -37,7 +37,7 @@ namespace IMS.Manager
             {
                 Bay b = _db.Read(ids) as Bay;
 
-                switch(id.ToLower())
+                switch (id.ToLower())
                 {
                     case "occupied":
                         if (!(b.Available)) output.Add(b);
@@ -45,8 +45,8 @@ namespace IMS.Manager
                     case "free":
                         if (b.Available) output.Add(b);
                         break;
-                    case "all": 
-                        output.Add(b); 
+                    case "all":
+                        output.Add(b);
                         break;
                     default:
                         throw new ArgumentException("Needs to be either occupied / free or all");

@@ -123,7 +123,6 @@ namespace IMS.Builder
 
         private Sale GenerateSale()
         {
-            // Sale Invoice Generation Check
             if (_order.buyVehicle == null || _saleRep == null)
             {
                 throw new System.ArgumentException("Invalid code path. Need to declare builder parameters!");
@@ -140,7 +139,6 @@ namespace IMS.Builder
 
         private Tax GenerateTax()
         {
-            // Tax Invoice Generation Check
             if (_saleInvoice == null || _customer == null || _paymentId == null)
             {
                 throw new System.ArgumentException("Invalid code path. Need to declare builder parameters!");

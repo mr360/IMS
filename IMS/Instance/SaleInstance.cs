@@ -81,12 +81,6 @@ namespace IMS.Instance
             return null;
         }
 
-
-
-
-
-
-
         public bool SelectBaseVehicle(string bayId)
         {
             Bay bay = _manager["Bay"].Retrieve(bayId) as Bay;
@@ -94,7 +88,7 @@ namespace IMS.Instance
             {
                 return false;
             }
-            
+
             _vehicle = _manager["Vehicle"].Retrieve(bay.Vehicle) as Vehicle;
             return true;
         }
@@ -111,7 +105,7 @@ namespace IMS.Instance
         {
             if (tradeIn == null)
             {
-                return "Fail. No trade-in vehicle(null)";    
+                return "Fail. No trade-in vehicle(null)";
             }
 
             if (ValidateIMS.IsBad(tradeIn.Id, @"^[a-zA-Z0-9]+$") || ValidateIMS.IsBad(tradeIn.Model, @"^[a-zA-Z0-9-]+$") || tradeIn.Price < 0.00)
