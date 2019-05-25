@@ -58,12 +58,7 @@ namespace IMS.Instance
         /// </summary>
         public string CreateCustomer(Customer c)
         {
-            if (c == null)
-            {
-                return "Fail. No customer(null)";
-            }
-
-            if (ValidateIMS.IsBad(c.Id, @"^[a-zA-Z0-9]+$") || ValidateIMS.IsBad(c.Name, @"^[a-zA-Z]+$") || ValidateIMS.IsBad(c.Address, @"^[a-zA-Z]+$"))
+            if (!ValidateIMS.IsValid(c))
             {
                 return "Fail. Not right format";
             }

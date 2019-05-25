@@ -7,19 +7,10 @@ using IMS.User;
 using IMS.Builder;
 using IMS.Invoice;
 using IMS.Manager;
-using System.Text.RegularExpressions;
 
 namespace IMS
 {
     public enum PriceRate { Standard = 100, FiveOff = 95, TenOff = 90, FifteenOff = 85, TwentyOff = 80 };
-
-    public class ValidateIMS
-    {
-        public static bool IsBad(string t, string regex)
-        {
-            return !(Regex.IsMatch(t, regex));
-        }
-    }
 }
 
 namespace IMS.Instance
@@ -83,12 +74,12 @@ namespace IMS.Instance
 
         public bool SelectBaseVehicle(string bayId)
         {
-            Bay bay = _manager["Bay"].Retrieve(bayId) as Bay;
-            if (bay == null)
+            if (!(_manager["Bay"].Contain(bayId)))
             {
                 return false;
             }
 
+            Bay bay = _manager["Bay"].Retrieve(bayId) as Bay;
             _vehicle = _manager["Vehicle"].Retrieve(bay.Vehicle) as Vehicle;
             return true;
         }
@@ -103,16 +94,14 @@ namespace IMS.Instance
 
         public string GetTradeVehicle(Vehicle tradeIn)
         {
-            if (tradeIn == null)
-            {
-                return "Fail. No trade-in vehicle(null)";
-            }
-
-            if (ValidateIMS.IsBad(tradeIn.Id, @"^[a-zA-Z0-9]+$") || ValidateIMS.IsBad(tradeIn.Model, @"^[a-zA-Z0-9-]+$") || tradeIn.Price < 0.00)
+            if (!ValidateIMS.IsValid(tradeIn))
             {
                 return "Fail. Not right format";
             }
 
+            // Requires a pre-emptive check rather than a check when adding to database
+            // The vehicle is not added to the inventory in this moment. It is added once
+            // sale has been processed.
             if (_manager["Vehicle"].Contain(tradeIn.Id))
             {
                 return "Fail. Already exists within system";

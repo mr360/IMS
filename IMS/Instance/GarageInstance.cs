@@ -56,12 +56,7 @@ namespace IMS.Instance
         /// </summary>
         public string Add(Vehicle vehicle)
         {
-            if (vehicle == null)
-            {
-                return "Fail. No vehicle(null)";
-            }
-
-            if (ValidateIMS.IsBad(vehicle.Id, @"^[a-zA-Z0-9]+$") || ValidateIMS.IsBad(vehicle.Model, @"^[a-zA-Z0-9-]+$") || vehicle.Price < 0.00)
+            if (!ValidateIMS.IsValid(vehicle))
             {
                 return "Fail. Not right format";
             }
@@ -81,19 +76,9 @@ namespace IMS.Instance
         /// </summary>
         public string Add(Addon addon)
         {
-            if (addon == null)
-            {
-                return "Fail. No addon(null)";
-            }
-
-            if (ValidateIMS.IsBad(addon.Id, @"^[a-zA-Z0-9]+$") || ValidateIMS.IsBad(addon.Name, @"^[a-zA-Z0-9-]+$") || addon.Price < 0.00)
+            if (!ValidateIMS.IsValid(addon))
             {
                 return "Fail. Not right format";
-            }
-
-            if (_manager["Vehicle"].Contain(addon.Compatible))
-            {
-                return "Fail. No vehicle in inventory is compatible.";
             }
 
             _addonId = addon.Id;
