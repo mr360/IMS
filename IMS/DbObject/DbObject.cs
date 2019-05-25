@@ -12,7 +12,7 @@ namespace IMS
 
         public DbObject(string id)
         {
-            _id = id;
+            _id = id.ToUpper();
         }
 
         public string Id
