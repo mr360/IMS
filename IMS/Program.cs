@@ -11,19 +11,6 @@ using IMS.Instance;
 
 namespace IMS
 {
-    public sealed class Singleton
-    {
-        private static Singleton INSTANCE = new Singleton();
-        private Singleton() { }
-        public static Singleton Instance
-        {
-            get
-            {
-                return INSTANCE;
-            }
-        }
-    }
-
     class Program
     {
         static int Main(string[] args)
