@@ -25,9 +25,9 @@ namespace IMS.Builder
             _order.addons = new List<Addon>();
         }
 
-        public void Add(Vehicle vehicle, PriceRate price)
+        public void Add(Vehicle vehicle, PriceRate discount)
         {
-            vehicle.Price = vehicle.Price * ((int)price * 0.01);
+            vehicle.Price = vehicle.Price * ((int)discount * 0.01);
             _order.buyVehicle = vehicle;
         }
 
