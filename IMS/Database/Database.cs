@@ -43,6 +43,7 @@ namespace IMS
 
         public bool Delete(string id)
         {
+            if (id == null) return false;
             foreach (DbObject itm in _table)
             {
                 if (itm.Id == id.ToUpper())
@@ -57,6 +58,7 @@ namespace IMS
 
         public DbObject Read(string id)
         {
+            if (id == null) return null;
             foreach (DbObject item in _table)
             {
                 if (item.Id == id.ToUpper())
@@ -70,6 +72,7 @@ namespace IMS
 
         public bool Update(DbObject item)
         {
+            if (item == null) return false;
             int index = _table.IndexOf(Read(item.Id) as DbTable);
 
             if (!(index == -1))
