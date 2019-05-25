@@ -11,7 +11,7 @@ namespace IMS.Report
         private string _name;
         private DateTime _periodStart;
         private DateTime _periodEnd;
-        private ReportType _reportType = ReportType.None;
+        private ReportType _reportType;
 
         private double _totalSalePrice;
         private double _amountOfSale;

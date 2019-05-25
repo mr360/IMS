@@ -15,7 +15,7 @@ namespace IMS.Instance
         {
             if (s.Role != JobRole.Management)
             {
-                throw new System.InvalidOperationException("Invalid User! Cannot create instance!");
+                throw new System.InvalidOperationException("Invalid User! Cannot create report instance!");
             }
         }
 
@@ -43,7 +43,7 @@ namespace IMS.Instance
             Report.Report lSelectedReport = _manager["Report"].Retrieve(reportId) as Report.Report;
             if (lSelectedReport == null)
             {
-                return "Fail.No report of that id exists.";
+                return "Please select a report.";
             }
             return lSelectedReport.View;
         }

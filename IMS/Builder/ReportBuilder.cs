@@ -9,7 +9,7 @@ using IMS;
 
 namespace IMS
 {
-    public enum ReportType { Addon, TradeIn, Sale, None };
+    public enum ReportType { Addon, TradeIn, Sale};
 }
 
 namespace IMS.Builder
@@ -19,7 +19,7 @@ namespace IMS.Builder
         private string _name;
         private DateTime _periodStart;
         private DateTime _periodEnd;
-        private ReportType _reportType = ReportType.None;
+        private ReportType _reportType;
 
         private double _totalPrice;
         private int _amountOfSale;
@@ -67,7 +67,7 @@ namespace IMS.Builder
         }
         public string Prepare()
         {
-            if (_reportType == ReportType.None || _periodStart.Year == 1 || _periodEnd.Year == 1 || String.IsNullOrEmpty(_name))
+            if (_periodStart.Year == 1 || _periodEnd.Year == 1 || String.IsNullOrEmpty(_name))
             {
                 return "Fail.Need to enter correct values for report building.";
             }

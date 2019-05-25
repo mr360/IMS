@@ -18,7 +18,7 @@ namespace IMS.Instance
         {
             if (s.Role != JobRole.Garage)
             {
-                throw new System.InvalidOperationException("Invalid User! Cannot create instance!");
+                throw new System.InvalidOperationException("Invalid User! Cannot create garage instance!");
             }
         }
 
