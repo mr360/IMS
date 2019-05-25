@@ -9,9 +9,13 @@ namespace IMS.Manager
 {
     public class ReportManager : Manager,IManager
     {
+        /// <summary>
+        /// Interacts with the database through the report manager
+        /// Allows accessing of report specific methods
+        /// Add, delete, remove, update and retreival of reports done via this manager 
+        /// </summary>
         public ReportManager(string rtable, Database db) : base(rtable,db)
         {
-            //_db = db;
         }
 
         public override string Add(DbObject item)

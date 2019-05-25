@@ -6,6 +6,11 @@ using System.Threading.Tasks;
 
 namespace IMS.Manager
 {
+    /// <summary>
+    /// Interacts with the database through the addon manager.
+    /// Allows accessing of addon specific methods.
+    /// Add, delete, remove, update and retreival of addons done via this manager.
+    /// </summary>
     public class AddonManager : Manager, IManager
     {
         public AddonManager(string atable, Database db) : base(atable, db)
@@ -26,10 +31,12 @@ namespace IMS.Manager
                 return "Successfully added addon. ID:" + item.Id;
             }
 
-            return "Duplication! Addon already exists. ID:" + item.Id;
-            
+            return "Duplication! Addon already exists. ID:" + item.Id;   
         }
 
+        /// <summary>
+        /// Gets all addons that are compatible with a specified vehicle id.
+        /// </summary>
         public override List<DbObject> RetrieveMany(string id)
         {
             List<DbObject> output = new List<DbObject>();

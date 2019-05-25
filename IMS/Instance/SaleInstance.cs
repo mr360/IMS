@@ -131,7 +131,7 @@ namespace IMS.Instance
             }
         }
 
-        public string CreateSale(PriceRate priceRate)
+        public string CreateSale(PriceRate discount)
         {
             if (_vehicle == null || _addon == null || _addonIds == null)
             {
@@ -139,7 +139,7 @@ namespace IMS.Instance
             }
 
             VehicleBuilder vBuild = new VehicleBuilder();
-            vBuild.Add(_vehicle, priceRate);
+            vBuild.Add(_vehicle, discount);
             vBuild.Add(_addonIds, _addon);
             Order orders = vBuild.Prepare();
 

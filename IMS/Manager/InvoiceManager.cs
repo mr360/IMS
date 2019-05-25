@@ -10,9 +10,13 @@ namespace IMS.Manager
 {
     public class InvoiceManager : Manager, IManager
     {
+        /// <summary>
+        /// Interacts with the database through the invoice manager
+        /// Allows accessing of invoice specific methods
+        /// Add, delete, remove, update and retreival of invoice done via this manager 
+        /// </summary>
         public InvoiceManager(string itable, Database db) : base(itable, db)
         {
-            //_db = db;
         }
 
         public override string Add(DbObject item)

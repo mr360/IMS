@@ -9,7 +9,11 @@ namespace IMS.Manager
 {
     public class UserManager : Manager,IManager
     {
-        //private IDb _db;
+        /// <summary>
+        /// Interacts with the database through the user manager
+        /// Allows accessing of user specific methods
+        /// Add, delete, remove, update and retreival of users done via this manager 
+        /// </summary>
         public UserManager(string utable, Database db) : base(utable, db)
         {
         }
