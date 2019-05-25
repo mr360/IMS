@@ -16,7 +16,7 @@ namespace IMS.Instance
         {
             if (s.Role != JobRole.Accounting)
             {
-                throw new System.InvalidOperationException("Invalid User! Cannot create instance!");
+                throw new System.InvalidOperationException("Invalid User! Cannot create accounting instance!");
             }
         }
 

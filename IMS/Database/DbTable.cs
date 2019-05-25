@@ -48,11 +48,11 @@ namespace IMS
         {
             if (_table.Contains(item))
             {
-                return true;
+                return false;
             }
 
             _table.Add(item);
-            return false;
+            return true;
         }
 
         public bool Delete(string id)

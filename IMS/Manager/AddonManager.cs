@@ -29,5 +29,18 @@ namespace IMS.Manager
             return "Duplication! Addon already exists. ID:" + item.Id;
             
         }
+
+        public override List<DbObject> RetrieveMany(string id)
+        {
+            List<DbObject> output = new List<DbObject>();
+            List<string> idList = _db.GetIDs;
+            foreach (string ids in idList)
+            {
+                Addon a = _db.Read(ids) as Addon;
+                if (!(a.IsCompatible(id))) continue;
+                output.Add(_db.Read(ids));
+            }
+            return output;
+        }
     }
 }

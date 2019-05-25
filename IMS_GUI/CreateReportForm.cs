@@ -30,7 +30,10 @@ namespace IMS_GUI
 
         private void CreateReportForm_Load(object sender, EventArgs e)
         {
-
+            ReportInstanceForm.txtName = "";
+            ReportInstanceForm.txtStartPeriod = "";
+            ReportInstanceForm.txtEndPeriod = "";
+            ReportInstanceForm.txtReportType = "";
         }
     }
 }

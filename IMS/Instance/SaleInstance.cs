@@ -37,7 +37,7 @@ namespace IMS.Instance
         {
             if (s.Role != JobRole.Sale)
             {
-                throw new System.InvalidOperationException("Invalid User! Cannot create instance!");
+                throw new System.InvalidOperationException("Invalid User! Cannot create sale instance!");
             }
 
             _saleRep = s;
