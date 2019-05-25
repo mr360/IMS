@@ -71,6 +71,8 @@ namespace IMS.Instance
                 return "Fail. Already exists within system";
             }
 
+            _vehicleId = vehicle.Id;
+
             return _manager["Vehicle"].Add(vehicle);
         }
 
@@ -93,6 +95,8 @@ namespace IMS.Instance
             {
                 return "Fail. No vehicle in inventory is compatible.";
             }
+
+            _addonId = addon.Id;
 
             return _manager["Addon"].Add(addon);
         }
