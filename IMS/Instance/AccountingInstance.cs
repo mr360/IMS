@@ -6,6 +6,9 @@ using IMS.Builder;
 
 namespace IMS.Instance
 {
+    /// <summary>
+    ///  
+    /// </summary>
     public class AccountingInstance : Instance
     {
         private Sale _sInvoice;
@@ -20,6 +23,9 @@ namespace IMS.Instance
             }
         }
 
+        /// <summary>
+        ///  
+        /// </summary>
         public string Invoice(string invoiceId)
         {
             _sInvoice = _manager["Invoice"].Retrieve(invoiceId) as Sale;
@@ -32,6 +38,9 @@ namespace IMS.Instance
             return "Success.";
         }
 
+        /// <summary>
+        ///  
+        /// </summary>
         public string CustomerLocate(string customerId)
         {
             _customer = _manager["User"].Retrieve(customerId) as Customer;
@@ -44,6 +53,9 @@ namespace IMS.Instance
             return "Success.";
         }
 
+        /// <summary>
+        ///  
+        /// </summary>
         public string CreateCustomer(Customer c)
         {
             if (c == null)
@@ -60,6 +72,9 @@ namespace IMS.Instance
             return _manager["User"].Add(c);
         }
 
+        /// <summary>
+        ///  
+        /// </summary>
         public string CreatePayment(CreditCard card)
         {
             if (_customer == null || _sInvoice == null)
@@ -95,6 +110,9 @@ namespace IMS.Instance
             return "Payment Success.";
         }
 
+        /// <summary>
+        ///  
+        /// </summary>
         private void UpdateVehicleInventoryState()
         {
             // Add trade-in vehicle to vehicle list

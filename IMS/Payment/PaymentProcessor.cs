@@ -17,8 +17,16 @@ namespace IMS
 
 namespace IMS.Payment
 {
+    /// <summary>
+    /// Deals with the processing of payment.
+    /// Processes payment details and payment process using online vendor.
+    /// </summary>
     public class PaymentProcessor
     {
+        /// <summary>
+        /// Processes the credit card details with an online vendor
+        /// Vendor automatically checks whether it is a Visa, Mastercard..ect
+        /// </summary>
         public string SetPaymentDetail(CreditCard c)
         {
             // Authorise with online retailer

@@ -6,6 +6,10 @@ using System.Threading.Tasks;
 
 namespace IMS.Manager
 {
+    /// <summary>
+    /// Interacts with the database through the bay manager
+    /// Add, delete, remove, update and retreival of vehicle bays done via this manager 
+    /// </summary>
     public class BayManager : Manager, IManager
     {
         public BayManager(string btable, Database db) : base(btable, db)
@@ -29,6 +33,9 @@ namespace IMS.Manager
             return "Duplication! Bay already exists. ID:" + item.Id;
         }
 
+        /// <summary>
+        /// Reterives bays based on the current occupation status
+        /// </summary>
         public override List<DbObject> RetrieveMany(string id)
         {
             List<DbObject> output = new List<DbObject>();

@@ -8,6 +8,9 @@ using IMS;
 
 namespace IMS.Instance
 {
+    /// <summary>
+    ///  
+    /// </summary>
     public class LotInstance : Instance
     {
         public LotInstance(VehicleManager vm, BayManager bm) : base(vm,bm)
@@ -15,11 +18,13 @@ namespace IMS.Instance
 
         }
 
-        public  List<string> BaysWithNonSoldVehicles
+        /// <summary>
+        /// Get all the bays of unsold vehicles
+        /// </summary>
+        public List<string> BaysWithNonSoldVehicles
         {
             get
             {
-                // Get all the bays of unsold vehicles
                 List<DbObject> vList = _manager["Vehicle"].RetrieveMany("UnSold");
                 List<DbObject> bList = _manager["Bay"].RetrieveMany("Occupied");
 
@@ -39,11 +44,13 @@ namespace IMS.Instance
             }
         }
 
+        /// <summary>
+        ///  Get all the unoccupied bays.
+        /// </summary>
         public List<string> OpenBays
         {
             get
             {
-                // Get all the unoccupied bays
                 List<DbObject> bList = _manager["Bay"].RetrieveMany("free");
                 List<string> openBay = new List<string>();
                 foreach (Bay b in bList)
@@ -55,11 +62,14 @@ namespace IMS.Instance
             }
         }
 
+        /// <summary>
+        /// Get a list of all vehicles that have been sold.
+        /// </summary>
         public List<string> SoldVehicles
         {
             get
             {
-                // Get a list of all vehicles that have been sold.
+                
                 List<DbObject> vList = _manager["Vehicle"].RetrieveMany("sold");
                 List<string> soldVehicle = new List<string>();
 
@@ -72,11 +82,13 @@ namespace IMS.Instance
             }
         }
 
+        /// <summary>
+        /// Loops through vehicles in inventory and note down vehicles without a bay allocation.
+        /// </summary>
         public List<string> UnallocatedVehicles
         {
             get
             {
-                // Loop through vehicles in inventory and note down vehicles without a bay
                 List<string> vList = _manager["Vehicle"].GetIDs;
                 List<DbObject> bList = _manager["Bay"].RetrieveMany("occupied");
                 List<string> unallocatedVehicle = new List<string>(vList);

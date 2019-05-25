@@ -8,6 +8,11 @@ namespace IMS.Manager
 {
     public class VehicleManager : Manager, IManager
     {
+        /// <summary>
+        /// Interacts with the database through the vehicle manager
+        /// Allows accessing of vehicle specific methods
+        /// Add, delete, remove, update and retreival of vehicles done via this manager 
+        /// </summary>
         public VehicleManager(string vtable, Database db) : base(vtable, db)
         {
 

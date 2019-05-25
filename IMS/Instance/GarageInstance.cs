@@ -9,6 +9,9 @@ using IMS.Invoice;
 
 namespace IMS.Instance
 {
+    /// <summary>
+    ///  
+    /// </summary>
     public class GarageInstance : Instance
     {
         string _vehicleId = "";
@@ -22,6 +25,9 @@ namespace IMS.Instance
             }
         }
 
+        /// <summary>
+        ///  View the recently added addon.
+        /// </summary>
         public string ViewAddAddon
         {
             get
@@ -32,6 +38,9 @@ namespace IMS.Instance
             }
         }
 
+        /// <summary>
+        /// View the recently added vehicle.  
+        /// </summary>
         public string ViewAddVehicle
         {
             get
@@ -42,6 +51,9 @@ namespace IMS.Instance
             }
         }
 
+        /// <summary>
+        ///  Validates and adds the entered vehicle into the vehicle inventory. 
+        /// </summary>
         public string Add(Vehicle vehicle)
         {
             if (vehicle == null)
@@ -62,6 +74,9 @@ namespace IMS.Instance
             return _manager["Vehicle"].Add(vehicle);
         }
 
+        /// <summary>
+        /// Validates and adds the entered addon into the addon inventory.
+        /// </summary>
         public string Add(Addon addon)
         {
             if (addon == null)
@@ -82,7 +97,9 @@ namespace IMS.Instance
             return _manager["Addon"].Add(addon);
         }
 
-
+        /// <summary>
+        ///  Adds an ID of the vehicle in the inventory to the given bay.
+        /// </summary>
         public string AssignVehicleToBay(string vehicleId, string bayId)
         {
             if (!(_manager["Vehicle"].Contain(vehicleId)) || !(_manager["Bay"].Contain(bayId)))
@@ -95,6 +112,9 @@ namespace IMS.Instance
             return _manager["Bay"].Update(selectedBay);
         }
 
+        /// <summary>
+        ///  Removes an ID of the vehicle in the inventory to the given bay.
+        /// </summary>
         private string RemoveVehicleFromBay(string vehicleId)
         {
             List<DbObject> bList = _manager["Bay"].RetrieveMany("occupied");
@@ -110,6 +130,10 @@ namespace IMS.Instance
             return "Fail.Vehicle not stored in bay.";
         }
 
+        /// <summary>
+        ///  Removes the vehicle from the inventory as well as calling another method which 
+        ///  removes the ID of the vehicle in the given bay.
+        /// </summary>
         public string RemoveVehicle(string vehicleId)
         {  
             if (_manager["Vehicle"].Contain(vehicleId))
