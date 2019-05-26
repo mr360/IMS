@@ -125,6 +125,24 @@ namespace IMS.Instance
             }
         }
 
+        public string RemoveInvoice()
+        {
+            if (_sInvoice == null)
+            {
+                return "Fail. No invoice currently.";
+            }
+
+            if (!_manager["Invoice"].Contain(_sInvoice.Id))
+            {
+                return "Fail. No invoice"; 
+            }
+
+            _manager["Invoice"].Delete(_sInvoice.Id);
+            _sInvoice = null;
+
+            return "Success.";
+        }
+
         public string CreateSale(PriceRate discount)
         {
             if (_vehicle == null || _addon == null || _addonIds == null)
