@@ -90,17 +90,17 @@ namespace IMS_GUI
 
                 dbTableUser.Create(c);
             }
-
+            
             Staff s1 = new Staff("S10", "Example Name", JobRole.Sale);
-            Staff s2 = new Staff("S20", "Example Name", JobRole.Management);
-            Staff s3 = new Staff("S30", "Example Name", JobRole.Accounting);
+            Staff s2 = new Staff("S20", "Example Name", JobRole.Accounting);
+            Staff s3 = new Staff("S30", "Example Name", JobRole.Management);
             Staff s4 = new Staff("S40", "Example Name", JobRole.Garage);
 
             dbTableUser.Create(s1);
             dbTableUser.Create(s2);
             dbTableUser.Create(s3);
             dbTableUser.Create(s4);
-
+            
             IMS.Builder.InvoiceBuilder iBuild = new IMS.Builder.InvoiceBuilder();
             Order z;
             z.addons = new List<Addon>() { new Addon("A00001", "AddonTA10", "Addon is xyz blah", 5600.00) };
@@ -118,7 +118,7 @@ namespace IMS_GUI
             dd.TotalSalePrice = 176500.00;
 
             dbTableReport.Create(dd);
-
+            
             db.Create(dbTableBay);
             db.Create(dbTableVehicle);
             db.Create(dbTableAddon);
@@ -127,6 +127,7 @@ namespace IMS_GUI
             db.Create(dbTableReport);
 
             return db;
+            
         }
 
         /// <summary>

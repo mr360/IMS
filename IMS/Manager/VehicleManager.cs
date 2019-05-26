@@ -28,7 +28,7 @@ namespace IMS.Manager
 
             if (_db.Create(item))
             {
-                return "Successfully added vehicle. ID:" + item.Id;
+                return "Successfully added vehicle.";
             }
 
             return "Duplication! Vehicle already exists. ID:" + item.Id;

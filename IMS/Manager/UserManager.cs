@@ -29,7 +29,7 @@ namespace IMS.Manager
 
             if (_db.Create(item))
             {
-                return "Successfully added user. ID:" + item.Id;
+                return "Successfully added user.";
             }
 
             return "Duplication! User already exists. ID:" + item.Id;

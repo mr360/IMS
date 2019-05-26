@@ -96,8 +96,12 @@ namespace IMS.Instance
 
             UpdateVehicleInventoryState();
 
-            _manager["Invoice"].Add(_tInvoice);
+            string msg = _manager["Invoice"].Update(_tInvoice);
 
+            if (msg != "Successfully added invoice.")
+            {
+                return msg;
+            }
             return "Payment Success.";
         }
 

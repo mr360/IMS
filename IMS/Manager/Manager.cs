@@ -61,10 +61,14 @@ namespace IMS.Manager
 
         public string Update(DbObject item)
         {
-            if (_db.Update(item))
+            if (Delete(item.Id) == "Successfully deleted.")
+            {
+                return Add(item);
+            }
+            /*if (_db.Update(item))
             {
                 return "Successfully updated.";
-            }
+            }*/
 
             return "No such item found";
         }

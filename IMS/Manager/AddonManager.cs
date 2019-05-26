@@ -28,7 +28,7 @@ namespace IMS.Manager
 
             if (_db.Create(item))
             {
-                return "Successfully added addon. ID:" + item.Id;
+                return "Successfully added addon";
             }
 
             return "Duplication! Addon already exists. ID:" + item.Id;   

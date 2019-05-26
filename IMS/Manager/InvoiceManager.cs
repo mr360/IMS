@@ -30,7 +30,7 @@ namespace IMS.Manager
 
             if (_db.Create(item))
             {
-                return "Successfully added invoice. ID:" + item.Id;
+                return "Successfully added invoice.";
             }
 
             return "Duplication! Invoice already exists. ID:" + item.Id;

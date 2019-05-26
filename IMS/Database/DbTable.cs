@@ -55,6 +55,14 @@ namespace IMS
                 return false;
             }
 
+            foreach (DbObject element in _table)
+            {
+                if (item.Id == element.Id)
+                {
+                    return false;
+                }
+            }
+
             _table.Add(item);
             return true;
         }
@@ -91,11 +99,9 @@ namespace IMS
         public bool Update(DbObject item)
         {
             if (item == null) return false;
-            int index = _table.IndexOf(Read(item.Id));
-
-            if (!(index == -1))
+            if (Delete(item.Id))
             {
-                _table[index] = item;
+                Create(item);
                 return true;
             }
 

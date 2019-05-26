@@ -59,8 +59,11 @@ namespace IMS_GUI
                 txtInvoiceView.Text = aInstance.ViewTax.Replace("\n", "\r\n");
 
                 tabControl1.SelectTab(1);
-                tabControl1.Enabled = false;
+                //tabControl1.Enabled = false;
                 btnPay.Hide();
+                btnGetInvoice.Enabled = false;
+                btnGetExistingCustomer.Enabled = false;
+                btnCreateNewCustomer.Enabled = false;
             }
         }
 

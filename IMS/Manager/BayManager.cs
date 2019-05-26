@@ -27,7 +27,7 @@ namespace IMS.Manager
 
             if (_db.Create(item))
             {
-                return "Successfully added bay. ID:" + item.Id;
+                return "Successfully added bay";
             }
 
             return "Duplication! Bay already exists. ID:" + item.Id;
