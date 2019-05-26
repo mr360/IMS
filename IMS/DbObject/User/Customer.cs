@@ -9,17 +9,19 @@ namespace IMS.User
     public class Customer : User
     {
         private string _address;
+        private string _phone;
 
-        public Customer(string id, string name, string address) : base(id, name)
+        public Customer(string id, string name, string address, string phone) : base(id, name)
         {
             _address = address;
+            _phone = phone;
         }
 
         public override string View
         {
             get
             {
-                return "Customer :" + Name + " | Address: " + Address + "\n";
+                return "Customer :" + Name + " | Address: " + Address + " | Phone: " + Phone + "\n";
             }
         }
 
@@ -28,6 +30,24 @@ namespace IMS.User
             get
             {
                 return _address;
+            }
+
+            set
+            {
+                _address = value;
+            }
+        }
+
+        public string Phone
+        {
+            get
+            {
+                return _phone;
+            }
+
+            set
+            {
+                _phone = value;
             }
         }
     }
