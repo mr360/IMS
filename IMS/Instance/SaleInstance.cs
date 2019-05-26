@@ -16,6 +16,11 @@ namespace IMS
 
 namespace IMS.Instance
 {
+    /// <summary>
+    /// Supports the tasks that the Sale staff are required to handle at HTV, 
+    /// such as adding of trade-in vehicles, selecting of vehicles/addons and
+    /// price negotiations as well as sales invoice creation.
+    /// </summary>
     public class SaleInstance : Instance
     {
         private Vehicle _vehicle;
@@ -100,9 +105,8 @@ namespace IMS.Instance
                 return "Fail. Not right format";
             }
 
-            // Requires a pre-emptive check rather than a check when adding to database
-            // The vehicle is not added to the inventory in this moment. It is added once
-            // sale has been processed.
+            // Requires an explicit check because the vehicle is not being entered into the database
+            // at this moment. It will be added once sale has been processed.
             if (_manager["Vehicle"].Contain(tradeIn.Id))
             {
                 return "Fail. Already exists within system";

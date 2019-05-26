@@ -14,6 +14,10 @@ namespace IMS
 
 namespace IMS.Builder
 {
+    /// <summary>
+    /// Parses the stored invoices to build either an addon, trade-in or sales 
+    /// report based off of user inputs.
+    /// </summary>
     public class ReportBuilder
     {
         private string _name;

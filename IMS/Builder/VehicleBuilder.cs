@@ -16,6 +16,9 @@ namespace IMS
 
 namespace IMS.Builder
 {
+    /// <summary>
+    /// Assembles the vehicle order based off of the inputted data.
+    /// </summary>
     public class VehicleBuilder
     {
         private Order _order;

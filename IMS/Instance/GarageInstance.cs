@@ -11,7 +11,7 @@ using IMS.Tools;
 namespace IMS.Instance
 {
     /// <summary>
-    ///  
+    ///  Supports adding of vehicles \ addons, assigning new vehicles and removing sold vehicles. 
     /// </summary>
     public class GarageInstance : Instance
     {

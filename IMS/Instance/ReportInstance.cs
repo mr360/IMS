@@ -9,6 +9,9 @@ using IMS.Builder;
 
 namespace IMS.Instance
 {
+    /// <summary>
+    /// Supports the managements staff requirments, such as viewing and creating reports.
+    /// </summary>
     public class ReportInstance : Instance
     {
         public ReportInstance(Staff s, ReportManager rm, InvoiceManager im) : base(rm,im)

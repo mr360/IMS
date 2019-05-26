@@ -6,6 +6,12 @@ using System.Threading.Tasks;
 
 namespace IMS
 {
+    /// <summary>
+    /// The object representation of the database which IMS interacts with.
+    /// </summary>
+    /// <remarks>
+    /// Future implementations can include authentication..ect.
+    /// </remarks>
     public class Database : IDb
     {
         private string _name;

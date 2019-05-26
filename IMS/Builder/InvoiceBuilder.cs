@@ -14,6 +14,10 @@ namespace IMS
 
 namespace IMS.Builder
 {
+    /// <summary>
+    /// Tasked with assembling the either a tax or sale invoice based off
+    /// of the inputted data.
+    /// </summary>
     public class InvoiceBuilder
     {
         private Order _order;
