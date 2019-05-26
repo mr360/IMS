@@ -34,9 +34,11 @@
             this.lblAccountingInstanceHeading = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.btnClose = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tbpPayment = new System.Windows.Forms.TabPage();
-            this.tbpInvoice = new System.Windows.Forms.TabPage();
+            this.nudCardExpire = new System.Windows.Forms.NumericUpDown();
+            this.nudCardCode = new System.Windows.Forms.NumericUpDown();
             this.btnGetExistingCustomer = new System.Windows.Forms.Button();
             this.btnGetInvoice = new System.Windows.Forms.Button();
             this.lblPayment = new System.Windows.Forms.Label();
@@ -46,16 +48,15 @@
             this.btnCreateNewCustomer = new System.Windows.Forms.Button();
             this.txtCustomerExisting = new System.Windows.Forms.TextBox();
             this.txtInvoiceId = new System.Windows.Forms.TextBox();
-            this.nudCardCode = new System.Windows.Forms.NumericUpDown();
-            this.nudCardExpire = new System.Windows.Forms.NumericUpDown();
+            this.tbpInvoice = new System.Windows.Forms.TabPage();
+            this.btnPrint = new System.Windows.Forms.Button();
             this.txtInvoiceView = new System.Windows.Forms.TextBox();
-            this.btnClose = new System.Windows.Forms.Button();
             this.panel2.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tbpPayment.SuspendLayout();
-            this.tbpInvoice.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nudCardCode)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudCardExpire)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudCardCode)).BeginInit();
+            this.tbpInvoice.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnPay
@@ -119,6 +120,16 @@
             this.panel2.Size = new System.Drawing.Size(453, 93);
             this.panel2.TabIndex = 35;
             // 
+            // btnClose
+            // 
+            this.btnClose.Location = new System.Drawing.Point(291, 21);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(142, 48);
+            this.btnClose.TabIndex = 10;
+            this.btnClose.Text = "Close";
+            this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+            // 
             // tabControl1
             // 
             this.tabControl1.Controls.Add(this.tbpPayment);
@@ -150,16 +161,19 @@
             this.tbpPayment.TabIndex = 0;
             this.tbpPayment.Text = "Payment";
             // 
-            // tbpInvoice
+            // nudCardExpire
             // 
-            this.tbpInvoice.Controls.Add(this.txtInvoiceView);
-            this.tbpInvoice.Location = new System.Drawing.Point(4, 28);
-            this.tbpInvoice.Name = "tbpInvoice";
-            this.tbpInvoice.Padding = new System.Windows.Forms.Padding(3);
-            this.tbpInvoice.Size = new System.Drawing.Size(434, 335);
-            this.tbpInvoice.TabIndex = 1;
-            this.tbpInvoice.Text = "Invoice";
-            this.tbpInvoice.UseVisualStyleBackColor = true;
+            this.nudCardExpire.Location = new System.Drawing.Point(19, 226);
+            this.nudCardExpire.Name = "nudCardExpire";
+            this.nudCardExpire.Size = new System.Drawing.Size(193, 26);
+            this.nudCardExpire.TabIndex = 48;
+            // 
+            // nudCardCode
+            // 
+            this.nudCardCode.Location = new System.Drawing.Point(18, 258);
+            this.nudCardCode.Name = "nudCardCode";
+            this.nudCardCode.Size = new System.Drawing.Size(120, 26);
+            this.nudCardCode.TabIndex = 47;
             // 
             // btnGetExistingCustomer
             // 
@@ -239,19 +253,27 @@
             this.txtInvoiceId.Size = new System.Drawing.Size(165, 26);
             this.txtInvoiceId.TabIndex = 35;
             // 
-            // nudCardCode
+            // tbpInvoice
             // 
-            this.nudCardCode.Location = new System.Drawing.Point(18, 258);
-            this.nudCardCode.Name = "nudCardCode";
-            this.nudCardCode.Size = new System.Drawing.Size(120, 26);
-            this.nudCardCode.TabIndex = 47;
+            this.tbpInvoice.Controls.Add(this.btnPrint);
+            this.tbpInvoice.Controls.Add(this.txtInvoiceView);
+            this.tbpInvoice.Location = new System.Drawing.Point(4, 28);
+            this.tbpInvoice.Name = "tbpInvoice";
+            this.tbpInvoice.Padding = new System.Windows.Forms.Padding(3);
+            this.tbpInvoice.Size = new System.Drawing.Size(434, 335);
+            this.tbpInvoice.TabIndex = 1;
+            this.tbpInvoice.Text = "Invoice";
+            this.tbpInvoice.UseVisualStyleBackColor = true;
             // 
-            // nudCardExpire
+            // btnPrint
             // 
-            this.nudCardExpire.Location = new System.Drawing.Point(19, 226);
-            this.nudCardExpire.Name = "nudCardExpire";
-            this.nudCardExpire.Size = new System.Drawing.Size(193, 26);
-            this.nudCardExpire.TabIndex = 48;
+            this.btnPrint.Image = global::IMS_GUI.Properties.Resources.printer_32_32;
+            this.btnPrint.Location = new System.Drawing.Point(396, 6);
+            this.btnPrint.Name = "btnPrint";
+            this.btnPrint.Size = new System.Drawing.Size(32, 32);
+            this.btnPrint.TabIndex = 2;
+            this.btnPrint.UseVisualStyleBackColor = true;
+            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
             // 
             // txtInvoiceView
             // 
@@ -260,18 +282,8 @@
             this.txtInvoiceView.Multiline = true;
             this.txtInvoiceView.Name = "txtInvoiceView";
             this.txtInvoiceView.ReadOnly = true;
-            this.txtInvoiceView.Size = new System.Drawing.Size(422, 325);
+            this.txtInvoiceView.Size = new System.Drawing.Size(388, 325);
             this.txtInvoiceView.TabIndex = 0;
-            // 
-            // btnClose
-            // 
-            this.btnClose.Location = new System.Drawing.Point(291, 21);
-            this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(142, 48);
-            this.btnClose.TabIndex = 10;
-            this.btnClose.Text = "Close";
-            this.btnClose.UseVisualStyleBackColor = true;
-            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // AccountingInstanceForm
             // 
@@ -285,7 +297,7 @@
             this.Controls.Add(this.lblTotal);
             this.Controls.Add(this.panel2);
             this.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "AccountingInstanceForm";
@@ -295,10 +307,10 @@
             this.tabControl1.ResumeLayout(false);
             this.tbpPayment.ResumeLayout(false);
             this.tbpPayment.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudCardExpire)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudCardCode)).EndInit();
             this.tbpInvoice.ResumeLayout(false);
             this.tbpInvoice.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nudCardCode)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudCardExpire)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -327,5 +339,6 @@
         private System.Windows.Forms.NumericUpDown nudCardCode;
         private System.Windows.Forms.TextBox txtInvoiceView;
         private System.Windows.Forms.Button btnClose;
+        private System.Windows.Forms.Button btnPrint;
     }
 }

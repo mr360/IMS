@@ -213,6 +213,7 @@
             this.Controls.Add(this.txtId);
             this.Controls.Add(this.btnAddVehicle);
             this.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "CreateVehicleForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;

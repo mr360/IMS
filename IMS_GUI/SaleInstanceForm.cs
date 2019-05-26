@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Windows.Forms;
 using IMS.Instance;
 using IMS;
+using System.Drawing.Printing;
+using System.Drawing;
 
 namespace IMS_GUI
 {
@@ -77,7 +79,6 @@ namespace IMS_GUI
             {
                 tbInvoice.Text = sInstance.ViewInvoice.Replace("\n", "\r\n");
                 tbcSale.SelectTab(3);
-                tbcSale.Enabled = false;
                 btnCreateSale.Hide();
                 btnClose.Show();
             }
@@ -106,6 +107,34 @@ namespace IMS_GUI
         private void btnClose_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void btnPrint_Click(object sender, EventArgs e)
+        {
+            PrintDocument pd = new PrintDocument();
+            pd.PrintPage += new PrintPageEventHandler(xDoc);
+            PrintDialog pdi = new PrintDialog();
+            pdi.Document = pd;
+            if (pdi.ShowDialog() == DialogResult.OK)
+            {
+                pd.Print();
+            }
+        }
+
+        private void xDoc(object sender, PrintPageEventArgs e)
+        {
+            e.Graphics.DrawString(tbInvoice.Text, new Font("Arial", 12, FontStyle.Regular), Brushes.Black, 20, 20);
+        }
+
+        private void btnDeleteInvoice_Click(object sender, EventArgs e)
+        {
+            string msg = sInstance.RemoveInvoice();
+            if (msg == "Success.")
+            {
+                tbInvoice.Clear();
+            }
+
+            MessageBox.Show(msg, "Remove Sale Invoice", MessageBoxButtons.OK);
         }
     }
 }
