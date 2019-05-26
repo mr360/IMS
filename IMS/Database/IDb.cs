@@ -7,6 +7,13 @@ using System.Threading.Tasks;
 
 namespace IMS
 {
+    /// <summary>
+    /// Interface to access the database.
+    /// </summary>
+    /// <remarks>
+    /// Can allow for different databases to be used with the current
+    /// system without requiring major changes.
+    /// </remarks>
     public interface IDb
     {
         bool Create(DbObject item);

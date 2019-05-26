@@ -7,6 +7,10 @@ using System.Threading.Tasks;
 
 namespace IMS
 {
+    /// <summary>
+    ///  An object representation of the database tables stored within
+    ///  the database.
+    /// </summary>
     public class DbTable : DbObject, IDb
     {
         private string _name;

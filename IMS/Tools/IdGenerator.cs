@@ -5,7 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace IMS.Tools
-{
+{   
+    /// <summary>
+    /// Generates a unique id, that consists of numbers and letters
+    /// just like a google youtube video link.
+    /// </summary>
     public class IdGenerator
     {
         // https://stackoverflow.com/questions/11313205/generate-a-unique-id

@@ -8,7 +8,8 @@ using IMS.Tools;
 namespace IMS.Instance
 {
     /// <summary>
-    ///  
+    ///  Supports the entering of sales invoices, retrieving/creating of new/existing customers, 
+    ///  processing of payment and development of a tax invoice.
     /// </summary>
     public class AccountingInstance : Instance
     {
@@ -25,7 +26,7 @@ namespace IMS.Instance
         }
 
         /// <summary>
-        ///  
+        ///  Get the the users invoice id so that the sales invoice can be retreived.
         /// </summary>
         public string Invoice(string invoiceId)
         {
@@ -39,9 +40,6 @@ namespace IMS.Instance
             return "Success.";
         }
 
-        /// <summary>
-        ///  
-        /// </summary>
         public string CustomerLocate(string customerId)
         {
             _customer = _manager["User"].Retrieve(customerId) as Customer;
@@ -54,9 +52,6 @@ namespace IMS.Instance
             return "Success.";
         }
 
-        /// <summary>
-        ///  
-        /// </summary>
         public string CreateCustomer(Customer c)
         {
             if (!ValidateIMS.IsValid(c))
@@ -69,7 +64,7 @@ namespace IMS.Instance
         }
 
         /// <summary>
-        ///  
+        /// Process the payment and produces a tax invoice  
         /// </summary>
         public string CreatePayment(CreditCard card)
         {
@@ -106,9 +101,6 @@ namespace IMS.Instance
             return "Payment Success.";
         }
 
-        /// <summary>
-        ///  
-        /// </summary>
         private void UpdateVehicleInventoryState()
         {
             // Add trade-in vehicle to vehicle list

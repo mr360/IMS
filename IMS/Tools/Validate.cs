@@ -8,6 +8,9 @@ using System.Text.RegularExpressions;
 
 namespace IMS.Tools
 {
+    /// <summary>
+    /// Provides methods to validate the user inputs
+    /// </summary>
     public class ValidateIMS
     {
         public static bool IsBad(string t, string regex)
