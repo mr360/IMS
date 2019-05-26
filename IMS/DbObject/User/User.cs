@@ -15,14 +15,6 @@ namespace IMS.User
             _name = name;
         }
 
-        public Type AccountType 
-        { 
-            get
-            {
-                return this.GetType();
-            } 
-        }
-
         public string Name 
         { 
             get
