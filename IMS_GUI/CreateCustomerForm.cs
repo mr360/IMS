@@ -20,7 +20,7 @@ namespace IMS_GUI
 
         private void btnAddCustomer_Click(object sender, EventArgs e)
         {
-            AccountingInstanceForm.newCustomer = new Customer(txtId.Text, txtName.Text, txtAddress.Text);
+            AccountingInstanceForm.newCustomer = new Customer(txtId.Text, txtName.Text, txtAddress.Text, txtPhone.Text);
             this.Hide();
         }
     }

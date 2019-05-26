@@ -85,7 +85,7 @@ namespace IMS_GUI
             for (int i = 0; i < amount; i++)
             {
                 string name = (chars[new Random().Next(chars.Length)] + chars[new Random().Next(chars.Length)] + chars[new Random().Next(chars.Length)] + chars[new Random().Next(chars.Length)]).ToString();
-                Customer c = new Customer("C00" + (i.ToString()), "Customer Name", "25 Makaby Street, VIC, 3752");
+                Customer c = new Customer("C00" + (i.ToString()), "Customer Name", "25 Makaby Street, VIC, 3752", "0418534687");
 
 
                 dbTableUser.Create(c);
