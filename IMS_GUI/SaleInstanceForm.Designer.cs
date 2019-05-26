@@ -31,7 +31,6 @@
             this.btnCreateSale = new System.Windows.Forms.Button();
             this.cblAddon = new System.Windows.Forms.CheckedListBox();
             this.btnTradeVehicleAdd = new System.Windows.Forms.Button();
-            this.tbInvoice = new System.Windows.Forms.TextBox();
             this.lblVehicleSelect = new System.Windows.Forms.Label();
             this.lblAddonAdd = new System.Windows.Forms.Label();
             this.lblTradeVehicleAdd = new System.Windows.Forms.Label();
@@ -52,6 +51,9 @@
             this.btnClearTradeInVehicle = new System.Windows.Forms.Button();
             this.tbShowTradeInVehicle = new System.Windows.Forms.TextBox();
             this.tbpSummary = new System.Windows.Forms.TabPage();
+            this.btnDeleteInvoice = new System.Windows.Forms.Button();
+            this.btnPrint = new System.Windows.Forms.Button();
+            this.tbInvoice = new System.Windows.Forms.TextBox();
             this.lblSaleInstanceHeading = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.lblSaleTip = new System.Windows.Forms.Label();
@@ -91,17 +93,6 @@
             this.btnTradeVehicleAdd.Text = "Add Vehicle";
             this.btnTradeVehicleAdd.UseVisualStyleBackColor = true;
             this.btnTradeVehicleAdd.Click += new System.EventHandler(this.btnTradeVehicleAdd_Click);
-            // 
-            // tbInvoice
-            // 
-            this.tbInvoice.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.tbInvoice.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbInvoice.Location = new System.Drawing.Point(9, 24);
-            this.tbInvoice.Multiline = true;
-            this.tbInvoice.Name = "tbInvoice";
-            this.tbInvoice.ReadOnly = true;
-            this.tbInvoice.Size = new System.Drawing.Size(386, 306);
-            this.tbInvoice.TabIndex = 7;
             // 
             // lblVehicleSelect
             // 
@@ -299,6 +290,8 @@
             // 
             // tbpSummary
             // 
+            this.tbpSummary.Controls.Add(this.btnDeleteInvoice);
+            this.tbpSummary.Controls.Add(this.btnPrint);
             this.tbpSummary.Controls.Add(this.tbInvoice);
             this.tbpSummary.Location = new System.Drawing.Point(4, 28);
             this.tbpSummary.Name = "tbpSummary";
@@ -306,6 +299,37 @@
             this.tbpSummary.TabIndex = 3;
             this.tbpSummary.Text = "Summary";
             this.tbpSummary.UseVisualStyleBackColor = true;
+            // 
+            // btnDeleteInvoice
+            // 
+            this.btnDeleteInvoice.Image = global::IMS_GUI.Properties.Resources.delete_32_32;
+            this.btnDeleteInvoice.Location = new System.Drawing.Point(374, 46);
+            this.btnDeleteInvoice.Name = "btnDeleteInvoice";
+            this.btnDeleteInvoice.Size = new System.Drawing.Size(32, 32);
+            this.btnDeleteInvoice.TabIndex = 9;
+            this.btnDeleteInvoice.UseVisualStyleBackColor = true;
+            this.btnDeleteInvoice.Click += new System.EventHandler(this.btnDeleteInvoice_Click);
+            // 
+            // btnPrint
+            // 
+            this.btnPrint.Image = global::IMS_GUI.Properties.Resources.printer_32_32;
+            this.btnPrint.Location = new System.Drawing.Point(374, 8);
+            this.btnPrint.Name = "btnPrint";
+            this.btnPrint.Size = new System.Drawing.Size(32, 32);
+            this.btnPrint.TabIndex = 8;
+            this.btnPrint.UseVisualStyleBackColor = true;
+            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
+            // 
+            // tbInvoice
+            // 
+            this.tbInvoice.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tbInvoice.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbInvoice.Location = new System.Drawing.Point(3, 3);
+            this.tbInvoice.Multiline = true;
+            this.tbInvoice.Name = "tbInvoice";
+            this.tbInvoice.ReadOnly = true;
+            this.tbInvoice.Size = new System.Drawing.Size(365, 350);
+            this.tbInvoice.TabIndex = 7;
             // 
             // lblSaleInstanceHeading
             // 
@@ -322,7 +346,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.panel1.Location = new System.Drawing.Point(1, 0);
+            this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(442, 88);
             this.panel1.TabIndex = 14;
@@ -363,6 +387,7 @@
             this.Controls.Add(this.lblVehicleSelect);
             this.Controls.Add(this.btnCreateSale);
             this.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -390,7 +415,6 @@
         private System.Windows.Forms.Button btnCreateSale;
         private System.Windows.Forms.CheckedListBox cblAddon;
         private System.Windows.Forms.Button btnTradeVehicleAdd;
-        private System.Windows.Forms.TextBox tbInvoice;
         private System.Windows.Forms.Label lblVehicleSelect;
         private System.Windows.Forms.Label lblAddonAdd;
         private System.Windows.Forms.Label lblTradeVehicleAdd;
@@ -398,7 +422,6 @@
         private System.Windows.Forms.TabControl tbcSale;
         private System.Windows.Forms.TabPage tbpAddon;
         private System.Windows.Forms.TabPage tbpRebate;
-        private System.Windows.Forms.TabPage tbpSummary;
         private System.Windows.Forms.Label lblSaleInstanceHeading;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label lblSaleTip;
@@ -415,5 +438,9 @@
         private System.Windows.Forms.TextBox tbAddonDetail;
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.ComboBox cbPriceRate;
+        private System.Windows.Forms.TabPage tbpSummary;
+        private System.Windows.Forms.Button btnDeleteInvoice;
+        private System.Windows.Forms.Button btnPrint;
+        private System.Windows.Forms.TextBox tbInvoice;
     }
 }

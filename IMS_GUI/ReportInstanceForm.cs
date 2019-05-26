@@ -82,7 +82,7 @@ namespace IMS_GUI
         }
         private void xDoc(object sender, PrintPageEventArgs e)
         {
-            e.Graphics.DrawString(txtReportView.Text, new Font("Arial", 20, FontStyle.Regular), Brushes.Black, 20, 20);
+            e.Graphics.DrawString(txtReportView.Text, new Font("Arial", 12, FontStyle.Regular), Brushes.Black, 20, 20);
         }
     }
 }

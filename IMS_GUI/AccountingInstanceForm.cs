@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using IMS;
 using IMS.Instance;
 using IMS.User;
+using System.Drawing.Printing;
 
 namespace IMS_GUI
 {
@@ -75,6 +76,23 @@ namespace IMS_GUI
 
             string msg = aInstance.CreateCustomer(newCustomer);
             MessageBox.Show(msg, "Customer", MessageBoxButtons.OK);
+        }
+
+        private void btnPrint_Click(object sender, EventArgs e)
+        {
+            PrintDocument pd = new PrintDocument();
+            pd.PrintPage += new PrintPageEventHandler(xDoc);
+            PrintDialog pdi = new PrintDialog();
+            pdi.Document = pd;
+            if (pdi.ShowDialog() == DialogResult.OK)
+            {
+                pd.Print();
+            }
+        }
+
+        private void xDoc(object sender, PrintPageEventArgs e)
+        {
+            e.Graphics.DrawString(txtInvoiceView.Text, new Font("Arial", 12, FontStyle.Regular), Brushes.Black, 20, 20);
         }
     }
 }
