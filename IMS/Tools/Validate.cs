@@ -39,7 +39,7 @@ namespace IMS.Tools
 
         private static bool IsVehicleValid(Vehicle item)
         {
-            if (ValidateIMS.IsBad(item.Id, @"^[a-zA-Z0-9]+$") || ValidateIMS.IsBad(item.Model, @"^[a-zA-Z0-9-]+$") || item.Price < 0.00)
+            if (ValidateIMS.IsBad(item.Id, @"^[a-zA-Z0-9]{0,10}$") || ValidateIMS.IsBad(item.Model, @"^[a-zA-Z0-9-]{0,25}$") || item.Price < 0.00)
             {
                 return false;
             }
@@ -49,7 +49,7 @@ namespace IMS.Tools
 
         private static bool IsAddonValid(Addon item)
         {
-            if (ValidateIMS.IsBad(item.Id, @"^[a-zA-Z0-9]+$") || ValidateIMS.IsBad(item.Name, @"^[a-zA-Z0-9-]+$") || item.Price < 0.00)
+            if (ValidateIMS.IsBad(item.Id, @"^[a-zA-Z0-9]{0,10}$") || ValidateIMS.IsBad(item.Name, @"^[a-zA-Z0-9-]{0,25}$") || item.Price < 0.00)
             {
                 return false;
             }
@@ -59,7 +59,7 @@ namespace IMS.Tools
 
         private static bool IsCustomerValid(Customer item)
         {
-            if (ValidateIMS.IsBad(item.Id, @"^[a-zA-Z0-9]+$") || ValidateIMS.IsBad(item.Name, @"^[a-zA-Z]+$") || ValidateIMS.IsBad(item.Address, @"^[a-zA-Z]+$"))
+            if (ValidateIMS.IsBad(item.Id, @"^[a-zA-Z0-9]{0,10}$") || ValidateIMS.IsBad(item.Name, @"^[a-zA-Z ]{0,50}$") || ValidateIMS.IsBad(item.Address, @"^[a-zA-Z0-9, ]{0,70}$") || ValidateIMS.IsBad(item.Phone, @"^\d{10}$"))
             {
                 return false;
             }
