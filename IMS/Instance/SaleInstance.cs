@@ -25,7 +25,7 @@ namespace IMS.Instance
     {
         private Vehicle _vehicle;
         private List<Addon> _addon;
-        private List<string> _addonIds = new List<string>();
+        private List<string> _addonIds;
         private Vehicle _tradeIn;
         private Staff _saleRep;
         private Sale _sInvoice;
@@ -38,6 +38,8 @@ namespace IMS.Instance
             }
 
             _saleRep = s;
+            _addon = new List<Addon>();
+            _addonIds = new List<string>();
         }
 
         public string ViewSelectedVehicle
@@ -53,7 +55,7 @@ namespace IMS.Instance
         {
             get
             {
-                _addon = new List<Addon>();
+                _addon.Clear();
 
                 List<DbObject> addonList = _manager["Addon"].RetrieveMany(_vehicle.Id);
                 if (addonList != null)
@@ -69,6 +71,7 @@ namespace IMS.Instance
 
         public Addon ViewSelectedAddon(string id)
         {
+            
             foreach (Addon a in _addon)
             {
                 if (a.Id != id) continue;
