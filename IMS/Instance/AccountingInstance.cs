@@ -40,27 +40,12 @@ namespace IMS.Instance
             return "Success.";
         }
 
-        public string CustomerLocate(string customerId)
+        public Customer Customer
         {
-            _customer = _manager["User"].Retrieve(customerId) as Customer;
-
-            if (_customer == null)
+            set
             {
-                return "The customer cannot be found.";
+                _customer = value;
             }
-
-            return "Success.";
-        }
-
-        public string CreateCustomer(Customer c)
-        {
-            if (!ValidateIMS.IsValid(c))
-            {
-                return "Fail. Not right format";
-            }
-
-            _customer = c;
-            return _manager["User"].Add(c);
         }
 
         /// <summary>

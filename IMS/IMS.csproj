@@ -66,6 +66,7 @@
     <Compile Include="Instance\LotInstance.cs" />
     <Compile Include="Instance\ReportInstance.cs" />
     <Compile Include="Instance\SaleInstance.cs" />
+    <Compile Include="Instance\UserInstance.cs" />
     <Compile Include="Manager\AddonManager.cs" />
     <Compile Include="Manager\BayManager.cs" />
     <Compile Include="Manager\IManager.cs" />
@@ -82,6 +83,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="ClassDiagram1.cd" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

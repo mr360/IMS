@@ -1,0 +1,314 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="IMS.Database" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="21.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAIAAAAAAAAgAAAAAAgAAgAAEAAEAAAAAAAAAAAAA=</HashCode>
+      <FileName>Database\Database.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="IMS.DbTable" Collapsed="true">
+    <Position X="5.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAIAAAAAAAAgAAAAAAgAAgAAEBAEAAAAAAAAAAAAA=</HashCode>
+      <FileName>Database\DbTable.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="IMS.Addon" Collapsed="true">
+    <Position X="19.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAAIACAAQAAAAAAACAAAAQAAAIBAAAAAAAAQAAAAAA=</HashCode>
+      <FileName>DbObject\Addon.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IMS.Bay" Collapsed="true">
+    <Position X="1.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAABIBAABAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DbObject\Bay.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IMS.DbObject">
+    <Position X="10.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAABAAAAAAAABAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DbObject\DbObject.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IMS.Vehicle" Collapsed="true">
+    <Position X="12.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAAAAAABQAAAAABAgAAABIAAAABAAAAAAgBAAABAAA=</HashCode>
+      <FileName>DbObject\Vehicle.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IMS.Program" Collapsed="true">
+    <Position X="23.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Program.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IMS.Builder.InvoiceBuilder" Collapsed="true">
+    <Position X="25.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAACAAAEQIAAAAACAgIAADAgABAgAAAAAAEAAQA=</HashCode>
+      <FileName>Builder\InvoiceBuilder.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IMS.Builder.ReportBuilder" Collapsed="true">
+    <Position X="25.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAIAAAQAAAQAAAIAAAAQUAAAAAAEQAIQAAAAAABAI=</HashCode>
+      <FileName>Builder\ReportBuilder.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IMS.Builder.VehicleBuilder" Collapsed="true">
+    <Position X="23.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAACAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Builder\VehicleBuilder.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IMS.Invoice.Invoice" Collapsed="true">
+    <Position X="16" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIsBAAAAAAAEAKABBABAAAIAAAABAAABAAAACAEAgQA=</HashCode>
+      <FileName>DbObject\Invoice\Invoice.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IMS.Invoice.Sale" Collapsed="true">
+    <Position X="17" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DbObject\Invoice\Sale.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IMS.Invoice.Tax" Collapsed="true">
+    <Position X="14.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAAAAAAAAAAAAAAAAAAhABAAAAAAAAAAAQA=</HashCode>
+      <FileName>DbObject\Invoice\Tax.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IMS.Report.Report" Collapsed="true">
+    <Position X="3.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>JAEAIAAgAAAgAIAAIAAAAAQAAAABAAQAIQAAAAAAAEA=</HashCode>
+      <FileName>DbObject\Report\Report.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IMS.User.Customer" Collapsed="true">
+    <Position X="8" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAABAAACAAAAIEAAABA=</HashCode>
+      <FileName>DbObject\User\Customer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IMS.User.Staff" Collapsed="true">
+    <Position X="10.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAEAAAAAAAAAABAAAAAAABAAAAAAA=</HashCode>
+      <FileName>DbObject\User\Staff.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IMS.User.User" Collapsed="true">
+    <Position X="8.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAIAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DbObject\User\User.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IMS.Instance.AccountingInstance" Collapsed="true">
+    <Position X="7.5" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAQAAAAgIAACBAAAAAgAAAAkAAAAQAAAAAAAQA=</HashCode>
+      <FileName>Instance\AccountingInstance.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IMS.Instance.GarageInstance" Collapsed="true">
+    <Position X="9.75" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIEAAACAAAAAEBAAAAAAAAIAAAAAAAAAAAIgAAAAAA=</HashCode>
+      <FileName>Instance\GarageInstance.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IMS.Instance.Instance" Collapsed="true">
+    <Position X="5.25" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Instance\Instance.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IMS.Instance.LotInstance" Collapsed="true">
+    <Position X="0.75" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAgAAAAAAAAEAAAAAAAAQIAAAAAAAAA=</HashCode>
+      <FileName>Instance\LotInstance.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IMS.Instance.ReportInstance" Collapsed="true">
+    <Position X="3" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAIAAAAAAEAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Instance\ReportInstance.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IMS.Instance.SaleInstance" Collapsed="true">
+    <Position X="5.25" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAIAIAAAEICBACBAAAAAAAAIgAAAAEAAAASAAAQA=</HashCode>
+      <FileName>Instance\SaleInstance.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IMS.Manager.AddonManager" Collapsed="true">
+    <Position X="7.75" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABA=</HashCode>
+      <FileName>Manager\AddonManager.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="IMS.Manager.BayManager" Collapsed="true">
+    <Position X="12.25" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABA=</HashCode>
+      <FileName>Manager\BayManager.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="IMS.Manager.InvoiceManager" Collapsed="true">
+    <Position X="1" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABA=</HashCode>
+      <FileName>Manager\InvoiceManager.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="IMS.Manager.Manager" Collapsed="true">
+    <Position X="6.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIYAgAAAAAAAIAAAAAAAgAAAAAEAAAAAAAAAAAAAABA=</HashCode>
+      <FileName>Manager\Manager.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="IMS.Manager.ReportManager" Collapsed="true">
+    <Position X="3.25" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Manager\ReportManager.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="IMS.Manager.UserManager" Collapsed="true">
+    <Position X="5.5" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Manager\UserManager.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="IMS.Manager.VehicleManager" Collapsed="true">
+    <Position X="10" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABA=</HashCode>
+      <FileName>Manager\VehicleManager.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="IMS.Payment.PaymentProcessor" Collapsed="true">
+    <Position X="21.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAQAAAAAAA=</HashCode>
+      <FileName>Payment\PaymentProcessor.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IMS.Tools.IdGenerator" Collapsed="true">
+    <Position X="23.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA=</HashCode>
+      <FileName>Tools\IdGenerator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IMS.Tools.ValidateIMS" Collapsed="true">
+    <Position X="21.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAkAAIAAAAgAAAAAAAAAAAAIAAA=</HashCode>
+      <FileName>Tools\Validate.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Struct Name="IMS.Order" Collapsed="true">
+    <Position X="23.5" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAgAAAAAQAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Builder\VehicleBuilder.cs</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="IMS.CreditCard" Collapsed="true">
+    <Position X="21.75" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAAAAAAAAAAAAAAAAAAQAAAEAAAAAAAAAAAAA=</HashCode>
+      <FileName>Payment\PaymentProcessor.cs</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Interface Name="IMS.IDb" Collapsed="true">
+    <Position X="21.75" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAAAAgAAgAAEAAEAAAAAAAAAAAAA=</HashCode>
+      <FileName>Database\IDb.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="IMS.Manager.IManager" Collapsed="true">
+    <Position X="23.5" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIYAAAAAAAAAIAAAAAAAgAAAAAEAAAAAAAAAAAAAABA=</HashCode>
+      <FileName>Manager\IManager.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="IMS.InvoiceType" Collapsed="true">
+    <Position X="23.5" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Builder\InvoiceBuilder.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="IMS.ReportType" Collapsed="true">
+    <Position X="23.5" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAAAAAAAAAAABAAAAAAAAACAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Builder\ReportBuilder.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="IMS.VType" Collapsed="true">
+    <Position X="25.25" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAACAAAAAAAAAAAAAACAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DbObject\Invoice\Invoice.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="IMS.JobRole" Collapsed="true">
+    <Position X="25.25" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAIAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAABAAAA=</HashCode>
+      <FileName>DbObject\User\Staff.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="IMS.Brand" Collapsed="true">
+    <Position X="21.75" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAACAAAAAAABAAAAIQAQAIAAAAAABAAABAAAggAAEA=</HashCode>
+      <FileName>DbObject\Vehicle.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="IMS.PriceRate" Collapsed="true">
+    <Position X="21.75" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAABAAAAAAAAMAAAAAAAAAAIAIAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Instance\SaleInstance.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

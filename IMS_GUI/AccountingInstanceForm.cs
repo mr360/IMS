@@ -17,6 +17,8 @@ namespace IMS_GUI
     public partial class AccountingInstanceForm : Form
     {
         AccountingInstance aInstance = new AccountingInstance(Program.staffAccount, Program.im, Program.um, Program.vm);
+        UserInstance uInstance = new UserInstance(Program.um);
+
         public static Customer newCustomer = null;
 
         public AccountingInstanceForm()
@@ -40,7 +42,15 @@ namespace IMS_GUI
 
         private void btnGetExistingCustomer_Click(object sender, EventArgs e)
         {
-            string msg = aInstance.CustomerLocate(txtCustomerExisting.Text);
+            string msg = "Customer does not exist.";
+            Customer _customer = uInstance.LocateUser(typeof(Customer), txtCustomerExisting.Text) as Customer;
+
+            if (_customer != null)
+            {
+                msg = "Found user.";
+                aInstance.Customer = _customer;
+            }
+
             MessageBox.Show(msg, "Customer", MessageBoxButtons.OK);
         }
 
@@ -77,7 +87,7 @@ namespace IMS_GUI
             CreateCustomerForm createCustomerForm = new CreateCustomerForm();
             createCustomerForm.ShowDialog();
 
-            string msg = aInstance.CreateCustomer(newCustomer);
+            string msg = uInstance.CreateUser(newCustomer);
             MessageBox.Show(msg, "Customer", MessageBoxButtons.OK);
         }
 
