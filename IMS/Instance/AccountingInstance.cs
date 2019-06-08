@@ -83,7 +83,7 @@ namespace IMS.Instance
 
             string msg = _manager["Invoice"].Update(_tInvoice);
 
-            if (msg != "Successfully added invoice.")
+            if (msg != "Successfully updated.")
             {
                 return msg;
             }
