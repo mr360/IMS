@@ -16,7 +16,7 @@ namespace IMS_GUI
 {
     public partial class ReportInstanceForm : Form
     {
-        ReportInstance rInstance = new ReportInstance(Program.staffAccount, Program.rm, Program.im);
+        ReportInstance rInstance = new ReportInstance(Program.staffAccount, ManagerShared.rm, ManagerShared.im);
         public static string txtName = "";
         public static string txtStartPeriod = "";
         public static string txtEndPeriod = "";

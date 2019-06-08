@@ -24,7 +24,7 @@ namespace IMS_GUI
             ReportInstanceForm.txtName = txtName.Text;
             ReportInstanceForm.txtStartPeriod = txtPeriodStart.Text;
             ReportInstanceForm.txtEndPeriod = txtPeriodEnd.Text;
-            ReportInstanceForm.txtReportType = cbReportType.SelectedText;
+            ReportInstanceForm.txtReportType = cbReportType.SelectedItem.ToString();
             this.Close();
         }
 

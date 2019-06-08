@@ -20,7 +20,7 @@ namespace IMS_GUI
 
         private void btnAddAddon_Click(object sender, EventArgs e)
         {
-            Program.addon = new Addon(txtId.Text, txtName.Text, txtDesc.Text, Convert.ToDouble(nudPrice.Text));
+            WinFormShared.addon = new Addon(txtId.Text, txtName.Text, txtDesc.Text, Convert.ToDouble(nudPrice.Text));
             this.Close();
         }
     }
