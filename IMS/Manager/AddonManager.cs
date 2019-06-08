@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using IMS.Tools;
 
 namespace IMS.Manager
 {
@@ -11,9 +12,30 @@ namespace IMS.Manager
     /// Allows accessing of addon specific methods.
     /// Add, delete, remove, update and retreival of addons done via this manager.
     /// </summary>
-    public class AddonManager : Manager, IManager
+    public sealed class AddonManager : Manager, IManager
     {
-        public AddonManager(string atable, Database db) : base(atable, db)
+        private static AddonManager _instance;
+
+        public static AddonManager Instance
+        {
+            get
+            {
+                if (_instance == null)
+                {
+                    throw new Exception("Addon manager not created");
+                }
+                return _instance;
+            }
+        }
+
+        public static void Create(string atable, Database db)
+        {
+            if (_instance == null)
+            {
+                _instance = new AddonManager(atable, db);
+            }
+        }
+        private AddonManager(string atable, Database db) : base(atable, db)
         {
         }
 
@@ -23,15 +45,15 @@ namespace IMS.Manager
             
             if(a == null)
             {
-                throw new NullReferenceException("Not of type Addon");
+                throw new NullReferenceException(StringTable.EnumToString(EnumMsg.MSG_NULL_EXCEPTION_NOT_ADDON));
             }
 
             if (_db.Create(item))
             {
-                return "Successfully added addon";
+                return StringTable.EnumToString(EnumMsg.MSG_SUCCESS_ADD_ADDON);
             }
 
-            return "Duplication! Addon already exists. ID:" + item.Id;   
+            return StringTable.EnumToString(EnumMsg.MSG_ERROR_DUPLICATE_ADDON);
         }
 
         /// <summary>

@@ -7,14 +7,36 @@ using IMS.Report;
 
 namespace IMS.Manager
 {
-    public class ReportManager : Manager,IManager
+    public sealed class ReportManager : Manager,IManager
     {
         /// <summary>
         /// Interacts with the database through the report manager
         /// Allows accessing of report specific methods
         /// Add, delete, remove, update and retreival of reports done via this manager 
         /// </summary>
-        public ReportManager(string rtable, Database db) : base(rtable,db)
+        private static ReportManager _instance;
+
+        public static ReportManager Instance
+        {
+            get
+            {
+                if (_instance == null)
+                {
+                    throw new Exception("Report Manager not created");
+                }
+                return _instance;
+            }
+        }
+
+        public static void Create(string rtable, Database db)
+        {
+            if (_instance == null)
+            {
+                _instance = new ReportManager(rtable, db);
+            }
+        }
+
+        private ReportManager(string rtable, Database db) : base(rtable,db)
         {
         }
 

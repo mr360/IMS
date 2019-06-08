@@ -7,14 +7,35 @@ using IMS.User;
 
 namespace IMS.Manager
 {
-    public class UserManager : Manager,IManager
+    public sealed class UserManager : Manager,IManager
     {
         /// <summary>
         /// Interacts with the database through the user manager
         /// Allows accessing of user specific methods
         /// Add, delete, remove, update and retreival of users done via this manager 
         /// </summary>
-        public UserManager(string utable, Database db) : base(utable, db)
+        /// 
+        private static UserManager _instance;
+        public static UserManager Instance
+        {
+            get
+            {
+                if (_instance == null)
+                {
+                    throw new Exception("User Manager not created");
+                }
+                return _instance;
+            }
+        }
+
+        public static void Create(string utable, Database db)
+        {
+            if (_instance == null)
+            {
+                _instance = new UserManager(utable, db);
+            }
+        }
+        private UserManager(string utable, Database db) : base(utable, db)
         {
         }
 

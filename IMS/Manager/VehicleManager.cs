@@ -6,17 +6,39 @@ using System.Threading.Tasks;
 
 namespace IMS.Manager
 {
-    public class VehicleManager : Manager, IManager
+    public sealed class VehicleManager : Manager, IManager
     {
         /// <summary>
         /// Interacts with the database through the vehicle manager
         /// Allows accessing of vehicle specific methods
         /// Add, delete, remove, update and retreival of vehicles done via this manager 
         /// </summary>
-        public VehicleManager(string vtable, Database db) : base(vtable, db)
+        /// 
+        private static VehicleManager _instance;
+        public static VehicleManager Instance
+        {
+            get
+            {
+                if (_instance == null)
+                {
+                    throw new Exception("Vehicle Manager not created");
+                }
+                return _instance;
+            }
+        }
+
+        public static void Create(string vtable, Database db)
+        {
+            if (_instance == null)
+            {
+                _instance = new VehicleManager(vtable, db);
+            }
+        }
+        private VehicleManager(string vtable, Database db) : base(vtable, db)
         {
 
         }
+
         public override string Add(DbObject item)
         {
             Vehicle v = item as Vehicle;

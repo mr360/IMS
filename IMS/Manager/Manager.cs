@@ -15,6 +15,7 @@ namespace IMS.Manager
     public abstract class Manager : IManager
     {
        protected IDb _db;
+
        public Manager(string table, Database db)
        {
             _db = db.Read(table) as IDb;

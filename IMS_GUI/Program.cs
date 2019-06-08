@@ -10,24 +10,31 @@ using IMS.Report;
 
 namespace IMS_GUI
 {
-    static class Program
+    public class ManagerShared
+    {
+        public static BayManager bm = ManagerFactory.GetManager(typeof(BayManager)) as BayManager;
+        public static VehicleManager vm = ManagerFactory.GetManager(typeof(VehicleManager)) as VehicleManager;
+        public static AddonManager am = ManagerFactory.GetManager(typeof(AddonManager)) as AddonManager;
+        public static UserManager um = ManagerFactory.GetManager(typeof(UserManager)) as UserManager;
+        public static InvoiceManager im = ManagerFactory.GetManager(typeof(InvoiceManager)) as InvoiceManager;
+        public static ReportManager rm = ManagerFactory.GetManager(typeof(ReportManager)) as ReportManager;
+    }
+
+    public class WinFormShared
     {
         public static Vehicle vehicle = null;
         public static Addon addon = null;
+    }
 
+    static class Program
+    {
         public static Staff staffAccount;
-
-        public static BayManager bm;
-        public static VehicleManager vm;
-        public static AddonManager am;
-        public static UserManager um;
-        public static InvoiceManager im;
-        public static ReportManager rm;
 
         static Database FakeData(int amount)
         {
             // Database
-            Database db = new Database("HTV");
+            Database.Create("HTV Database");
+            Database db = Database.Instance;
 
             // DbTable
             DbTable dbTableBay = new DbTable("bay", "Bay Table");
@@ -113,7 +120,7 @@ namespace IMS_GUI
             dbTableInvoice.Create(iSale);
 
 
-            Report dd = new Report("R006","Test Report Name", ReportType.Sale, new DateTime(2019, 01, 01), new DateTime(2019, 04, 01));
+            InvoiceReport dd = new InvoiceReport("R006","Test Report Name", ReportType.Sale, new DateTime(2019, 01, 01), new DateTime(2019, 04, 01));
             dd.AmountOfSale = 60;
             dd.TotalSalePrice = 176500.00;
 
@@ -138,12 +145,12 @@ namespace IMS_GUI
         {
             Database db = FakeData(10);
 
-            bm = new BayManager("bay", db);
-            vm = new VehicleManager("vehicle", db);
-            am = new AddonManager("addon", db);
-            um = new UserManager("user", db);
-            im = new InvoiceManager("invoice", db);
-            rm = new ReportManager("report", db);
+            ManagerFactory.Create(typeof(BayManager), "bay", db);
+            ManagerFactory.Create(typeof(VehicleManager), "vehicle", db);
+            ManagerFactory.Create(typeof(AddonManager), "addon", db);
+            ManagerFactory.Create(typeof(UserManager), "user", db);
+            ManagerFactory.Create(typeof(InvoiceManager), "invoice", db);
+            ManagerFactory.Create(typeof(ReportManager), "report", db);
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
