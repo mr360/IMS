@@ -7,10 +7,6 @@ using IMS.Manager;
 using IMS.Invoice;
 using IMS;
 using IMS.Tools;
-namespace IMS
-{
-    public enum ReportType { Addon, TradeIn, Sale};
-}
 
 namespace IMS.Builder
 {
@@ -28,7 +24,7 @@ namespace IMS.Builder
         private double _totalPrice;
         private int _amountOfSale;
 
-        Report.Report _report;
+        Report.InvoiceReport _report;
         Dictionary<string, IManager> _manager;
 
         public ReportBuilder(Dictionary<string, IManager> manager)
@@ -97,7 +93,7 @@ namespace IMS.Builder
 
             }
 
-            _report = new Report.Report(IdGenerator.UniqueId(), _name, _reportType, _periodStart, _periodEnd);
+            _report = new Report.InvoiceReport(IdGenerator.UniqueId(), _name, _reportType, _periodStart, _periodEnd);
             _report.TotalSalePrice = _totalPrice;
             _report.AmountOfSale = _amountOfSale;
             return "Success";
