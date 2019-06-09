@@ -21,7 +21,6 @@ namespace IMS.Builder
     public class InvoiceBuilder
     {
         private Order _order;
-        private Vehicle _tradeVehicle;
         private Staff _saleRep;
         private Customer _customer;
         private InvoiceType _invoiceType;
@@ -88,7 +87,7 @@ namespace IMS.Builder
         {
             set
             {
-                _tradeVehicle = value;
+                _order.tradeVehicle = value;
             }
 
         }
@@ -113,7 +112,7 @@ namespace IMS.Builder
                 throw new System.ArgumentException("Invalid code path. Need to declare builder parameters!");
             }
 
-            Sale sInvoice = new Sale(IdGenerator.UniqueId(), _saleRep, _order.buyVehicle, _tradeVehicle);
+            Sale sInvoice = new Sale(IdGenerator.UniqueId(), _saleRep, _order.buyVehicle, _order.tradeVehicle);
             foreach (Addon a in _order.addons)
             {
                 sInvoice.Add(a);

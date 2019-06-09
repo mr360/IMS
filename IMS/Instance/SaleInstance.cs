@@ -154,7 +154,9 @@ namespace IMS.Instance
             }
 
             VehicleBuilder vBuild = new VehicleBuilder();
-            vBuild.Add(_vehicle, discount);
+            vBuild.Add(_vehicle, VehicleType.New);
+            vBuild.Add(_tradeIn, VehicleType.Trade);
+            vBuild.SetDiscount(discount);
             vBuild.Add(_addonIds, _addon);
             Order orders = vBuild.Prepare();
 

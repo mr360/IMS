@@ -11,7 +11,10 @@ namespace IMS
     {
         public Vehicle buyVehicle;
         public List<Addon> addons;
+        public Vehicle tradeVehicle;
     }
+
+    public enum VehicleType { Trade, New};
 }
 
 namespace IMS.Builder
@@ -28,10 +31,28 @@ namespace IMS.Builder
             _order.addons = new List<Addon>();
         }
 
-        public void Add(Vehicle vehicle, PriceRate discount)
+        public void Add(Vehicle vehicle, VehicleType vType)
         {
-            vehicle.Price = vehicle.Price * ((int)discount * 0.01);
-            _order.buyVehicle = vehicle;
+            switch(vType)
+            {
+                case VehicleType.New:
+                    _order.buyVehicle = vehicle;
+                    break;
+                case VehicleType.Trade:
+                    _order.tradeVehicle = vehicle;
+                    break;
+                default: throw new ArgumentException("Not valid argument");
+            }
+            
+        }
+
+        public void SetDiscount(PriceRate discount)
+        {
+            if (_order.buyVehicle == null)
+            {
+                throw new ArgumentNullException("Can't apply discount to null vehicle");
+            }
+            _order.buyVehicle.Price *= ((int)discount * 0.01);
         }
 
         public void Add(List<string> addonId, List<Addon> addon)
