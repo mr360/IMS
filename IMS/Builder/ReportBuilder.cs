@@ -77,7 +77,7 @@ namespace IMS.Builder
 
             foreach (Tax tInvoice in lInvoiceList)
             {
-                if (!ValidDateRangeCheck(tInvoice, _periodStart, _periodEnd)) continue;
+                if (!ValidateIMS.ValidDateRangeCheck(tInvoice, _periodStart, _periodEnd)) continue;
                 switch (_reportType)
                 {
                     case ReportType.Addon:
@@ -100,16 +100,6 @@ namespace IMS.Builder
 
         }
 
-        private bool ValidDateRangeCheck(Invoice.Invoice t, DateTime start, DateTime end)
-        {
-            int lStart = t.Date.CompareTo(start);
-            int lEnd = t.Date.CompareTo(end);
-
-            // Less than zero ; earlier date
-            // Greater than zero; later date
-            if (lStart >= 0 && lEnd <= 0) return true;
-            return false;
-        }
 
         public Report.Report Report
         {
