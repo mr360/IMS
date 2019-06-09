@@ -97,6 +97,7 @@ namespace IMS
             Order z;
             z.addons = new List<Addon>() { new Addon("A00001", "AddonTA10", "Addon is xyz blah", 5600.00) };
             z.buyVehicle = new Vehicle("VIN00001", Brand.Audi, "MN-67", new DateTime(new Random().Next(1990, 2019), 01, 01), new Random().Next(30000, 150000));
+            z.tradeVehicle = null;
             iBuild.Order = z;
             iBuild.Staff = new Staff("SR689", "Example Staff", JobRole.Sale);
 
@@ -130,6 +131,7 @@ namespace IMS
             Order z;
             z.addons = new List<Addon>() { new Addon("A00001", "AddonTA10", "Addon is xyz blah", 5600.00) };
             z.buyVehicle = new Vehicle("VIN00001", Brand.Audi, "MN-67", new DateTime(new Random().Next(1990, 2019), 01, 01), new Random().Next(30000, 150000));
+            z.tradeVehicle = null;
             iBuild.Order = z;
             iBuild.Staff = new Staff("SR689", "Example Staff", JobRole.Sale);
 
