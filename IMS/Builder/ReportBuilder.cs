@@ -36,9 +36,11 @@ namespace IMS.Builder
         {
             try
             {
+                TimeSpan tsStart = new TimeSpan(1, 00, 0);
+                TimeSpan tsEnd = new TimeSpan(23, 59, 59);
 
-                _periodStart = Convert.ToDateTime(start);
-                _periodEnd = Convert.ToDateTime(end);
+                _periodStart = Convert.ToDateTime(start) + tsStart;
+                _periodEnd = Convert.ToDateTime(end) + tsEnd;
             }
             catch
             {
