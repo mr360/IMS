@@ -24,8 +24,8 @@ namespace IMS.Instance
     public class SaleInstance : Instance
     {
         private Vehicle _vehicle;
-        private List<Addon> _addon;
-        private List<string> _addonIds;
+        private List<Addon> _compatibleAddons;
+        private List<string> _selectedAddons;
         private Vehicle _tradeIn;
         private Staff _saleRep;
         private Sale _sInvoice;
@@ -38,8 +38,8 @@ namespace IMS.Instance
             }
 
             _saleRep = s;
-            _addon = new List<Addon>();
-            _addonIds = new List<string>();
+            _compatibleAddons = new List<Addon>();
+            _selectedAddons = new List<string>();
         }
 
         public string ViewSelectedVehicle
@@ -55,24 +55,24 @@ namespace IMS.Instance
         {
             get
             {
-                _addon.Clear();
+                _compatibleAddons.Clear();
 
                 List<DbObject> addonList = _manager["Addon"].RetrieveMany(_vehicle.Id);
                 if (addonList != null)
                 {
                     foreach (Addon a in addonList)
                     {
-                        _addon.Add(a);
+                        _compatibleAddons.Add(a);
                     }
                 }
-                return _addon;
+                return _compatibleAddons;
             }
         }
 
         public Addon ViewSelectedAddon(string id)
         {
             
-            foreach (Addon a in _addon)
+            foreach (Addon a in _compatibleAddons)
             {
                 if (a.Id != id) continue;
                 return a;
@@ -95,9 +95,9 @@ namespace IMS.Instance
 
         public void SelectAddon(string addonId)
         {
-            if (!(_addonIds.Contains(addonId)))
+            if (!(_selectedAddons.Contains(addonId)))
             {
-                _addonIds.Add(addonId);
+                _selectedAddons.Add(addonId);
             }
         }
 
@@ -130,11 +130,6 @@ namespace IMS.Instance
 
         public string RemoveInvoice()
         {
-            if (_sInvoice == null)
-            {
-                return "Fail. No invoice currently.";
-            }
-
             if (!_manager["Invoice"].Contain(_sInvoice.Id))
             {
                 return "Fail. No invoice"; 
@@ -148,22 +143,21 @@ namespace IMS.Instance
 
         public string CreateSale(PriceRate discount)
         {
-            if (_vehicle == null || _addon == null || _addonIds == null)
+            if (_vehicle == null || _compatibleAddons == null || _selectedAddons == null)
             {
                 return "Missing key sales details";
             }
 
-            VehicleBuilder vBuild = new VehicleBuilder();
-            vBuild.Add(_vehicle, VehicleType.New);
-            vBuild.Add(_tradeIn, VehicleType.Trade);
-            vBuild.SetDiscount(discount);
-            vBuild.Add(_addonIds, _addon);
-            Order orders = vBuild.Prepare();
+            OrderBuilder oBuild = new OrderBuilder();
+            oBuild.Add(_vehicle, VehicleType.New);
+            oBuild.Add(_tradeIn, VehicleType.Trade);
+            oBuild.SetDiscount(discount);
+            oBuild.Add(_selectedAddons, _compatibleAddons);
+            Order orders = oBuild.Prepare();
 
             InvoiceBuilder iBuild = new InvoiceBuilder();
             iBuild.Staff = _saleRep;
             iBuild.Order = orders;
-            iBuild.TradeVehicle = _tradeIn;
             _sInvoice = iBuild.Prepare() as Sale;
 
             return _manager["Invoice"].Add(_sInvoice);
