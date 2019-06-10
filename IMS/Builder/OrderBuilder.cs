@@ -22,11 +22,11 @@ namespace IMS.Builder
     /// <summary>
     /// Assembles the vehicle order based off of the inputted data.
     /// </summary>
-    public class VehicleBuilder
+    public class OrderBuilder
     {
         private Order _order;
 
-        public VehicleBuilder()
+        public OrderBuilder()
         {
             _order.addons = new List<Addon>();
         }
@@ -55,21 +55,21 @@ namespace IMS.Builder
             _order.buyVehicle.Price *= ((int)discount * 0.01);
         }
 
-        public void Add(List<string> addonId, List<Addon> addon)
+        public void Add(List<string> addonSelected, List<Addon> availableAddon)
         {
-            List<Addon> selectedAddons = new List<Addon>();
-            foreach (string id in addonId)
+            _order.addons.Clear();
+
+            foreach (string id in addonSelected)
             {
-                foreach (Addon a in addon)
+                foreach (Addon a in availableAddon)
                 {
-                    if (addonId.Contains(a.Id))
+                    if (addonSelected.Contains(a.Id))
                     {
-                        selectedAddons.Add(a);
+                        _order.addons.Add(a);
                     }
                 }
             }
 
-            _order.addons = selectedAddons;
         }
 
         public Order Prepare()
