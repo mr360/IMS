@@ -8,14 +8,35 @@ using IMS.User;
 
 namespace IMS.Manager
 {
-    public class InvoiceManager : Manager, IManager
+    public sealed class InvoiceManager : Manager, IManager
     {
         /// <summary>
         /// Interacts with the database through the invoice manager
         /// Allows accessing of invoice specific methods
         /// Add, delete, remove, update and retreival of invoice done via this manager 
         /// </summary>
-        public InvoiceManager(string itable, Database db) : base(itable, db)
+
+        private static InvoiceManager _instance;
+        public static InvoiceManager Instance
+        {
+            get
+            {
+                if (_instance == null)
+                {
+                    throw new Exception("Invoice Manager not created");
+                }
+                return _instance;
+            }
+        }
+
+        public static void Create(string itable, Database db)
+        {
+            if (_instance == null)
+            {
+                _instance = new InvoiceManager(itable, db);
+            }
+        }
+        private InvoiceManager(string itable, Database db) : base(itable, db)
         {
         }
 

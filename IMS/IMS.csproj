@@ -45,7 +45,7 @@
   <ItemGroup>
     <Compile Include="Builder\InvoiceBuilder.cs" />
     <Compile Include="Builder\ReportBuilder.cs" />
-    <Compile Include="Builder\VehicleBuilder.cs" />
+    <Compile Include="Builder\OrderBuilder.cs" />
     <Compile Include="Database\Database.cs" />
     <Compile Include="DbObject\Addon.cs" />
     <Compile Include="DbObject\Bay.cs" />
@@ -53,6 +53,7 @@
     <Compile Include="DbObject\Invoice\Invoice.cs" />
     <Compile Include="DbObject\Invoice\Sale.cs" />
     <Compile Include="DbObject\Invoice\Tax.cs" />
+    <Compile Include="DbObject\Report\InvoiceReport.cs" />
     <Compile Include="DbObject\Report\Report.cs" />
     <Compile Include="DbObject\User\Customer.cs" />
     <Compile Include="DbObject\User\Staff.cs" />
@@ -66,11 +67,13 @@
     <Compile Include="Instance\LotInstance.cs" />
     <Compile Include="Instance\ReportInstance.cs" />
     <Compile Include="Instance\SaleInstance.cs" />
+    <Compile Include="Instance\UserInstance.cs" />
     <Compile Include="Manager\AddonManager.cs" />
     <Compile Include="Manager\BayManager.cs" />
     <Compile Include="Manager\IManager.cs" />
     <Compile Include="Manager\InvoiceManager.cs" />
     <Compile Include="Manager\Manager.cs" />
+    <Compile Include="Manager\ManagerFactory.cs" />
     <Compile Include="Manager\ReportManager.cs" />
     <Compile Include="Manager\UserManager.cs" />
     <Compile Include="Manager\VehicleManager.cs" />
@@ -78,10 +81,12 @@
     <Compile Include="Payment\PaymentProcessor.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tools\MsgTable.cs" />
     <Compile Include="Tools\Validate.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="ClassDiagram1.cd" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

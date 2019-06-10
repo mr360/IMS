@@ -8,6 +8,8 @@ using IMS.Invoice;
 using IMS.User;
 using IMS.Manager;
 using IMS.Instance;
+using IMS.Report;
+
 
 namespace IMS
 {
@@ -15,7 +17,6 @@ namespace IMS
     {
         static int Main(string[] args)
         {
-            
             return 0;
         }
 

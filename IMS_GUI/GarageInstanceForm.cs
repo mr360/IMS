@@ -14,8 +14,8 @@ namespace IMS_GUI
 {
     public partial class GarageInstanceForm : Form
     {
-        GarageInstance gInstance = new GarageInstance(Program.staffAccount, Program.vm, Program.am, Program.bm);
-        LotInstance lInstance = new LotInstance(Program.vm, Program.bm);
+        GarageInstance gInstance = new GarageInstance(Program.staffAccount, ManagerShared.vm, ManagerShared.am, ManagerShared.bm);
+        LotInstance lInstance = LotInstance.Instance;
 
         public GarageInstanceForm()
         {
@@ -80,20 +80,20 @@ namespace IMS_GUI
         {
             string msg = "Enter in a items details, then click Add.";
 
-            if (Program.addon != null && Program.vehicle != null)
+            if (WinFormShared.addon != null && WinFormShared.vehicle != null)
             {
                 MessageBox.Show("Can only add a single item", "Adding Items", MessageBoxButtons.OK);
             }
             else
             {
-                if (Program.addon != null)
+                if (WinFormShared.addon != null)
                 {
-                    msg = gInstance.Add(Program.addon);
+                    msg = gInstance.Add(WinFormShared.addon);
                     tbAddDetail.Text = gInstance.ViewAddAddon;
                 }
-                else if(Program.vehicle != null)
+                else if(WinFormShared.vehicle != null)
                 {
-                    msg = gInstance.Add(Program.vehicle);
+                    msg = gInstance.Add(WinFormShared.vehicle);
                     tbAddDetail.Text = gInstance.ViewAddVehicle;
                 }
 
@@ -104,8 +104,8 @@ namespace IMS_GUI
         private void btnAddClear_Click(object sender, EventArgs e)
         {
             tbAddDetail.Text = "";
-            Program.vehicle = null;
-            Program.addon = null;
+            WinFormShared.vehicle = null;
+            WinFormShared.addon = null;
         }
 
         private void btnClose_Click(object sender, EventArgs e)

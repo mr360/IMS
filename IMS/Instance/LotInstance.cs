@@ -11,9 +11,31 @@ namespace IMS.Instance
     /// <summary>
     ///  
     /// </summary>
-    public class LotInstance : Instance
+    public sealed class LotInstance : Instance
     {
-        public LotInstance(VehicleManager vm, BayManager bm) : base(vm,bm)
+        private static LotInstance _instance;
+
+        public static LotInstance Instance
+        {
+            get
+            {
+                if (_instance == null)
+                {
+                    throw new Exception("Lot instance not created");
+                }
+                return _instance;
+            }
+        }
+
+        public static void Create(VehicleManager vm, BayManager bm)
+        {
+            if (_instance == null)
+            {
+                _instance = new LotInstance(vm,bm);
+            }
+        }
+
+        private LotInstance(VehicleManager vm, BayManager bm) : base(vm,bm)
         {
 
         }

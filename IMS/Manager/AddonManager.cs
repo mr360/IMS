@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using IMS.Tools;
 
 namespace IMS.Manager
 {
@@ -11,9 +12,30 @@ namespace IMS.Manager
     /// Allows accessing of addon specific methods.
     /// Add, delete, remove, update and retreival of addons done via this manager.
     /// </summary>
-    public class AddonManager : Manager, IManager
+    public sealed class AddonManager : Manager, IManager
     {
-        public AddonManager(string atable, Database db) : base(atable, db)
+        private static AddonManager _instance;
+
+        public static AddonManager Instance
+        {
+            get
+            {
+                if (_instance == null)
+                {
+                    throw new Exception("Addon manager not created");
+                }
+                return _instance;
+            }
+        }
+
+        public static void Create(string atable, Database db)
+        {
+            if (_instance == null)
+            {
+                _instance = new AddonManager(atable, db);
+            }
+        }
+        private AddonManager(string atable, Database db) : base(atable, db)
         {
         }
 
@@ -31,7 +53,7 @@ namespace IMS.Manager
                 return "Successfully added addon";
             }
 
-            return "Duplication! Addon already exists. ID:" + item.Id;   
+            return "Duplication! Addon already exists. ID:" + item.Id;
         }
 
         /// <summary>

@@ -12,12 +12,33 @@ namespace IMS
     /// <remarks>
     /// Future implementations can include authentication..ect.
     /// </remarks>
-    public class Database : IDb
+    public sealed class Database : IDb
     {
         private string _name;
         private List<DbTable> _table;
+        private static Database _instance;
 
-        public Database(string name)
+        public static Database Instance
+        {
+            get
+            {
+                if (_instance == null)
+                {
+                    throw new Exception("Database not created");
+                }
+                return _instance;
+            }
+        }
+
+        public static void Create(string name)
+        {
+            if (_instance == null)
+            {
+                _instance = new Database(name);
+            }
+        }
+
+        private Database(string name)
         {
             _name = name.ToUpper();
             _table = new List<DbTable>();

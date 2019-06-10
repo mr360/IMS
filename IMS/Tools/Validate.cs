@@ -66,6 +66,17 @@ namespace IMS.Tools
 
             return true;
         }
+
+        public static bool ValidDateRangeCheck(Invoice.Invoice invoice, DateTime start, DateTime end)
+        {
+            int lStart = invoice.Date.CompareTo(start);
+            int lEnd = invoice.Date.CompareTo(end);
+
+            // Less than zero ; earlier date
+            // Greater than zero; later date
+            if (lStart >= 0 && lEnd <= 0) return true;
+            return false;
+        }
     }
 }
 

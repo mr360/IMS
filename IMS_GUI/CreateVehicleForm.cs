@@ -27,7 +27,7 @@ namespace IMS_GUI
 
         private void btnAddVehicle_Click(object sender, EventArgs e)
         {
-            Program.vehicle = new Vehicle(txtId.Text, (Brand)cbBrand.SelectedItem, txtModel.Text, new DateTime(Convert.ToInt32(cbYear.SelectedItem), 01, 01), Convert.ToDouble(nudPrice.Text));
+            WinFormShared.vehicle = new Vehicle(txtId.Text, (Brand)cbBrand.SelectedItem, txtModel.Text, new DateTime(Convert.ToInt32(cbYear.SelectedItem), 01, 01), Convert.ToDouble(nudPrice.Text));
             this.Close();            
         }
 

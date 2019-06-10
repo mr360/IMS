@@ -63,5 +63,13 @@ namespace IMS.Instance
             _manager.Add("Vehicle", vm);
             _manager.Add("Bay", bm);
         }
+
+        /// <summary>
+        /// Managers used by the User Instance 
+        /// </summary>
+        public Instance(UserManager um)
+        {
+            _manager.Add("User", um);
+        }
     }
 }

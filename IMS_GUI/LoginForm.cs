@@ -9,19 +9,21 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using IMS.User;
 using IMS;
+using IMS.Instance;
 
 namespace IMS_GUI
 {
     public partial class LoginForm : Form
     {
+        UserInstance uInstance = UserInstance.Instance;
         public LoginForm()
         {
             InitializeComponent();
         }
 
         private void btnLogin_Click(object sender, EventArgs e)
-        {
-           Program.staffAccount = Program.um.Retrieve(txtUsername.Text) as Staff;
+        { 
+           Program.staffAccount = uInstance.LocateUser(typeof(Staff), txtUsername.Text) as Staff;
            if (Program.staffAccount != null)
            {
                 //this.Hide();

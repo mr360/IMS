@@ -10,9 +10,31 @@ namespace IMS.Manager
     /// Interacts with the database through the bay manager
     /// Add, delete, remove, update and retreival of vehicle bays done via this manager 
     /// </summary>
-    public class BayManager : Manager, IManager
+    public sealed class BayManager : Manager, IManager
     {
-        public BayManager(string btable, Database db) : base(btable, db)
+        private static BayManager _instance;
+
+        public static BayManager Instance
+        {
+            get
+            {
+                if (_instance == null)
+                {
+                    throw new Exception("Bay manager not created");
+                }
+                return _instance;
+            }
+        }
+
+        public static void Create(string btable, Database db)
+        {
+            if (_instance == null)
+            {
+                _instance = new BayManager(btable, db);
+            }
+        }
+
+        private BayManager(string btable, Database db) : base(btable, db)
         {
         }
 

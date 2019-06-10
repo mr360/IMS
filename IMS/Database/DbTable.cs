@@ -39,12 +39,7 @@ namespace IMS
         {
             get
             {
-                string temp = "";
-                foreach (DbObject itm in _table)
-                {
-                    temp += itm.Id;
-                }
-                return temp;
+                return _name;
             }
         }
 

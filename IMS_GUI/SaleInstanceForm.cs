@@ -10,8 +10,8 @@ namespace IMS_GUI
 {
     public partial class SaleInstanceForm : Form
     {
-        SaleInstance sInstance = new SaleInstance(Program.staffAccount, Program.vm, Program.am, Program.im, Program.bm);
-        LotInstance lInstance = new LotInstance(Program.vm, Program.bm);
+        SaleInstance sInstance = new SaleInstance(Program.staffAccount, ManagerShared.vm, ManagerShared.am, ManagerShared.im, ManagerShared.bm);
+        LotInstance lInstance = LotInstance.Instance;
 
         public SaleInstanceForm()
         {
@@ -55,10 +55,10 @@ namespace IMS_GUI
             CreateVehicleForm sInstanceForm = new CreateVehicleForm();
             sInstanceForm.ShowDialog();
 
-            string msg = sInstance.GetTradeVehicle(Program.vehicle);
+            string msg = sInstance.GetTradeVehicle(WinFormShared.vehicle);
             if (msg == "Success.")
             {
-                tbShowTradeInVehicle.Text = Program.vehicle.View;
+                tbShowTradeInVehicle.Text = WinFormShared.vehicle.View;
             }
             else
             {
@@ -90,7 +90,7 @@ namespace IMS_GUI
 
         private void btnClearTradeInVehicle_Click(object sender, EventArgs e)
         {
-            Program.vehicle = null;
+            WinFormShared.vehicle = null;
             tbShowTradeInVehicle.Text = "";
         }
 
