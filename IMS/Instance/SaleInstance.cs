@@ -136,7 +136,7 @@ namespace IMS.Instance
             }
 
             _manager["Invoice"].Delete(_sInvoice.Id);
-            _sInvoice = null;
+            //_sInvoice = null;
 
             return "Success.";
         }
