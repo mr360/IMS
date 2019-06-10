@@ -9,9 +9,30 @@ using IMS.Tools;
 
 namespace IMS.Instance
 {
-    public class UserInstance : Instance
+    public sealed class UserInstance : Instance
     {
-        public UserInstance(UserManager um) : base(um)
+        private static UserInstance _instance;
+
+        public static UserInstance Instance
+        {
+            get
+            {
+                if (_instance == null)
+                {
+                    throw new Exception("User Instance not created");
+                }
+                return _instance;
+            }
+        }
+
+        public static void Create(UserManager um)
+        {
+            if (_instance == null)
+            {
+                _instance = new UserInstance(um);
+            }
+        }
+        private UserInstance(UserManager um) : base(um)
         {
 
         }
