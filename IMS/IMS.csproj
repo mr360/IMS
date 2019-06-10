@@ -45,7 +45,7 @@
   <ItemGroup>
     <Compile Include="Builder\InvoiceBuilder.cs" />
     <Compile Include="Builder\ReportBuilder.cs" />
-    <Compile Include="Builder\VehicleBuilder.cs" />
+    <Compile Include="Builder\OrderBuilder.cs" />
     <Compile Include="Database\Database.cs" />
     <Compile Include="DbObject\Addon.cs" />
     <Compile Include="DbObject\Bay.cs" />
