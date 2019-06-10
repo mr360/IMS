@@ -41,13 +41,17 @@ namespace IMS
 
 namespace IMS.Tools
 {
+    /// <summary>
+    /// Allows for the messages displayed to the user to be collated using a string table
+    /// ,thus, allowing for localization in the future. 
+    /// </summary>
     public class StringTable
     {
         public static string EnumToString(EnumMsg msg)
         {
             switch(msg)
             {
-                default: return "Unknown msg";
+                default: return "Unknown msg.TODO.";
             }
         }
     }
