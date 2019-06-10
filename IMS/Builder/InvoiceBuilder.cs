@@ -83,15 +83,6 @@ namespace IMS.Builder
             }
         }
 
-        public Vehicle TradeVehicle
-        {
-            set
-            {
-                _order.tradeVehicle = value;
-            }
-
-        }
-
         public Object Prepare()
         {
             switch (_invoiceType)
@@ -123,7 +114,7 @@ namespace IMS.Builder
 
         private Tax GenerateTax()
         {
-            if (_saleInvoice == null || _customer == null || _paymentId == null)
+            if (_saleInvoice == null || _customer == null || String.IsNullOrEmpty(_paymentId))
             {
                 throw new System.ArgumentException("Invalid code path. Need to declare builder parameters!");
             }
