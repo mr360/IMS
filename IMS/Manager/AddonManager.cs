@@ -45,15 +45,15 @@ namespace IMS.Manager
             
             if(a == null)
             {
-                throw new NullReferenceException(StringTable.EnumToString(EnumMsg.MSG_NULL_EXCEPTION_NOT_ADDON));
+                throw new NullReferenceException("Not of type Addon");
             }
 
             if (_db.Create(item))
             {
-                return StringTable.EnumToString(EnumMsg.MSG_SUCCESS_ADD_ADDON);
+                return "Successfully added addon";
             }
 
-            return StringTable.EnumToString(EnumMsg.MSG_ERROR_DUPLICATE_ADDON);
+            return "Duplication! Addon already exists. ID:" + item.Id;
         }
 
         /// <summary>
