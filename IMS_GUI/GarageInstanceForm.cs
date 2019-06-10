@@ -15,7 +15,7 @@ namespace IMS_GUI
     public partial class GarageInstanceForm : Form
     {
         GarageInstance gInstance = new GarageInstance(Program.staffAccount, ManagerShared.vm, ManagerShared.am, ManagerShared.bm);
-        LotInstance lInstance = new LotInstance(ManagerShared.vm, ManagerShared.bm);
+        LotInstance lInstance = LotInstance.Instance;
 
         public GarageInstanceForm()
         {

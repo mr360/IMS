@@ -17,7 +17,7 @@ namespace IMS_GUI
     public partial class AccountingInstanceForm : Form
     {
         AccountingInstance aInstance = new AccountingInstance(Program.staffAccount, ManagerShared.im, ManagerShared.um, ManagerShared.vm);
-        UserInstance uInstance = new UserInstance(ManagerShared.um);
+        UserInstance uInstance = UserInstance.Instance;
 
         public static Customer newCustomer = null;
 

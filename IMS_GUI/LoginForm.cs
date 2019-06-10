@@ -15,7 +15,7 @@ namespace IMS_GUI
 {
     public partial class LoginForm : Form
     {
-        UserInstance uInstance = new UserInstance(ManagerShared.um);
+        UserInstance uInstance = UserInstance.Instance;
         public LoginForm()
         {
             InitializeComponent();

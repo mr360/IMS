@@ -7,6 +7,7 @@ using IMS.User;
 using IMS;
 using IMS.Manager;
 using IMS.Report;
+using IMS.Instance;
 
 namespace IMS_GUI
 {
@@ -152,6 +153,9 @@ namespace IMS_GUI
             ManagerFactory.Create(typeof(UserManager), "user", db);
             ManagerFactory.Create(typeof(InvoiceManager), "invoice", db);
             ManagerFactory.Create(typeof(ReportManager), "report", db);
+
+            LotInstance.Create(VehicleManager.Instance, BayManager.Instance);
+            UserInstance.Create(UserManager.Instance);
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);

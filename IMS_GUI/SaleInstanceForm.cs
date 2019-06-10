@@ -11,7 +11,7 @@ namespace IMS_GUI
     public partial class SaleInstanceForm : Form
     {
         SaleInstance sInstance = new SaleInstance(Program.staffAccount, ManagerShared.vm, ManagerShared.am, ManagerShared.im, ManagerShared.bm);
-        LotInstance lInstance = new LotInstance(ManagerShared.vm, ManagerShared.bm);
+        LotInstance lInstance = LotInstance.Instance;
 
         public SaleInstanceForm()
         {
